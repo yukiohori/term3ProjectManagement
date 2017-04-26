@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------------
+// Welcome Page
+// -----------------------------------------------------------------------------
+
+.admin-style{
+    height:100vh;
+    background-image: url("../img/bg-image.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding:30px;
+    h2 {
+        text-align: center;
+        margin: 0;
+        color: $white-color;
+    }
+}
+
+
+// -----------------------------------------------------------------------------
+// END Welcome Page
+// -----------------------------------------------------------------------------
