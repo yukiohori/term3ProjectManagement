@@ -39,6 +39,16 @@ body,html{
     transform: translate(-50%,-50%);
 }
 
+.div-top-left{
+    width: 50%;
+    float:left;
+}
+
+.div-top-left{
+    width: 50%;
+    float:left;
+}
+
 @keyframes dash {
   50% {
     stroke-width: 1;
