@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en" ng-app>
+<html class="no-js" lang="en" ng-app="yosapp">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Ahmed's Website</title>
-        <meta name="description" content="Nozomi Website">
+        <meta name="description" content="Ahmed's Website">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -13,12 +13,13 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.js"></script>
     </head>
-    <body>
+    <body ng-controller="mainController">
         <ng-include src="'partials/header.html'"></ng-include>
 
-        <div class='welcome-style'>
-
+        <div id="main" class='welcome-style'>
+            <div ng-view></div>
         </div>
         
         <ng-include src="'partials/footer.html'"></ng-include>
