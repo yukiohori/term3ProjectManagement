@@ -1,0 +1,46 @@
+// -----------------------------------------------------------------------------
+// Welcome Page
+// -----------------------------------------------------------------------------
+
+.login-style{
+    height:100vh;
+    background-image: url("../img/bg-image.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    .login-form{
+        color: $white-color;
+        position: absolute;
+        top: 50%;
+        background-color: $loginbox-color;
+        text-align: center;
+        @include respond-to(destab) {
+            padding: 30px 60px;
+            width:500px;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        @include respond-to(mobile) {
+            padding: 10px 30px;
+            width:100%;
+            transform: translateY(-50%);
+        }
+    }
+
+    input[type=text],
+    input[type=password]{
+        width: 100%;
+        padding: 10px 18px;
+        margin:10px 0;
+    }
+    
+    input[type=submit]{
+        padding: 10px 18px;
+    }
+}
+
+
+// -----------------------------------------------------------------------------
+// END Welcome Page
+// -----------------------------------------------------------------------------

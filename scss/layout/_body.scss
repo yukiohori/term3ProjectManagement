@@ -1,0 +1,20 @@
+@media screen and (max-width: 39.9375em) {
+    /* styles for small only */
+}
+
+@media screen and (min-width: 40em) {
+    /* styles for medium and onward */
+}
+
+@media screen and (max-width: 39.9375em) {
+    /* styles for small and medium*/
+}
+
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+    /* styles for medium only */
+}
+
+@media screen and (min-width: 64em) {
+    /* styles for large and onward only */
+}
+

@@ -1,0 +1,78 @@
+// -----------------------------------------------------------------------------
+// Header
+// -----------------------------------------------------------------------------
+
+
+
+.menu-main{
+    background-color:rgba(100,100,100,0.5);
+}
+
+.mobile-menu-box{
+    background-color:rgba(100,100,100,0.5);
+    @include respond-to(tabmob) {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        
+    }
+    .menu-style {
+        list-style: none;
+        text-align: center;
+        @include respond-to(tabmob) {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        li {
+            @include respond-to(desktop) {
+                float:left;
+                width:25%;
+            }
+            @include respond-to(tabmob) {
+                padding: 10px 0;
+            }
+        }
+    }
+    .mobile-menu-close{
+        color: $icon-color;
+        position: absolute;
+        bottom:0;
+        width: 100%;
+        margin: 0;
+        padding:10px 0;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+
+
+.mobile-menu{
+    float: right;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: $icon-color;
+}
+
+.menu-main {
+    position:fixed;
+    top:0;
+    left:0;
+    width: 100%;
+}
+
+.logo-style{
+    position: absolute;
+    img {
+        width: 61px;
+    }
+    @include respond-to(desktop) {
+        float: left;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// END Header
+// -----------------------------------------------------------------------------
