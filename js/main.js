@@ -12,10 +12,10 @@ $(document).on("click", "#mobileMenuClose", function() {
     $('#mobileMenuBox').fadeOut(200);
 });
 
-$(document).on("click",".menu-option", function() {
-    menuShow=false;
-    $('#mobileMenuBox').fadeOut(200);
-});
+// $(document).on("click",".menu-option", function() {
+//     menuShow=false;
+//     $('#mobileMenuBox').fadeOut(200);
+// });
 
 $( window ).resize(function() {
     if($(window).width()>1024){
@@ -68,16 +68,16 @@ $( window ).resize(function() {
     });
 
 	yosApp.controller('mainController', function($scope) {
-		$scope.message = 'Everyone come and see how good I look!';
+		$scope.message = '';
 	});
 
 	yosApp.controller('aboutController', function($scope) {
 		$scope.message = 'Look! I am an about page.';
-		$scope.content = 'asdasd<div>Hello</div>';
+		$scope.content = '';
 	});
 
 	yosApp.controller('contactController', function($scope) {
-		$scope.message = 'Contact us! JK. This is just a demo.';
+		$scope.message = '';
 	});
 
 // END Angular Section
