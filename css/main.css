@@ -4015,6 +4015,237 @@ h1 {
 @media screen and (min-width: 64em) {
   /* styles for large and onward only */ }
 
+.logoAni {
+  transition: all 0.5s ease; }
+  @media (min-width: 64em) {
+    .logoAni {
+      width: 200px;
+      height: 200px;
+      padding: 20px; } }
+  @media (max-width: 63.9em) {
+    .logoAni {
+      width: 100px;
+      height: 100px;
+      padding: 10px; } }
+  .logoAni path {
+    fill: white;
+    stroke: white;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1700;
+    stroke-dashoffset: 1700;
+    fill-opacity: 0;
+    -webkit-animation-name: dash, FillIn;
+            animation-name: dash, FillIn;
+    -webkit-animation-duration: 2.5s, 0.5s;
+            animation-duration: 2.5s, 0.5s;
+    -webkit-animation-delay: 0s, 2.2s;
+            animation-delay: 0s, 2.2s;
+    -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards; }
+
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+
+.intro-image-topview {
+  background-image: url("../img/intro/img4.jpg");
+  background-position: center;
+  background-position-y: no-repeat;
+  background-size: cover;
+  float: left;
+  width: 50%;
+  height: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-animation-name: fade-updown-intro;
+          animation-name: fade-updown-intro;
+  -webkit-animation-duration: 1.3s;
+          animation-duration: 1.3s;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; }
+
+.intro-image-botview {
+  background-image: url("../img/intro/img1.jpg");
+  background-position: center;
+  background-position-y: no-repeat;
+  background-size: cover;
+  float: left;
+  width: 50%;
+  height: 50%;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
+  -webkit-animation-name: fade-updown-intro;
+          animation-name: fade-updown-intro;
+  -webkit-animation-duration: 1.3s;
+          animation-duration: 1.3s;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; }
+
+.intro-image-left {
+  background-image: url("../img/intro/img3.jpg");
+  background-position: center;
+  background-position-y: no-repeat;
+  background-size: cover;
+  float: left;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-animation-name: fade-left-intro;
+          animation-name: fade-left-intro;
+  -webkit-animation-duration: 1.3s;
+          animation-duration: 1.3s;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; }
+
+.intro-image-right {
+  height: 100%; }
+
+.intro-div {
+  height: 100vh;
+  transition: all 0.5s ease; }
+  @media (min-width: 64em) {
+    .intro-div {
+      padding: 70px; } }
+  @media (max-width: 63.9em) {
+    .intro-div {
+      padding: 20px; } }
+
+.intro {
+  position: relative;
+  height: 100%;
+  overflow: hidden; }
+
+.intro-pos {
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 50%; }
+
+.next-style {
+  background-color: black;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  padding: 20px;
+  border-radius: 50%;
+  -webkit-animation-name: btnAnimation;
+          animation-name: btnAnimation;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  cursor: pointer; }
+  .next-style i {
+    color: white; }
+
+@-webkit-keyframes dash {
+  50% {
+    stroke-width: 1; }
+  100% {
+    stroke-width: 1;
+    stroke-dashoffset: 980; } }
+
+@keyframes dash {
+  50% {
+    stroke-width: 1; }
+  100% {
+    stroke-width: 1;
+    stroke-dashoffset: 980; } }
+
+@-webkit-keyframes fade-left-intro {
+  0% {
+    opacity: 0; }
+  20% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0); } }
+
+@keyframes fade-left-intro {
+  0% {
+    opacity: 0; }
+  20% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0); } }
+
+@-webkit-keyframes fade-updown-intro {
+  0% {
+    opacity: 0; }
+  20% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0); } }
+
+@keyframes fade-updown-intro {
+  0% {
+    opacity: 0; }
+  20% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0); } }
+
+@-webkit-keyframes btnAnimation {
+  0% {
+    bottom: 30px; }
+  50% {
+    bottom: 50px; }
+  100% {
+    bottom: 30px; } }
+
+@keyframes btnAnimation {
+  0% {
+    bottom: 30px; }
+  50% {
+    bottom: 50px; }
+  100% {
+    bottom: 30px; } }
+
+@-webkit-keyframes FillIn {
+  from {
+    fill-opacity: 0;
+    stroke-width: 1; }
+  to {
+    fill-opacity: 1;
+    stroke-width: 0; } }
+
+@keyframes FillIn {
+  from {
+    fill-opacity: 0;
+    stroke-width: 1; }
+  to {
+    fill-opacity: 1;
+    stroke-width: 0; } }
+
 .login-style {
   height: 100vh;
   background-image: url("../img/bg-image.jpg");
@@ -4065,4 +4296,19 @@ h1 {
   background-image: url("../img/bg-image.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center; }
+  background-position: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+
+.home-welcome {
+  text-align: center;
+  color: white; }
+  .home-welcome h1 {
+    margin: 0; }

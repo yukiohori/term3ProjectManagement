@@ -1,0 +1,196 @@
+// -----------------------------------------------------------------------------
+// Welcome Page
+// -----------------------------------------------------------------------------
+
+.logoAni {
+    @include respond-to(desktop) {
+        width: 200px;
+        height: 200px;
+        padding: 20px;
+    }
+    @include respond-to(tabmob) {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+    }
+    transition: all 0.5s ease;
+    
+    path {
+        fill: white;
+        stroke: white;
+        stroke-width: 1;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 1700;
+        stroke-dashoffset: 1700;
+        fill-opacity: 0;
+        animation-name: dash, FillIn;
+        animation-duration: 2.5s, 0.5s;
+        animation-delay: 0s, 2.2s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+    }
+}
+
+body,html{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.intro-image-topview{
+    background-image: url("../img/intro/img4.jpg");
+    background-position: center;
+    background-position-y: no-repeat;
+    background-size: cover;
+    float: left;
+    width: 50%;
+    height: 50%;
+    transform: translateY(-50%);
+    animation-name: fade-updown-intro;
+    animation-duration: 1.3s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+.intro-image-botview{
+    background-image: url("../img/intro/img1.jpg");
+    background-position: center;
+    background-position-y: no-repeat;
+    background-size: cover;
+    float: left;
+    width: 50%;
+    height: 50%;
+    transform: translateY(50%);
+    animation-name: fade-updown-intro;
+    animation-duration: 1.3s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+.intro-image-left{
+    background-image: url("../img/intro/img3.jpg");
+    background-position: center;
+    background-position-y: no-repeat;
+    background-size: cover;
+    float: left;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transform: translateX(-50%);
+    animation-name: fade-left-intro;
+    animation-duration: 1.3s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+.intro-image-right{
+    height: 100%;
+}
+
+.intro-div{
+    @include respond-to(desktop) {
+        padding: 70px;
+    }
+    @include respond-to(tabmob) {
+        padding: 20px;
+    }
+    height: 100vh;
+    transition: all 0.5s ease;
+}
+
+.intro{
+    position: relative;
+    // background-color: black;
+    height: 100%;
+    overflow: hidden;
+}
+
+.intro-pos{
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 20px;
+    border-radius:50%;
+}
+
+.next-style{
+    background-color: black;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    border-radius:50%;
+    animation-name: btnAnimation;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count:infinite;
+    cursor: pointer;
+    i{
+        color:white;
+    }
+}
+
+
+@keyframes dash {
+  50% {
+    stroke-width: 1;
+  }
+  100% {
+    stroke-width: 1;
+    stroke-dashoffset: 980;
+  }
+}
+
+@keyframes fade-left-intro {
+    0% { 
+        opacity: 0; 
+    }
+    20% {
+        opacity:0;
+    }
+    100% {
+        opacity: 1; 
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-updown-intro{
+    0% { 
+        opacity: 0; 
+    }
+    20% {
+        opacity:0;
+    }
+    100% {
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+
+@keyframes btnAnimation {
+    0%{
+        bottom:30px;
+    }
+    50% {
+        bottom:50px;
+    }
+    100% {
+        bottom:30px;
+    }
+}
+
+
+@keyframes FillIn {
+  from { fill-opacity: 0;stroke-width: 1; }
+  to { fill-opacity: 1;stroke-width: 0; }
+}
+
+
+// -----------------------------------------------------------------------------
+// END Welcome Page
+// -----------------------------------------------------------------------------

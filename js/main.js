@@ -40,7 +40,7 @@ $( window ).resize(function() {
         $routeProvider
 
             .when('/', {
-                templateUrl : 'pages/home.html',
+                templateUrl : 'pages/intro.html',
                 controller  : 'mainController'
             })
 
@@ -52,6 +52,11 @@ $( window ).resize(function() {
             .when('/about', {
                 templateUrl : 'pages/about.html',
                 controller  : 'aboutController'
+            })
+
+            .when('/blog', {
+                templateUrl : 'pages/blog.html',
+                controller  : 'mainController'
             })
 
             .when('/contact', {

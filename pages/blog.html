@@ -1,11 +1,16 @@
 <ng-include src="'partials/header.html'"></ng-include>
 
 <div class='welcome-style'>
+
 	<div class="jumbotron text-center">
-		<h1>Contact Page</h1>
+		<h1>Blog Page</h1>
 		
 		<p>{{ message }}</p>
+		
+		<div ng-bind-html="content"></div>
+		
 	</div>
+
 </div>
 
 <ng-include src="'partials/footer.html'"></ng-include>
