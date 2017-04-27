@@ -8,7 +8,7 @@
     "autoprefixer": "postcss -u autoprefixer -r css/*",
     "serve": "browser-sync start --proxy localhost/term3ProjectManagement --files css/*.css, js/*.js, *.html, *.php, partials/*.php --browser Chrome",
     "buildcss": "npm run scss && npm run autoprefixer",
-    "watchcss": "onchange \"sass\" -- npm run buildcss",
+    "watchcss": "onchange \"scss\" -- npm run buildcss",
     "watchall": "npm-run-all -p serve watchcss"
   },
   "author": "Yuki Ohori",

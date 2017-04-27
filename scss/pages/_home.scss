@@ -8,6 +8,17 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-welcome{
+    text-align: center;
+    color: white;
+    h1{
+        margin:0;
+    }
 }
 
 
