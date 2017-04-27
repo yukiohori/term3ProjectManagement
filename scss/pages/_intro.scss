@@ -39,6 +39,14 @@ body,html{
     padding: 0;
 }
 
+#closeOverlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 100%;
+}
+
 .intro-image-topview{
     background-image: url("../img/intro/img4.jpg");
     background-position: center;

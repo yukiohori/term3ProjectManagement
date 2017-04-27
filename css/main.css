@@ -4053,6 +4053,13 @@ body, html {
   margin: 0;
   padding: 0; }
 
+#closeOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  width: 100%; }
+
 .intro-image-topview {
   background-image: url("../img/intro/img4.jpg");
   background-position: center;
@@ -4312,3 +4319,11 @@ body, html {
   color: white; }
   .home-welcome h1 {
     margin: 0; }
+
+#openOverlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  width: 100%;
+  height: 100vh; }

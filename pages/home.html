@@ -1,11 +1,13 @@
 <ng-include src="'partials/header.html'"></ng-include>
 
-<div class='welcome-style'>
+<div class="welcome-style" ng-init='load()'>
 	<div class="home-welcome">
 		<h1>Home Page</h1>
 		
 		<p>{{ message }}</p>
 	</div>
+</div>
+<div id="openOverlay">
 </div>
 
 <ng-include src="'partials/footer.html'"></ng-include>
