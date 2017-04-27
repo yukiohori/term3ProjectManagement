@@ -111,31 +111,26 @@
 .fa-rotate-90 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
   -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
   transform: rotate(90deg); }
 
 .fa-rotate-180 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg); }
 
 .fa-rotate-270 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
   -webkit-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
   transform: rotate(270deg); }
 
 .fa-flip-horizontal {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
   -webkit-transform: scale(-1, 1);
-  -ms-transform: scale(-1, 1);
   transform: scale(-1, 1); }
 
 .fa-flip-vertical {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
   -webkit-transform: scale(1, -1);
-  -ms-transform: scale(1, -1);
   transform: scale(1, -1); }
 
 :root .fa-rotate-90,
@@ -143,7 +138,8 @@
 :root .fa-rotate-270,
 :root .fa-flip-horizontal,
 :root .fa-flip-vertical {
-  filter: none; }
+  -webkit-filter: none;
+          filter: none; }
 
 .fa-stack {
   position: relative;
@@ -3965,7 +3961,8 @@ h1 {
       .mobile-menu-box .menu-style {
         position: absolute;
         top: 50%;
-        transform: translateY(-50%); } }
+        -webkit-transform: translateY(-50%);
+                transform: translateY(-50%); } }
     @media (min-width: 64em) {
       .mobile-menu-box .menu-style li {
         float: left;
@@ -4035,12 +4032,14 @@ h1 {
         padding: 30px 60px;
         width: 500px;
         left: 50%;
-        transform: translate(-50%, -50%); } }
+        -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%); } }
     @media (max-width: 39.9em) {
       .login-style .login-form {
         padding: 10px 30px;
         width: 100%;
-        transform: translateY(-50%); } }
+        -webkit-transform: translateY(-50%);
+                transform: translateY(-50%); } }
   .login-style input[type=text],
   .login-style input[type=password] {
     width: 100%;
