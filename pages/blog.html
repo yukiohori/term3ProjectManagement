@@ -4,13 +4,17 @@
 
 	<div class="jumbotron text-center">
 		<h1>Blog Page</h1>
-		
-		<p>{{ message }}</p>
-		
-		<div ng-bind-html="content"></div>
-		
 	</div>
 
+</div>
+<div>
+	<div ng-repeat="x in blog">
+		<h1 ng-bind="x.blog_title"></h1>
+		<div>
+			<img ng-src="{{x.blog_img}}" />
+		</div>
+		<p ng-bind="x.blog_content"></p>
+	</div>
 </div>
 
 <ng-include src="'partials/footer.html'"></ng-include>

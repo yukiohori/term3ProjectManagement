@@ -37,7 +37,7 @@ $(document).on('click', '#nextBtn', function() {
 
 // Angular Section
 
-    var yosApp = angular.module('yosapp', ['ngRoute']);
+    var yosApp = angular.module('yosapp', ['ngRoute','ngSanitize']);
 
     // configure our routes
     yosApp.config(function($routeProvider, $locationProvider) {
@@ -60,7 +60,7 @@ $(document).on('click', '#nextBtn', function() {
 
             .when('/blog', {
                 templateUrl : 'pages/blog.html',
-                controller  : 'mainController'
+                controller  : 'blogController'
             })
 
             .when('/contact', {
@@ -75,7 +75,7 @@ $(document).on('click', '#nextBtn', function() {
 		$scope.message = '';
         $scope.load = function () {
             if(checkCookie()){
-                $('#openOverlay').animate({'height':'0'},700);
+                $('#openOverlay').animate({'height':'0'},1000);
                 deleteCookie();
             }else{
                 $('#openOverlay').css({'display':'none'});
@@ -87,6 +87,16 @@ $(document).on('click', '#nextBtn', function() {
         $scope.load = function () {
             deleteCookie();
         }
+	});
+
+    yosApp.controller('blogController', function($scope, $http) {
+        $http.get("process/blog.php")
+        .then(function (response) {
+            console.log(response);
+            $scope.blog = response.data;
+        });
+
+		$scope.content = '';
 	});
 
 	yosApp.controller('aboutController', function($scope) {
