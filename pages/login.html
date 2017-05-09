@@ -1,0 +1,33 @@
+<div class='login-style'>
+
+	<div class="login-form text-center">
+		<h2>Login Page</h2>
+		<form ng-submit="login()">
+			<div class="clearfix">
+				<p ng-bind="error"></p>
+			</div>
+			<div class="clearfix">
+				<div class="small-12 medium-4 large-4 column">
+					<label>Login</label>
+				</div>
+				<div class="small-12 medium-8 large-8 column">
+					<input id="userName" ng-model="userName" type="text" placeholder="type username"/>
+				</div>
+			</div>
+			<div class="clearfix">
+				<div class="small-12 medium-4 large-4 column">
+					<label>Password</label>
+				</div>
+				<div class="small-12 medium-8 large-8 column">
+					<td><input id="userPwd" ng-model="userPwd" type="password" placeholder="type password"/><td>
+				</div>
+			<div>
+			<div class="clearfix">
+				<input type="submit" />
+			</div>
+			<div class="clearfix">
+				<i class="fa fa-home" aria-hidden="true"></i>
+			</div>
+		</form>
+	</div>
+</div>

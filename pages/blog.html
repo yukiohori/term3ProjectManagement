@@ -13,6 +13,8 @@
 		<div>
 			<img ng-src="{{x.blog_img}}" />
 		</div>
+		<div ng-bind-html="x.blog_embed">
+		</div>
 		<p ng-bind="x.blog_content"></p>
 	</div>
 </div>

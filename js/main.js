@@ -7,6 +7,32 @@ $(document).on('click', '#mobileMenu', function() {
     $('#mobileMenuBox').fadeIn(200);
 });
 
+$(document).on('click', '#dashBoardMenu', function() {
+    $('#dashBoardOptions').css('width','30%');
+    $('.dashboard-option-style').each(function(){
+        $(this).animate({'opacity':'1'},600);
+    });
+    
+    $('#dashboard-menutitle-style').animate({'opacity':'1'},600);
+    $('#closeDashBoardMenu').animate({'opacity':'1'},700);
+});
+
+$(document).on('click', '#closeDashBoardMenu', function() {
+    $('#dashBoardOptions').css('width','0');
+    $('.dashboard-option-style').each(function(){
+        $(this).animate({'opacity':'0'},10);
+    });
+    $('#dashboard-menutitle-style').animate({'opacity':'0'},10);
+    $('#closeDashBoardMenu').animate({'opacity':'0'},10);
+});
+
+$(document).on('click', '.menu-style li', function() {
+    if($(window).width()<1024){
+        menuShow=false;
+        $('#mobileMenuBox').fadeOut(200);
+    }
+});
+
 $(document).on('click', '#mobileMenuClose', function() {
     menuShow=false;
     $('#mobileMenuBox').fadeOut(200);
@@ -37,9 +63,8 @@ $(document).on('click', '#nextBtn', function() {
 
 // Angular Section
 
-    var yosApp = angular.module('yosapp', ['ngRoute','ngSanitize']);
+    var yosApp = angular.module('yosapp', ['ngRoute','ngSanitize','ngAnimate']);
 
-    // configure our routes
     yosApp.config(function($routeProvider, $locationProvider) {
         $routeProvider
 
@@ -61,6 +86,16 @@ $(document).on('click', '#nextBtn', function() {
             .when('/blog', {
                 templateUrl : 'pages/blog.html',
                 controller  : 'blogController'
+            })
+
+            .when('/login', {
+                templateUrl : 'pages/login.html',
+                controller  : 'loginController'
+            })
+
+            .when('/admin', {
+                templateUrl : 'pages/admin.html',
+                controller  : 'adminController'
             })
 
             .when('/contact', {
@@ -89,12 +124,22 @@ $(document).on('click', '#nextBtn', function() {
         }
 	});
 
-    yosApp.controller('blogController', function($scope, $http) {
+    yosApp.controller('blogController', function($scope, $http, $sce) {
         $http.get("process/blog.php")
         .then(function (response) {
             console.log(response);
             $scope.blog = response.data;
+            // console.log($scope.blog[0].blog_embed);
+            updateiframa();
         });
+
+        // $scope.embed=$sce.trustAsHtml($scope.blog[0].blog_embed);
+
+        function updateiframa(){
+            for(var i=0;i<$scope.blog.length;i+=1){
+                $scope.blog[i].blog_embed=$sce.trustAsHtml($scope.blog[i].blog_embed);
+            }
+        }
 
 		$scope.content = '';
 	});
@@ -102,6 +147,34 @@ $(document).on('click', '#nextBtn', function() {
 	yosApp.controller('aboutController', function($scope) {
 		$scope.message = '';
 		$scope.content = '';
+	});
+
+    yosApp.controller('loginController', function($scope, $http,$location) {
+
+        $scope.userName="";
+        $scope.userPwd="";
+        $scope.error="";
+
+        $scope.login = function(){
+            var req = {
+                method: 'POST',
+                url: 'process/login.php',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: 'username='+$scope.userName+'&passwd='+$scope.userPwd
+            }
+
+            $http(req).then(function(response){
+                if(response.data=="1"){
+                    $location.path("/admin");
+                }else{
+                    $scope.error=response.data;
+                }
+            });
+        }
+	});
+
+    yosApp.controller('adminController', function($scope) {
+		$scope.message = '';
 	});
 
 	yosApp.controller('contactController', function($scope) {
@@ -115,8 +188,8 @@ $(document).on('click', '#nextBtn', function() {
 function setCookie(exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = "access = true ;" + expires + ";path=/";
+    var expires = 'expires='+d.toUTCString();
+    document.cookie = 'access = true ;' + expires + ';path=/';
 }
 
 function deleteCookie(){
@@ -124,7 +197,7 @@ function deleteCookie(){
 }
 
 function checkCookie() {
-    var user = getCookie("access");
+    var user = getCookie('access');
     if (user != "") {
         return true;
     } else {
@@ -133,7 +206,7 @@ function checkCookie() {
 }
 
 function getCookie(cname) {
-    var name = cname + "=";
+    var name = cname + '=';
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
     for(var i = 0; i <ca.length; i++) {
