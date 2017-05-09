@@ -130,12 +130,12 @@ $(document).on('click', '#nextBtn', function() {
             console.log(response);
             $scope.blog = response.data;
             // console.log($scope.blog[0].blog_embed);
-            updateiframa();
+            updateiframe();
         });
 
         // $scope.embed=$sce.trustAsHtml($scope.blog[0].blog_embed);
 
-        function updateiframa(){
+        function updateiframe(){
             for(var i=0;i<$scope.blog.length;i+=1){
                 $scope.blog[i].blog_embed=$sce.trustAsHtml($scope.blog[i].blog_embed);
             }
@@ -170,11 +170,18 @@ $(document).on('click', '#nextBtn', function() {
                     $scope.error=response.data;
                 }
             });
-        }
+        };
+
+        $scope.goHomepage = function(){
+            $location.path("/home");
+        };
 	});
 
-    yosApp.controller('adminController', function($scope) {
+    yosApp.controller('adminController', function($scope,$location) {
 		$scope.message = '';
+        $scope.logout= function(){
+            $location.path("/login");
+        };
 	});
 
 	yosApp.controller('contactController', function($scope) {

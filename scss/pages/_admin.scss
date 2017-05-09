@@ -121,7 +121,7 @@
 .main-admin-logo{
     background-color:#242424;
     position: relative;
-    border:2px solid white;
+    border:10px solid white;
     padding:20px 30px;
     h1{
         @include respond-to(tablet) {

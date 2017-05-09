@@ -20,6 +20,10 @@ h1{
   margin: 0;
 }
 
+i{
+    cursor: pointer;
+}
+
 /**
  * Make all elements from the DOM inherit from the parent box-sizing
  * Since `*` has a specificity of 0, it does not override the `html` value
@@ -123,5 +127,5 @@ a {
 .row,
 .column,
 .columns {
-    outline: 1px solid #ccc;
+    // outline: 1px solid #ccc;
 }

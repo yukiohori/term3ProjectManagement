@@ -5,10 +5,11 @@
 
 .login-style{
     height:100vh;
-    background-image: url("../img/bg-image4.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color:#242424;
+    // background-image: url("../img/bg-image4.jpg");
+    // background-size: cover;
+    // background-repeat: no-repeat;
+    // background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +18,9 @@
         color: $white-color;
         position: absolute;
         top: 50%;
-        background-color: $loginbox-color;
+        background-color:#242424;
+        border:5px solid white;
+        box-shadow: 10px 10px 5px 5px #151515;
         text-align: center;
         @include respond-to(destab) {
             padding: 30px 60px;
