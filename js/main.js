@@ -88,20 +88,12 @@ $(document).on('click', '#nextBtn', function() {
                 controller  : 'blogController'
             })
 
-            .when('/login', {
-                templateUrl : 'pages/login.html',
-                controller  : 'loginController'
-            })
-
-            .when('/admin', {
-                templateUrl : 'pages/admin.html',
-                controller  : 'adminController'
-            })
-
             .when('/contact', {
                 templateUrl : 'pages/contact.html',
                 controller  : 'contactController'
-            });
+            })
+
+            .otherwise({redirectTo:'/'});
 
         $locationProvider.hashPrefix('');
     });
@@ -147,41 +139,6 @@ $(document).on('click', '#nextBtn', function() {
 	yosApp.controller('aboutController', function($scope) {
 		$scope.message = '';
 		$scope.content = '';
-	});
-
-    yosApp.controller('loginController', function($scope, $http,$location) {
-
-        $scope.userName="";
-        $scope.userPwd="";
-        $scope.error="";
-
-        $scope.login = function(){
-            var req = {
-                method: 'POST',
-                url: 'process/login.php',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                data: 'username='+$scope.userName+'&passwd='+$scope.userPwd
-            }
-
-            $http(req).then(function(response){
-                if(response.data=="1"){
-                    $location.path("/admin");
-                }else{
-                    $scope.error=response.data;
-                }
-            });
-        };
-
-        $scope.goHomepage = function(){
-            $location.path("/home");
-        };
-	});
-
-    yosApp.controller('adminController', function($scope,$location) {
-		$scope.message = '';
-        $scope.logout= function(){
-            $location.path("/login");
-        };
 	});
 
 	yosApp.controller('contactController', function($scope) {

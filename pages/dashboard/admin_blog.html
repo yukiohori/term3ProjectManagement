@@ -1,0 +1,21 @@
+<div class='admin-blog-style'>
+	<h1>ADMIN BLOG PAGE</h1>
+
+	<div class="row admin-blog-list">
+		<div class="small-12 medium-12 small-12 column" ng-repeat="x in blog">
+			<div class="small-12 medium-12 large-2 column">
+				<h2 ng-bind="x.blog_title"></h2>
+			</div>
+			<div class="small-12 medium-12 large-3 column">
+				<img ng-src="{{x.blog_img}}" />
+			</div>
+			<div ng-bind="x.blog_content" class="small-12 medium-12 large-5 block-with-text column">
+
+			</div>
+			<div class="small-12 medium-12 large-2 column">
+				OPTION
+			</div>
+		</div>
+	</div>
+	
+</div>	

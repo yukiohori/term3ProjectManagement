@@ -1,0 +1,36 @@
+// -----------------------------------------------------------------------------
+// Welcome Page
+// -----------------------------------------------------------------------------
+
+.admin-blog-style{
+
+    background-color:#242424;
+    height:100vh;
+    h2 {
+        text-align: center;
+        margin: 0;
+        color: $white-color;
+    }
+
+    h1{
+        color: white;
+        width: 100%;
+        text-align: center;
+    }
+    overflow: auto;
+}
+
+.blog-content-admin{
+    color: white;
+    // overflow:hidden; 
+    // white-space:nowrap; 
+    // text-overflow: ellipsis;
+}
+
+
+
+
+
+// -----------------------------------------------------------------------------
+// END Welcome Page
+// -----------------------------------------------------------------------------
