@@ -2,18 +2,36 @@
 	<h1>ADMIN BLOG PAGE</h1>
 
 	<div class="row admin-blog-list">
-		<div class="small-12 medium-12 small-12 column" ng-repeat="x in blog">
+		<!--<div class="small-12 medium-12 small-12 column blog-list-style show-for-large">
 			<div class="small-12 medium-12 large-2 column">
-				<h2 ng-bind="x.blog_title"></h2>
+				<h2>TITLE</h2>
+			</div>
+			<div class="small-12 medium-12 large-3 column">
+				<h2>IMAGE</h2>
+			</div>
+			<div class="small-12 medium-12 large-5 column">
+				<h2>CONTENT</h2>
+			</div>
+			<div class="small-12 medium-12 large-2 column">
+				<h2>OPTION</h2>
+			</div>
+		</div>-->
+		<div class="small-12 medium-12 small-12 column blog-list-style" ng-repeat="x in blog">
+			<div class="small-12 medium-12 large-12  column">
+				<h4 id="cmt_edit_323" class="cmtedit" ng-bind="x.blog_title"></h4>
+			</div>
+			<div class="small-12 medium-12 large-12 column">
+				<p ng-bind="x.blog_date"></p>
 			</div>
 			<div class="small-12 medium-12 large-3 column">
 				<img ng-src="{{x.blog_img}}" />
 			</div>
-			<div ng-bind="x.blog_content" class="small-12 medium-12 large-5 block-with-text column">
-
+			<div class="small-12 medium-12 large-9 column">
+				<p class="blog-list-content" ng-bind="x.blog_content"></p>
 			</div>
-			<div class="small-12 medium-12 large-2 column">
-				OPTION
+			<div class="option-list-style">
+				<i class="fa fa-pencil-square" aria-hidden="true"></i>
+				<i class="fa fa-trash" aria-hidden="true"></i>
 			</div>
 		</div>
 	</div>

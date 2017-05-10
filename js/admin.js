@@ -35,6 +35,14 @@ $(document).on('click', '.dashboard-option-style', function() {
     $('#closeDashBoardMenu').animate({'opacity':'0'},10);
 });
 
+// $(document).on('dblclick', '.cmtedit', function (e) {
+//    TBox(this);
+// });
+
+// $(document).on('blur', "input",function (e) {
+//    RBox(this);
+// });
+
 // $(document).on('click', '#mobileMenuClose', function() {
 //     menuShow=false;
 //     $('#mobileMenuBox').fadeOut(200);
@@ -203,3 +211,19 @@ $(document).on('click', '.dashboard-option-style', function() {
 
 
 // END Angular Section
+
+// function TBox(obj) {
+//         var id = $(obj).attr("id");
+//         var tid = id.replace("cmt_edit_", "cmt_tedit_");
+//         var input = $('<input />', { 'type': 'text', 'name': 'n' + tid, 'id': tid, 'class': 'text_box', 'value': $(obj).html() });
+//         $(obj).parent().append(input);
+//         $(obj).remove();
+//         input.focus();
+// }
+// function RBox(obj) {
+//     var id = $(obj).attr("id");
+//     var tid = id.replace("cmt_tedit_", "cmt_edit_");
+//     var input = $('<p />', { 'id': tid, 'class': 'cmtedit', 'html': $(obj).val() });
+//     $(obj).parent().append(input);
+//     $(obj).remove();
+// }

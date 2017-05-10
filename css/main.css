@@ -1,28 +1,4 @@
 @charset "UTF-8";
-/* mixin for multiline */
-.block-with-text {
-  color: white;
-  overflow: hidden;
-  position: relative;
-  line-height: 1.2em;
-  max-height: 3.6em;
-  text-align: justify;
-  margin-right: -1em;
-  padding-right: 1em; }
-  .block-with-text:before {
-    content: '...';
-    position: absolute;
-    right: 0;
-    bottom: 0; }
-  .block-with-text:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    width: 1em;
-    height: 1em;
-    margin-top: 0.2em;
-    background: white; }
-
 /* FONT PATH
  * -------------------------- */
 @font-face {
@@ -4314,6 +4290,22 @@ body, html {
   bottom: 5px;
   padding: 5px; }
 
+.blog-style {
+  height: 50vh;
+  background-image: url("../img/bg-image.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+
 .admin-style {
   background-color: #242424;
   height: 100vh; }
@@ -4349,7 +4341,8 @@ body, html {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+  z-index: 100; }
   .menu-dashboard-style h2 {
     padding-top: 20px;
     width: 100%;
@@ -4488,6 +4481,7 @@ body, html {
     right: 40%; } }
 
 .admin-blog-style {
+  padding: 20px;
   background-color: #242424;
   height: 100vh;
   overflow: auto; }
@@ -4502,6 +4496,55 @@ body, html {
 
 .blog-content-admin {
   color: white; }
+
+.blog-list-style {
+  position: relative;
+  padding: 10px;
+  border: 2px solid white;
+  margin: 1% 0; }
+  .blog-list-style h4 {
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 0; }
+  .blog-list-style p {
+    color: white; }
+
+.blog-list-content {
+  color: white;
+  text-align: left;
+  margin: 0;
+  padding: 0; }
+
+.option-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center; }
+
+.option-list-style {
+  text-align: center;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .option-list-style i {
+    padding: 10px;
+    width: 100%;
+    color: #242424;
+    transition: all 0.4s ease; }
+    .option-list-style i:hover {
+      -webkit-transform: scale(1.2);
+              transform: scale(1.2); }
 
 .admin-about-style {
   background-color: #242424;
