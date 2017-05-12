@@ -4361,6 +4361,11 @@ body, html {
   .blog-short-content p {
     font-size: 1rem; }
 
+.read-more-btn {
+  background-color: #242424;
+  color: white;
+  padding: 5px; }
+
 .admin-style {
   background-color: #242424;
   height: 100vh; }
