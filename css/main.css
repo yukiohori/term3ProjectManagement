@@ -1,4 +1,26 @@
 @charset "UTF-8";
+.block-with-text {
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em;
+  max-height: 7.2em;
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em; }
+  .block-with-text:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0; }
+  .block-with-text:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: white; }
+
 /* FONT PATH
  * -------------------------- */
 @font-face {
@@ -3931,6 +3953,12 @@ body {
 .text-center {
   text-align: center; }
 
+.remove-padding {
+  padding: 0; }
+
+.remove-margin {
+  margin: 0; }
+
 .menu-main {
   background-color: rgba(100, 100, 100, 0.5); }
 
@@ -4305,6 +4333,33 @@ body, html {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
+
+.blog-list-short {
+  padding: 100px 0;
+  background-color: #242424; }
+  .blog-list-short h1, .blog-list-short p {
+    color: white; }
+
+.blog-style-each {
+  overflow: hidden;
+  margin-bottom: 100px;
+  height: 31.25rem;
+  background-color: white; }
+
+.blog-short-image {
+  height: 100%; }
+  .blog-short-image img {
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover; }
+
+.blog-short-content {
+  padding: 50px;
+  background-color: white; }
+  .blog-short-content p, .blog-short-content h1 {
+    color: #242424; }
+  .blog-short-content p {
+    font-size: 1rem; }
 
 .admin-style {
   background-color: #242424;

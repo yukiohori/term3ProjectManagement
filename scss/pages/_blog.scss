@@ -13,6 +13,39 @@
     justify-content: center;
 }
 
+.blog-list-short{
+    padding: 100px 0;
+    background-color: #242424;
+    h1,p{
+        color:white;
+    }
+}
+
+.blog-style-each{
+    overflow: hidden;
+    margin-bottom: 100px;
+    height: 31.25rem;
+    background-color: white;
+}
+
+.blog-short-image{
+    height: 100%;
+    img{
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.blog-short-content{
+    padding: 50px;
+    background-color: white;
+    p,h1{
+        color:#242424;
+    }
+    p{
+        font-size: 1rem;
+    }
+}
 
 
 // -----------------------------------------------------------------------------
