@@ -1,11 +1,9 @@
 <ng-include src="'partials/header.html'"></ng-include>
-
+<div class="overlay-gradient">
+	
+</div>
 <div class='blog-style'>
-
-	<div class="jumbotron text-center">
-		<h1>Blog Page</h1>
-	</div>
-
+	<h1>Blog Page</h1>
 </div>
 <div class="blog-list-short">
 	<div class="row blog-style-each" ng-repeat="x in blog">
@@ -15,7 +13,10 @@
 		<div class="remove-margin small-12 medium-6 large-6 column blog-short-content">
 			<h1 class="text-center" ng-bind="x.blog_title"></h1>
 			<p class="block-with-text" ng-bind="x.blog_content"></p>
-			<a class="read-more-btn">READ MORE</a>
+			<div class="text-center">
+				<a class="read-more-btn">READ MORE</a>
+			</div>
+			
 		</div>
 	</div>
 </div>

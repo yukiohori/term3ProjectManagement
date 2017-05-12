@@ -4,13 +4,20 @@
 
 .blog-style{
     height:50vh;
-    background-image: url("../img/bg-image.jpg");
+    background-image: url("../img/blog-bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
+    h1{
+        color: white;
+        position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%,-50%);
+    }
 }
 
 .blog-list-short{
@@ -24,14 +31,18 @@
 .blog-style-each{
     overflow: hidden;
     margin-bottom: 100px;
-    height: 31.25rem;
+    @include respond-to(destab) {
+        height: 31.25rem;
+    }
     background-color: white;
 }
 
 .blog-short-image{
     height: 100%;
     img{
-        height: 100%;
+         @include respond-to(destab) {
+            height: 100%;
+        }
         object-fit: cover;
     }
 }
@@ -39,11 +50,22 @@
 .blog-short-content{
     padding: 50px;
     background-color: white;
-    p,h1{
+    height: 100%;
+    display: flex;
+    align-content: space-around;
+    flex-wrap: wrap;
+    h1{
+        width: 100%;
+        text-align: center;
         color:#242424;
     }
     p{
+        color:#242424;
         font-size: 1rem;
+    }
+    div{
+        text-align: center;
+        width: 100%;
     }
 }
 
