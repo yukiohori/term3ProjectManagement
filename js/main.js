@@ -65,6 +65,15 @@ $(document).on('click', '#nextBtn', function() {
 
     var yosApp = angular.module('yosapp', ['ngRoute','ngSanitize','ngAnimate']);
 
+    yosApp.factory('yosAppVar', function ($location) {
+        var yosAppVar={};
+        yosAppVar.menuState=true;
+        yosAppVar.currenctPage="";
+        yosAppVar.blogInfo={}
+
+        return yosAppVar;
+    });
+
     yosApp.config(function($routeProvider, $locationProvider) {
         $routeProvider
 
@@ -86,6 +95,11 @@ $(document).on('click', '#nextBtn', function() {
             .when('/blog', {
                 templateUrl : 'pages/blog.html',
                 controller  : 'blogController'
+            })
+
+            .when('/blog_detail', {
+                templateUrl : 'pages/blog_detail.html',
+                controller  : 'blogDetailController'
             })
 
             .when('/contact', {
@@ -116,45 +130,75 @@ $(document).on('click', '#nextBtn', function() {
         }
 	});
 
-    yosApp.controller('blogController', function($scope, $http, $sce) {
+    yosApp.controller('blogController', function($scope, $http,$location , $sce,yosAppVar) {
+
+        $scope.yosAppVar=yosAppVar;
+        $scope.blogIndex=0;
 
         $http.get("process/blog.php")
         .then(function (response) {
-            // console.log(response);
             $scope.blog = response.data;
-            // console.log($scope.blog[0].blog_embed);
             updateiframe();
         });
+
+         $scope.selectBlog=function(index){
+            localStorage.setItem("blog_id",$scope.blog[index].id);
+            $location.path("/blog_detail");
+         }
 
         // $scope.embed=$sce.trustAsHtml($scope.blog[0].blog_embed);
 
         function updateiframe(){
             for(var i=0;i<$scope.blog.length;i+=1){
+                $scope.blog[i].blog_index=i;
                 $scope.blog[i].blog_embed=$sce.trustAsHtml($scope.blog[i].blog_embed);
                 $scope.blog[i].blog_content=getFirstPara($scope.blog[i].blog_content);
             }
         }
 
         function getFirstPara(content){
-            console.log(content);
-            console.log($(content).find('p').prevObject[0].innerText);
+            // console.log(content);
+            // console.log($(content).find('p').prevObject[0].innerText);
             // console.log($(content).find('p').eq(0).text());
             if($(content).find('p').prevObject!=0){
                 return $(content).find('p').prevObject[0].innerText;
             }else{
-                return "asdasdasdasd asdasd adasdasd";
+                return "No Content";
             }
         }
 	});
 
+    yosApp.controller('blogDetailController', function($scope,$http,yosAppVar) {
+        $scope.yosAppVar=yosAppVar;
+        $http.get("process/blog.php?id="+localStorage.getItem("blog_id"))
+        .then(function (response) {
+            $scope.blog = response.data[0];
+        });
+
+        // var req = {
+        //     method: 'GET',
+        //     url: 'process/blog.php',
+        //     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        //     data: 'username='+$scope.userName+'&passwd='+$scope.userPwd
+        // }
+
+        // $http(req).then(function(response){
+        //     if(response.data=="1"){
+        //         $location.path("/admin");
+        //     }else{
+        //         $scope.error=response.data;
+        //     }
+        // });
+
+	});
+
     
 	yosApp.controller('aboutController', function($scope) {
-		$scope.message = '';
-		$scope.content = '';
+
 	});
 
 	yosApp.controller('contactController', function($scope) {
-		$scope.message = '';
+
 	});
 
 // END Angular Section

@@ -3,7 +3,7 @@
 	
 </div>
 <div class='blog-style'>
-	<h1>Blog Page</h1>
+	<h1>Blog List</h1>
 </div>
 <div class="blog-list-short">
 	<div class="row blog-style-each" ng-repeat="x in blog">
@@ -14,10 +14,10 @@
 			<h1 class="text-center" ng-bind="x.blog_title"></h1>
 			<p class="block-with-text" ng-bind="x.blog_content"></p>
 			<div class="text-center">
-				<a class="read-more-btn">READ MORE</a>
+				<a ng-click="selectBlog(x.blog_index)" class="read-more-btn">READ MORE</a>
 			</div>
 		</div>
 	</div>
 </div>
 
-<ng-include src="'partials/footer.html'"></ng-include>
+<!--<ng-include src="'partials/footer.html'"></ng-include>-->

@@ -1,0 +1,19 @@
+<ng-include src="'partials/header.html'"></ng-include>
+<div class="overlay-gradient">
+	
+</div>
+<div class='blog-style'>
+	<h1>Blog Page</h1>
+</div>
+<div class="blog-list-short">
+	<div class="row">
+		<div class="small-12 medium-12 large-12 column text-center">
+			<h1 ng-bind="blog.blog_title"></h1>
+		</div>
+		<div ng-bind-html="blog.blog_content" class="remove-margin small-12 medium-12 large-12 column">
+			
+		</div>
+	</div>
+</div>
+
+<!--<ng-include src="'partials/footer.html'"></ng-include>-->

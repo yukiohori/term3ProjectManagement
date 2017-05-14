@@ -7,7 +7,14 @@
         echo "connection failed : ".mysqli_connect_error();
     }else{
 
-        $query = "SELECT * FROM blog_tb";
+        if(isset($_GET['id'])){
+            $query = "SELECT * FROM blog_tb WHERE id=".$_GET['id'];
+        }else{
+            $query = "SELECT * FROM blog_tb";
+        }
+
+        // echo $_GET['id'];
+        
 
         $result = mysqli_query($conn,$query);
 
