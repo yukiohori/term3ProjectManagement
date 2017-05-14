@@ -117,9 +117,10 @@ $(document).on('click', '#nextBtn', function() {
 	});
 
     yosApp.controller('blogController', function($scope, $http, $sce) {
+
         $http.get("process/blog.php")
         .then(function (response) {
-            console.log(response);
+            // console.log(response);
             $scope.blog = response.data;
             // console.log($scope.blog[0].blog_embed);
             updateiframe();
@@ -130,12 +131,23 @@ $(document).on('click', '#nextBtn', function() {
         function updateiframe(){
             for(var i=0;i<$scope.blog.length;i+=1){
                 $scope.blog[i].blog_embed=$sce.trustAsHtml($scope.blog[i].blog_embed);
+                $scope.blog[i].blog_content=getFirstPara($scope.blog[i].blog_content);
             }
         }
 
-		$scope.content = '';
+        function getFirstPara(content){
+            console.log(content);
+            console.log($(content).find('p').prevObject[0].innerText);
+            // console.log($(content).find('p').eq(0).text());
+            if($(content).find('p').prevObject!=0){
+                return $(content).find('p').prevObject[0].innerText;
+            }else{
+                return "asdasdasdasd asdasd adasdasd";
+            }
+        }
 	});
 
+    
 	yosApp.controller('aboutController', function($scope) {
 		$scope.message = '';
 		$scope.content = '';

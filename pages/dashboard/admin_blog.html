@@ -2,20 +2,6 @@
 	<h1>ADMIN BLOG PAGE</h1>
 
 	<div class="row admin-blog-list">
-		<!--<div class="small-12 medium-12 small-12 column blog-list-style show-for-large">
-			<div class="small-12 medium-12 large-2 column">
-				<h2>TITLE</h2>
-			</div>
-			<div class="small-12 medium-12 large-3 column">
-				<h2>IMAGE</h2>
-			</div>
-			<div class="small-12 medium-12 large-5 column">
-				<h2>CONTENT</h2>
-			</div>
-			<div class="small-12 medium-12 large-2 column">
-				<h2>OPTION</h2>
-			</div>
-		</div>-->
 		<div class="small-12 medium-12 small-12 column blog-list-style" ng-repeat="x in blog">
 			<div class="small-12 medium-12 large-12  column">
 				<h4 id="cmt_edit_323" class="cmtedit" ng-bind="x.blog_title"></h4>
@@ -26,14 +12,67 @@
 			<div class="small-12 medium-12 large-3 column">
 				<img ng-src="{{x.blog_img}}" />
 			</div>
-			<div class="small-12 medium-12 large-9 column">
-				<p class="blog-list-content" ng-bind="x.blog_content"></p>
+			<div ng-bind-html="x.blog_content" class="small-12 medium-12 large-9 column">
 			</div>
 			<div class="option-list-style">
-				<i class="fa fa-pencil-square" aria-hidden="true"></i>
-				<i class="fa fa-trash" aria-hidden="true"></i>
+				<i class="fa fa-pencil-square" ng-click="changeContentBlog(x.blog_index)" aria-hidden="true"></i>
+				<i class="fa fa-trash" ng-click="deleteBlog(x.blog_index)" aria-hidden="true"></i>
 			</div>
 		</div>
 	</div>
+
+	<div class="blog-menu-option">
+		<div class="option-icon">
+			<i ng-click="openBodalBox(1)" class="fa fa-2x fa-plus-circle" aria-hidden="true"></i>
+		</div>
+		<div class="option-icon">
+			<i class="fa fa-2x fa-sign-out" ng-click="yosAppVar.logout()" aria-hidden="true"></i>
+		</div>
+	</div>
+
+	<div id="modalBox" class="modalbox-bg">
+		<div class="modalbox-style">
+			<h2>New Blog</h2>
+			<form ng-submit="submit()">
+				<div class="clearfix">
+					<div class="small-12 medium-12 large-12 column text-center">
+						<h4>Title</h4>
+					</div>
+					<div class="small-12 medium-12 large-12 column">
+						<input ng-model="title" class="text-center" name="blog-title" type="text">
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="small-12 medium-12 large-12 column text-center">
+						<h4>Content</h4>
+					</div>
+					<div class="small-12 medium-12 large-12 column remove-padding">
+						<textarea id="blogContent" name="blogeditor"></textarea>
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="small-12 medium-12 large-12 column text-center">
+						<input type="submit" value="POST!"><a ng-click="yosAppVar.closeBodalBox()">CLOSE</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="modalBoxMsg" class="modalbox-bg">
+	</div>
+
+	<script>
+		var bloged = CKEDITOR.replace( 'blogeditor',{
+		resize_enabled: 'false',
+		removePlugins: 'elementspath',
+		filebrowserUploadUrl: '/term3ProjectManagement/process/upload.php',
+		image_previewText : CKEDITOR.tools.repeat( 'Select Image', 1 ),
+		toolbar: [
+				[ 'Image','Bold', 'Italic', '-', 'NumberedList','BulletedList', '-', 'Link', 'Unlink' ]
+			]
+		});
+		
+	</script>
 	
 </div>	

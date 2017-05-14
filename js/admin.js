@@ -100,6 +100,20 @@ $(document).on('click', '.dashboard-option-style', function() {
             $location.path("/login");
         };
 
+        
+
+        yosAppVar.closeBodalBox= function(){
+            $('#modalBox').fadeOut();
+        };
+
+        yosAppVar.openBodalBoxMsg= function(){
+            $('#modalBoxMsg').fadeIn();
+        };
+
+        yosAppVar.closeBodalBoxMsg= function(){
+            $('#modalBoxMsg').fadeOut();
+        };
+
         return yosAppVar;
     });
 
@@ -170,13 +184,97 @@ $(document).on('click', '.dashboard-option-style', function() {
     yosApp.controller('adminBlogController', function($scope, $http, $sce,yosAppVar) {
         $scope.yosAppVar = yosAppVar;
         $scope.yosAppVar.menuState=true;
-        $http.get("process/blog.php")
-        .then(function (response) {
-            console.log(response);
-            $scope.blog = response.data;
-        });
+        $scope.id=0;
+        $scope.title="";
+        $scope.content="";
+        $scope.img="";
+        $scope.type=0;
 
-		$scope.content = '';
+        uploadBlog();
+
+        $scope.submit = () => {
+            // console.log($(bloged.getData()).find('img').length);
+            if($(bloged.getData()).find('img').length==0){
+                $scope.img='img/no-image.png';
+            }else{
+                $scope.img=$(bloged.getData()).find('img').eq(0).attr('src');
+            }
+
+	      	$http({
+			  method  : 'POST',
+			  url     : 'process/blog_process.php',
+			  processData: false,
+			  transformRequest: function (data) {
+
+			      var formData = new FormData();
+                  formData.append("type", $scope.type);
+                  formData.append("id", $scope.id);
+                  formData.append("image", $scope.img);
+                  formData.append("title", $scope.title);
+                  formData.append("content", bloged.getData());
+			      return formData;  
+			  }, 
+			  data : $scope.form,
+			  headers: {
+			         'Content-Type': undefined
+			  }
+            }).then((responce) => {
+                uploadBlog();
+                $scope.yosAppVar.closeBodalBox();
+            });
+        };
+
+        $scope.openBodalBox= function(newBlog){
+            if(newBlog==1){
+                $scope.type=0;
+                $scope.title="";
+                bloged.setData('');
+            }
+            $('#modalBox').fadeIn();
+        };
+
+        $scope.deleteBlog = function(index){
+            $scope.id=$scope.blog[index].id;
+            $scope.content=$scope.blog[index].blog_content;
+            $http({
+			  method  : 'POST',
+			  url     : 'process/blog_process.php',
+			  processData: false,
+			  transformRequest: function (data) {
+			      var formData = new FormData();
+                  formData.append("type", -1);
+                  formData.append("id", $scope.id);
+                  formData.append("content",$scope.content );
+			      return formData;  
+			  }, 
+			  data : $scope.form,
+			  headers: {
+			         'Content-Type': undefined
+			  }
+            }).then((responce) => {
+                console.log(responce.data);
+                uploadBlog();
+            });
+        };
+
+        $scope.changeContentBlog = function(index){
+            $scope.id=$scope.blog[index].id;
+            $scope.type=1;
+            $scope.title=$scope.blog[index].blog_title;
+            bloged.setData($scope.blog[index].blog_content);
+            $scope.openBodalBox(0);
+        }
+
+        function uploadBlog(){
+            $scope.indexBlog=0;
+            $http.get("process/blog.php")
+            .then(function (response) {
+                $scope.blog = response.data;
+                for(var i=0;i<$scope.blog.length;i+=1){
+                    $scope.blog[i].blog_index=i;
+                }
+            });
+        }
 	});
 
     yosApp.controller('adminAboutController', function($scope, $http, $sce,yosAppVar) {

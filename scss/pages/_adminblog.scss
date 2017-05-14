@@ -9,7 +9,6 @@
     h2 {
         text-align: center;
         margin: 0;
-        color: $white-color;
     }
 
     h1{
@@ -75,7 +74,33 @@
     }
 }
 
+.modalbox-style{
+    width: 80%;
+    height: 80%;
+    a{
+        background-color: #242424;
+        color: white;
+        padding: 5px 10px;
+        margin: 10px 5px 0px 0px;
+        cursor: pointer;
+    }
+    textarea{
+        height: 100%;
+    }
+}
 
+.blog-menu-option{
+    position: fixed;
+    top: 50%;
+    left: 0;
+    background-color: #242424;
+}
+
+.option-icon{
+    background-color: #242424;
+    color: white;
+    padding: 5px;
+}
 
 
 
