@@ -4398,8 +4398,8 @@ body, html {
   z-index: -1; }
 
 .portfolio-style {
-  height: 100vh;
-  background-image: url("../img/bg-image.jpg");
+  height: 50vh;
+  background-image: url("../img/portfolio-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -4412,6 +4412,16 @@ body, html {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
+  .portfolio-style h1 {
+    color: white;
+    position: absolute; }
+
+.portfolio-style-content {
+  padding: 50px 0;
+  background-color: #242424; }
+
+.port-design {
+  padding: 20px; }
 
 .contact-style {
   height: 50vh;
@@ -4553,7 +4563,8 @@ body, html {
 .read-more-btn {
   background-color: #242424;
   color: white;
-  padding: 5px; }
+  padding: 5px;
+  cursor: pointer; }
 
 .admin-style {
   background-color: #242424;
