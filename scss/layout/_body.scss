@@ -4,10 +4,10 @@
     width: 100%;
     height: 50vh;
     overflow: auto;
-    background: -webkit-linear-gradient(transparent,#242424); 
-    background: -o-linear-gradient(transparent, #242424); 
-    background: -moz-linear-gradient(transparent, #242424); 
-    background: linear-gradient(transparent, #242424); 
+    background: -webkit-linear-gradient(rgba(0,0,0,0.5),#242424); 
+    background: -o-linear-gradient(rgba(0,0,0,0.5), #242424); 
+    background: -moz-linear-gradient(rgba(0,0,0,0.5), #242424); 
+    background: linear-gradient(rgba(0,0,0,0.5), #242424); 
     pointer-events: none;
     top: 0;
 }
