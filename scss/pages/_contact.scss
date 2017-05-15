@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// Welcome Page
+// Contact Page
 // -----------------------------------------------------------------------------
 
 .contact-style{
@@ -7,7 +7,6 @@
     background-image: url("../img/contact-bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,10 +26,29 @@
         border: none;
         background-color: transparent;
         border-bottom: 2px solid white;
+        border-left: 2px solid white;
         &:active{
             background-color: transparent;
         }
     }
+    textarea{
+        color: white;
+        padding: 8px 10px;
+        width: 100%;
+        margin: 30px 0;
+        border: none;
+        background-color: transparent;
+        border-bottom: 2px solid white;
+        border-left: 2px solid white;
+        height: 200px;
+        &:active{
+            background-color: transparent;
+        }
+    }
+}
+
+.contact-form{
+    padding: 50px;
 }
 
 .contact-info{
@@ -68,5 +86,5 @@
 
 
 // -----------------------------------------------------------------------------
-// END Welcome Page
+// END Contact Page
 // -----------------------------------------------------------------------------

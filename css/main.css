@@ -3985,7 +3985,7 @@ body {
     @media (min-width: 64em) {
       .mobile-menu-box .menu-style li {
         float: left;
-        width: 25%; } }
+        width: 20%; } }
     @media (max-width: 63.9em) {
       .mobile-menu-box .menu-style li {
         padding: 10px 0; } }
@@ -4015,7 +4015,7 @@ body {
 .logo-style {
   position: absolute; }
   .logo-style img {
-    width: 61px; }
+    width: 68px; }
   @media (min-width: 64em) {
     .logo-style {
       float: left; } }
@@ -4397,12 +4397,27 @@ body, html {
   position: relative;
   z-index: -1; }
 
+.portfolio-style {
+  height: 100vh;
+  background-image: url("../img/bg-image.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+
 .contact-style {
   height: 50vh;
   background-image: url("../img/contact-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4425,9 +4440,25 @@ body, html {
     margin: 30px 0;
     border: none;
     background-color: transparent;
-    border-bottom: 2px solid white; }
+    border-bottom: 2px solid white;
+    border-left: 2px solid white; }
     .contact-style-content input[type=text]:active {
       background-color: transparent; }
+  .contact-style-content textarea {
+    color: white;
+    padding: 8px 10px;
+    width: 100%;
+    margin: 30px 0;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+    height: 200px; }
+    .contact-style-content textarea:active {
+      background-color: transparent; }
+
+.contact-form {
+  padding: 50px; }
 
 .contact-info {
   padding: 20px;

@@ -28,7 +28,7 @@
         li {
             @include respond-to(desktop) {
                 float:left;
-                width:25%;
+                width:20%;
             }
             @include respond-to(tabmob) {
                 padding: 10px 0;
@@ -67,7 +67,7 @@
 .logo-style{
     position: absolute;
     img {
-        width: 61px;
+        width: 68px;
     }
     @include respond-to(desktop) {
         float: left;

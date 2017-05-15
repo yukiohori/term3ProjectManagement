@@ -92,6 +92,11 @@ $(document).on('click', '#nextBtn', function() {
                 controller  : 'aboutController'
             })
 
+            .when('/portfolio', {
+                templateUrl : 'pages/portfolio.html',
+                controller  : 'portfolioController'
+            })
+
             .when('/blog', {
                 templateUrl : 'pages/blog.html',
                 controller  : 'blogController'
@@ -194,6 +199,10 @@ $(document).on('click', '#nextBtn', function() {
 
     
 	yosApp.controller('aboutController', function($scope) {
+
+	});
+
+    yosApp.controller('portfolioController', function($scope) {
 
 	});
 
