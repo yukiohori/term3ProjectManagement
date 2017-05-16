@@ -28,7 +28,7 @@
         li {
             @include respond-to(desktop) {
                 float:left;
-                width:20%;
+                width:16.66%;
             }
             @include respond-to(tabmob) {
                 padding: 10px 0;

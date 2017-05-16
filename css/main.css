@@ -3985,7 +3985,7 @@ body {
     @media (min-width: 64em) {
       .mobile-menu-box .menu-style li {
         float: left;
-        width: 20%; } }
+        width: 16.66%; } }
     @media (max-width: 63.9em) {
       .mobile-menu-box .menu-style li {
         padding: 10px 0; } }
@@ -4442,6 +4442,7 @@ body, html {
     position: absolute; }
 
 .contact-style-content {
+  padding: 50px 0;
   background-color: #242424; }
   .contact-style-content input[type=text] {
     color: white;
@@ -4742,9 +4743,7 @@ body, html {
 
 .admin-blog-style {
   padding: 20px;
-  background-color: #242424;
-  height: 100vh;
-  overflow: auto; }
+  background-color: #242424; }
   .admin-blog-style h2 {
     text-align: center;
     margin: 0; }

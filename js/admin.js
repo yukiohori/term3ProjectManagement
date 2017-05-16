@@ -100,8 +100,6 @@ $(document).on('click', '.dashboard-option-style', function() {
             $location.path("/login");
         };
 
-        
-
         yosAppVar.closeBodalBox= function(){
             $('#modalBox').fadeOut();
         };
@@ -140,9 +138,9 @@ $(document).on('click', '.dashboard-option-style', function() {
                 controller  : 'adminBlogController'
             })
 
-            .when('/about', {
-                templateUrl : 'pages/dashboard/admin_about.html',
-                controller  : 'adminAboutController'
+            .when('/portfolio', {
+                templateUrl : 'pages/dashboard/admin_portfolio.html',
+                controller  : 'adminPortfolioController'
             })
 
             .when('/features', {
@@ -189,6 +187,7 @@ $(document).on('click', '.dashboard-option-style', function() {
         $scope.content="";
         $scope.img="";
         $scope.type=0;
+        localStorage.setItem("admin_blog",1);
 
         uploadBlog();
 
@@ -212,7 +211,8 @@ $(document).on('click', '.dashboard-option-style', function() {
                   formData.append("image", $scope.img);
                   formData.append("title", $scope.title);
                   formData.append("content", bloged.getData());
-			      return formData;  
+			      return formData;
+
 			  }, 
 			  data : $scope.form,
 			  headers: {
@@ -269,6 +269,7 @@ $(document).on('click', '.dashboard-option-style', function() {
             $scope.indexBlog=0;
             $http.get("process/blog.php")
             .then(function (response) {
+                console.log(response.data);
                 $scope.blog = response.data;
                 for(var i=0;i<$scope.blog.length;i+=1){
                     $scope.blog[i].blog_index=i;

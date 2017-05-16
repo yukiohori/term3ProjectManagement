@@ -12,17 +12,13 @@
         }else{
             $query = "SELECT * FROM blog_tb";
         }
-
-        // echo $_GET['id'];
         
-
         $result = mysqli_query($conn,$query);
 
-        $rows = array();
         while($r = mysqli_fetch_assoc($result)) {
             $rows[] = $r;
         }
-
+        
         header('Content-type: application/json');
         echo json_encode($rows);
     }
