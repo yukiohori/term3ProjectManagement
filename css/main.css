@@ -4057,6 +4057,20 @@ body {
 h1, p {
   word-break: break-all; }
 
+#openOverlay {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #242424;
+  width: 100%;
+  height: 0vh;
+  overflow: hidden;
+  transition: all 1s ease; }
+
+.change-page {
+  height: 100vh !important; }
+
 .logoAni {
   transition: all 0.5s ease; }
   @media (min-width: 64em) {
@@ -4366,15 +4380,6 @@ body, html {
   .home-welcome h1 {
     margin: 0; }
 
-#openOverlay {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background-color: #242424;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden; }
-
 .logoAniHome {
   transition: all 0.5s ease; }
   @media (min-width: 64em) {
@@ -4492,15 +4497,6 @@ body, html {
   color: white; }
   .home-welcome h1 {
     margin: 0; }
-
-#openOverlay {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background-color: #242424;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden; }
 
 .relative-panel-home {
   width: 100vw;
@@ -4901,15 +4897,6 @@ body, html {
   color: white; }
   .home-welcome h1 {
     margin: 0; }
-
-#openOverlay {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background-color: #242424;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden; }
 
 .logoAniHome {
   transition: all 0.5s ease; }

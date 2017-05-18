@@ -67,12 +67,22 @@
         }
     });
 
-    yosApp.factory('yosAppVar', function ($location) {
+    yosApp.factory('yosAppVar', function ($location,$timeout) {
         var yosAppVar={};
         yosAppVar.menuState=true;
         yosAppVar.changePanel=false;
-        yosAppVar.currenctPage="";
-        yosAppVar.blogInfo={}
+        yosAppVar.currenctPage=$location.url();
+        yosAppVar.blog;
+
+        yosAppVar.changePage=(dir)=>{
+            if(yosAppVar.currenctPage!="/"+dir){
+                yosAppVar.currenctPage="/"+dir;
+                yosAppVar.changePanel=true;
+                $timeout(function () {
+                    $location.path("/"+dir);
+                }, 1000);
+            }
+        }
 
         return yosAppVar;
     });
@@ -81,6 +91,11 @@
         $routeProvider
 
             .when('/', {
+                templateUrl : 'pages/intro.html',
+                controller  : 'introController'
+            })
+
+            .when('/intro', {
                 templateUrl : 'pages/intro.html',
                 controller  : 'introController'
             })
@@ -123,20 +138,31 @@
 	yosApp.controller('mainController', function($scope, yosAppVar) {
        $scope.yosAppVar=yosAppVar;
        $scope.yosAppVar.menuState=true;
-       $scope.yosAppVar.changePanel=false;
+       
+
+       $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+            $scope.yosAppVar.changePanel=false;
+        });
 	});
 
     yosApp.controller('introController', function($scope, yosAppVar) {
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=false;
-        $scope.yosAppVar.changePanel=false;
+
+        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+            $scope.yosAppVar.changePanel=false;
+        });
+
 	});
 
     yosApp.controller('blogController', function($scope, $http, $location , $sce, yosAppVar) {
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=true;
-        $scope.yosAppVar=yosAppVar;
         $scope.blogIndex=0;
+
+        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+            $scope.yosAppVar.changePanel=false;
+        });
 
         $http.get("process/blog.php?page=1")
         .then(function (response) {
@@ -178,15 +204,7 @@
             for(var i=0;i<$scope.blog.length;i+=1){
                 $scope.blog[i].blog_index=i;
                 $scope.blog[i].blog_embed=$sce.trustAsHtml($scope.blog[i].blog_embed);
-                $scope.blog[i].blog_content=getFirstPara($scope.blog[i].blog_content);
-            }
-        }
-
-        function getFirstPara(content){
-            if($(content).find('p').prevObject!=0){
-                return $(content).find('p').prevObject[0].innerText;
-            }else{
-                return "No Content";
+                $scope.blog[i].blog_content=$scope.blog[i].blog_content;
             }
         }
         
@@ -194,6 +212,12 @@
 
     yosApp.controller('blogDetailController', function($scope,$http,yosAppVar) {
         $scope.yosAppVar=yosAppVar;
+        $scope.yosAppVar.menuState=true;
+
+        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+            $scope.yosAppVar.changePanel=false;
+        });
+
         $http.get("process/blog.php?id="+localStorage.getItem("blog_id")+"&page=2")
         .then(function (response) {
             $scope.blog = response.data[0];
@@ -201,31 +225,42 @@
 	});
 
     
-	yosApp.controller('aboutController', function($scope) {
+	yosApp.controller('aboutController', function($scope, yosAppVar) {
+        $scope.yosAppVar=yosAppVar;
+        $scope.yosAppVar.menuState=true;
 
+        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+            $scope.yosAppVar.changePanel=false;
+        });
 	});
 
     yosApp.controller('portfolioController', function($scope,$window,yosAppVar) {
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=true;
-        $scope.yosAppVar.changePanel=false;
+        
+        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+            $scope.yosAppVar.changePanel=false;
+        });
 
         $scope.getoffsetTop = function(object){
             var element = angular.element(document.querySelector('#'+object));
-            // console.log(element[0].offsetTop);
             return element[0].offsetTop-($window.innerHeight-100);
         }
 
         angular.element($window).bind("scroll", function() {
-            // console.log(this.scrollY);
             $scope.scroll=this.scrollY;
             $scope.$apply();
         });
 
 	});
 
-	yosApp.controller('contactController', function($scope) {
+	yosApp.controller('contactController', function($scope, yosAppVar) {
+        $scope.yosAppVar=yosAppVar;
+        $scope.yosAppVar.menuState=true;
 
+        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+            $scope.yosAppVar.changePanel=false;
+        });
 	});
 
 // END Angular Section
