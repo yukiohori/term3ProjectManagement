@@ -2,6 +2,10 @@
 // Portfolio Page
 // -----------------------------------------------------------------------------
 
+body{
+    background-color: #242424;
+}
+
 .portfolio-style{
     height:75vh;
     background-image: url("../img/portfolio-bg.jpg");
@@ -15,15 +19,26 @@
         color: white;
         position: absolute;
     }
+    
 }
 
 .portfolio-style-content{
     padding: 50px 0;
     background-color: #242424;
+    img{
+        opacity: 0;
+        transition: all 1s ease;
+        transform: translateY(50%);
+    }
 }
 
 .port-design{
     padding: 20px;
+}
+
+.active-show{
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 
 

@@ -67,6 +67,30 @@ $( window ).resize(function() {
         }
     });
 
+//     yosApp.directive("scroll", function ($window) {
+//         return function(scope, element, attrs) {
+//         // console.log('scrolling');
+//             angular.element($window).bind("scroll", function() {
+//                 console.log(angular.element(document).find('img')[1]);
+//                 console.log('scrolling '+this.pageYOffset);
+                
+//                 if((angular.element(document).find('img')[1].offsetTop-300)<this.pageYOffset){
+//                     angular.element(document).find('img')[1].className='active-show';
+//                 }
+// // angular.element(element).addClass('myDraggable');
+
+//                 // if (this.pageYOffset >= ) {
+//                 //     scope.boolChangeClass = true;
+//                 //     console.log('Scrolled below header.');
+//                 // } else {
+//                 //     scope.boolChangeClass = false;
+//                 //     console.log('Header is in view.');
+//                 // }
+//                 scope.$apply();
+//             });
+//         };
+//     });
+
 
     yosApp.factory('yosAppVar', function ($location) {
         var yosAppVar={};
@@ -203,22 +227,6 @@ $( window ).resize(function() {
         .then(function (response) {
             $scope.blog = response.data[0];
         });
-
-        // var req = {
-        //     method: 'GET',
-        //     url: 'process/blog.php',
-        //     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        //     data: 'username='+$scope.userName+'&passwd='+$scope.userPwd
-        // }
-
-        // $http(req).then(function(response){
-        //     if(response.data=="1"){
-        //         $location.path("/admin");
-        //     }else{
-        //         $scope.error=response.data;
-        //     }
-        // });
-
 	});
 
     
@@ -226,7 +234,19 @@ $( window ).resize(function() {
 
 	});
 
-    yosApp.controller('portfolioController', function($scope) {
+    yosApp.controller('portfolioController', function($scope,$window) {
+        
+
+        $scope.getoffsetTop = function(object){
+            var element = angular.element(document.querySelector('#'+object));
+            return element.offset().top-($window.innerHeight-100);
+        }
+
+       $(window).scroll(function (event) {
+            var scroll = $(window).scrollTop();
+            $scope.scroll=scroll;
+            $scope.$apply();
+        });
 
 	});
 
