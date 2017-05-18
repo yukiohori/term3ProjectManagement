@@ -1,54 +1,54 @@
 // Menu Jquery Section
 
-var menuShow=false;
+// var menuShow=false;
 
-$(document).on('click', '#mobileMenu', function() {
-    menuShow=true;
-    $('#mobileMenuBox').fadeIn(200);
-});
+// $(document).on('click', '#mobileMenu', function() {
+//     menuShow=true;
+//     $('#mobileMenuBox').fadeIn(200);
+// });
 
-$(document).on('click', '#dashBoardMenu', function() {
-    $('#dashBoardOptions').css('width','30%');
-    $('.dashboard-option-style').each(function(){
-        $(this).animate({'opacity':'1'},600);
-    });
+// $(document).on('click', '#dashBoardMenu', function() {
+//     $('#dashBoardOptions').css('width','30%');
+//     $('.dashboard-option-style').each(function(){
+//         $(this).animate({'opacity':'1'},600);
+//     });
     
-    $('#dashboard-menutitle-style').animate({'opacity':'1'},600);
-    $('#closeDashBoardMenu').animate({'opacity':'1'},700);
-});
+//     $('#dashboard-menutitle-style').animate({'opacity':'1'},600);
+//     $('#closeDashBoardMenu').animate({'opacity':'1'},700);
+// });
 
-$(document).on('click', '#closeDashBoardMenu', function() {
-    $('#dashBoardOptions').css('width','0');
-    $('.dashboard-option-style').each(function(){
-        $(this).animate({'opacity':'0'},10);
-    });
-    $('#dashboard-menutitle-style').animate({'opacity':'0'},10);
-    $('#closeDashBoardMenu').animate({'opacity':'0'},10);
-});
+// $(document).on('click', '#closeDashBoardMenu', function() {
+//     $('#dashBoardOptions').css('width','0');
+//     $('.dashboard-option-style').each(function(){
+//         $(this).animate({'opacity':'0'},10);
+//     });
+//     $('#dashboard-menutitle-style').animate({'opacity':'0'},10);
+//     $('#closeDashBoardMenu').animate({'opacity':'0'},10);
+// });
 
-$(document).on('click', '.menu-style li', function() {
-    if($(window).width()<1024){
-        menuShow=false;
-        $('#mobileMenuBox').fadeOut(200);
-    }
-});
+// $(document).on('click', '.menu-style li', function() {
+//     if($(window).width()<1024){
+//         menuShow=false;
+//         $('#mobileMenuBox').fadeOut(200);
+//     }
+// });
 
-$(document).on('click', '#mobileMenuClose', function() {
-    menuShow=false;
-    $('#mobileMenuBox').fadeOut(200);
-});
+// $(document).on('click', '#mobileMenuClose', function() {
+//     menuShow=false;
+//     $('#mobileMenuBox').fadeOut(200);
+// });
 
-$( window ).resize(function() {
-    if($(window).width()>1024){
-        $('#mobileMenuBox').css('display','block');
-    }else{
-        if(menuShow){
-            $('#mobileMenuBox').css('display','block');
-        }else{
-            $('#mobileMenuBox').css('display','none');
-        }
-    }
-});
+// $( window ).resize(function() {
+//     if($(window).width()>1024){
+//         $('#mobileMenuBox').css('display','block');
+//     }else{
+//         if(menuShow){
+//             $('#mobileMenuBox').css('display','block');
+//         }else{
+//             $('#mobileMenuBox').css('display','none');
+//         }
+//     }
+// });
 
 
 // END Menu Jquery Section
@@ -67,34 +67,10 @@ $( window ).resize(function() {
         }
     });
 
-//     yosApp.directive("scroll", function ($window) {
-//         return function(scope, element, attrs) {
-//         // console.log('scrolling');
-//             angular.element($window).bind("scroll", function() {
-//                 console.log(angular.element(document).find('img')[1]);
-//                 console.log('scrolling '+this.pageYOffset);
-                
-//                 if((angular.element(document).find('img')[1].offsetTop-300)<this.pageYOffset){
-//                     angular.element(document).find('img')[1].className='active-show';
-//                 }
-// // angular.element(element).addClass('myDraggable');
-
-//                 // if (this.pageYOffset >= ) {
-//                 //     scope.boolChangeClass = true;
-//                 //     console.log('Scrolled below header.');
-//                 // } else {
-//                 //     scope.boolChangeClass = false;
-//                 //     console.log('Header is in view.');
-//                 // }
-//                 scope.$apply();
-//             });
-//         };
-//     });
-
-
     yosApp.factory('yosAppVar', function ($location) {
         var yosAppVar={};
         yosAppVar.menuState=true;
+        yosAppVar.changePanel=false;
         yosAppVar.currenctPage="";
         yosAppVar.blogInfo={}
 
@@ -144,26 +120,21 @@ $( window ).resize(function() {
         $locationProvider.hashPrefix('');
     });
 
-	yosApp.controller('mainController', function($scope) {
-		$scope.message = '';
-        $scope.load = function () {
-            if(checkCookie()){
-                $('#openOverlay').animate({'height':'0'},1000);
-                deleteCookie();
-            }else{
-                $('#openOverlay').css({'display':'none'});
-            }
-        }
+	yosApp.controller('mainController', function($scope, yosAppVar) {
+       $scope.yosAppVar=yosAppVar;
+       $scope.yosAppVar.menuState=true;
+       $scope.yosAppVar.changePanel=false;
 	});
 
-    yosApp.controller('introController', function($scope) {
-        $scope.load = function () {
-            deleteCookie();
-        }
+    yosApp.controller('introController', function($scope, yosAppVar) {
+        $scope.yosAppVar=yosAppVar;
+        $scope.yosAppVar.menuState=false;
+        $scope.yosAppVar.changePanel=false;
 	});
 
-    yosApp.controller('blogController', function($scope, $http,$location , $sce,yosAppVar) {
-
+    yosApp.controller('blogController', function($scope, $http, $location , $sce, yosAppVar) {
+        $scope.yosAppVar=yosAppVar;
+        $scope.yosAppVar.menuState=true;
         $scope.yosAppVar=yosAppVar;
         $scope.blogIndex=0;
 
@@ -234,17 +205,20 @@ $( window ).resize(function() {
 
 	});
 
-    yosApp.controller('portfolioController', function($scope,$window) {
-        
+    yosApp.controller('portfolioController', function($scope,$window,yosAppVar) {
+        $scope.yosAppVar=yosAppVar;
+        $scope.yosAppVar.menuState=true;
+        $scope.yosAppVar.changePanel=false;
 
         $scope.getoffsetTop = function(object){
             var element = angular.element(document.querySelector('#'+object));
-            return element.offset().top-($window.innerHeight-100);
+            // console.log(element[0].offsetTop);
+            return element[0].offsetTop-($window.innerHeight-100);
         }
 
-       $(window).scroll(function (event) {
-            var scroll = $(window).scrollTop();
-            $scope.scroll=scroll;
+        angular.element($window).bind("scroll", function() {
+            // console.log(this.scrollY);
+            $scope.scroll=this.scrollY;
             $scope.$apply();
         });
 
