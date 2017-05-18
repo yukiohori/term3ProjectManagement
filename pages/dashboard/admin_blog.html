@@ -32,27 +32,27 @@
 
 	<div id="modalBox" class="modalbox-bg">
 		<div class="modalbox-style">
-			<h2>New Blog</h2>
-			<form ng-submit="submit()">
-				<div class="clearfix">
-					<div class="small-12 medium-12 large-12 column text-center">
-						<h4>Title</h4>
-					</div>
-					<div class="small-12 medium-12 large-12 column">
-						<input ng-model="title" class="text-center" name="blog-title" type="text">
+			<form class="blog-form-style" ng-submit="submit()">
+				<div class="form-blog-tab">
+					<a class="remove-margin" ng-click="changeTabBlog(1)">Blog Information</a><a ng-click="changeTabBlog(2)">Blog Content</a>
+				</div>
+				<div class="small-12 medium-12 large-12 column" ng-show="blogForm==1">
+					<div class="clearfix">
+						<h2>New Blog</h2>
+						<div class="form-blog-buttons">
+							<input class="form-submit-style" type="submit" value="POST!"><a ng-click="yosAppVar.closeBodalBox()">CLOSE</a>
+						</div>
+						<div class="small-12 medium-12 large-12 column text-center">
+							<h4>Title</h4>
+						</div>
+						<div class="small-12 medium-12 large-12 column">
+							<input ng-model="title" class="text-center" name="blog-title" type="text">
+						</div>
 					</div>
 				</div>
-				<div class="clearfix">
-					<div class="small-12 medium-12 large-12 column text-center">
-						<h4>Content</h4>
-					</div>
+				<div class="small-12 medium-12 large-12 column remove-padding" ng-show="blogForm==2">
 					<div class="small-12 medium-12 large-12 column remove-padding">
 						<textarea id="blogContent" name="blogeditor"></textarea>
-					</div>
-				</div>
-				<div class="clearfix">
-					<div class="small-12 medium-12 large-12 column text-center">
-						<input type="submit" value="POST!"><a ng-click="yosAppVar.closeBodalBox()">CLOSE</a>
 					</div>
 				</div>
 			</form>
@@ -67,6 +67,7 @@
 		resize_enabled: 'false',
 		removePlugins: 'elementspath',
 		filebrowserUploadUrl: '/term3ProjectManagement/process/upload.php',
+		height : '80vh',
 		image_previewText : CKEDITOR.tools.repeat( 'Select Image', 1 ),
 		toolbar: [
 				[ 'Image','Bold', 'Italic', '-', 'NumberedList','BulletedList', '-', 'Link', 'Unlink' ]

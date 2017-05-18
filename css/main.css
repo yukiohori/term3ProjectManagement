@@ -3960,7 +3960,7 @@ body {
   padding: 0; }
 
 .remove-margin {
-  margin: 0; }
+  margin: 0 !important; }
 
 .menu-main {
   background-color: rgba(100, 100, 100, 0.5); }
@@ -4826,6 +4826,24 @@ body, html {
   background-color: #242424;
   color: white;
   padding: 5px; }
+
+.blog-form-style {
+  height: 100%; }
+  .blog-form-style .cke_contents {
+    height: 88%; }
+
+.form-submit-style {
+  border: none;
+  background-color: #242424;
+  color: white;
+  padding: 5px 10px;
+  margin: 10px 5px 0px 0px;
+  cursor: pointer; }
+
+@media (min-width: 64em) {
+  .form-blog-tab {
+    position: absolute;
+    top: -30px; } }
 
 .admin-about-style {
   background-color: #242424;

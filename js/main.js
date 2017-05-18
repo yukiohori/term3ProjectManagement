@@ -51,14 +51,6 @@ $( window ).resize(function() {
 });
 
 
-$(document).on('click', '#nextBtn', function() {
-    setCookie(1);
-    $('#closeOverlay').animate({'height':'100vh'},700,function(){
-        window.location.replace("#home");
-    });
-});
-
-
 // END Menu Jquery Section
 
 // Angular Section
@@ -244,42 +236,3 @@ $(document).on('click', '#nextBtn', function() {
 
 // END Angular Section
 
-// Cookie Function
-
-function setCookie(exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = 'expires='+d.toUTCString();
-    document.cookie = 'access = true ;' + expires + ';path=/';
-}
-
-function deleteCookie(){
-   document.cookie = 'access =;Path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}
-
-function checkCookie() {
-    var user = getCookie('access');
-    if (user != "") {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function getCookie(cname) {
-    var name = cname + '=';
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-// END Cookie Function

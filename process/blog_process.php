@@ -22,10 +22,12 @@ if(!$conn){
         $query = "DELETE FROM blog_tb WHERE id=".$id;
 
     }else if($type==0){
+        $mydate=getdate(date("U"));
+        $date = $mydate[weekday].",". $mydate[month].", ".$mydate[mday].", ".$mydate[year];
         $title = mysqli_real_escape_string($conn, $_POST['title']);
         $image = mysqli_real_escape_string($conn, $_POST['image']);
         $query = "INSERT INTO blog_tb (blog_title,blog_date,blog_img,blog_content,blog_embed) 
-            VALUES ('".$title."','date','".$image."','".$content."','embed')";
+            VALUES ('".$title."','".$date."','".$image."','".$content."','embed')";
     }else{
         $title = mysqli_real_escape_string($conn, $_POST['title']);
         $image = mysqli_real_escape_string($conn, $_POST['image']);

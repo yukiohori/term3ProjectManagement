@@ -187,6 +187,7 @@ $(document).on('click', '.dashboard-option-style', function() {
         $scope.content="";
         $scope.img="";
         $scope.type=0;
+        $scope.blogForm=1;
         localStorage.setItem("admin_blog",1);
 
         uploadBlog();
@@ -232,6 +233,10 @@ $(document).on('click', '.dashboard-option-style', function() {
             }
             $('#modalBox').fadeIn();
         };
+
+        $scope.changeTabBlog = (tabNum) =>{
+            $scope.blogForm=tabNum;
+        }
 
         $scope.deleteBlog = function(index){
             $scope.id=$scope.blog[index].id;

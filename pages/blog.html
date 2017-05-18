@@ -10,14 +10,14 @@
 
 	</div>
 	 <div class="row">
-        <div class="large-2">PageSize:
+        <!--<div class="large-2">Page Size:
             <select ng-model="entryLimit" ng-change="setPage(1)" class="">
                 <option>5</option>
                 <option>10</option>
                 <option>20</option>
                 <option>50</option>
             </select>
-        </div>
+        </div>-->
 	</div>
 	<div class="row blog-style-each" ng-repeat="x in filtered = (blog | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit)">
 		<div class="blog-short-image remove-padding small-12 medium-6 large-6 column text-center">
