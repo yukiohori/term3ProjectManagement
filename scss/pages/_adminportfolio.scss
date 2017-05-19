@@ -5,7 +5,6 @@
 .admin-about-style{
 
     background-color:#242424;
-    height:100vh;
     h2 {
         text-align: center;
         margin: 0;
@@ -19,6 +18,25 @@
     }
 }
 
+.file-drop-zone{
+    border:2px white dashed;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    span{
+        color: white;
+    }
+}
+
+.file-drop-zone-over{
+    border:2px white dashed;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    span{
+        color: white;
+    }
+}
 
 
 

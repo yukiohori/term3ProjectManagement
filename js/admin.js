@@ -1,39 +1,25 @@
 // Menu Jquery Section
 
-// var menuShow=false;
 
-// $(document).on('click', '#mobileMenu', function() {
-//     menuShow=true;
-//     $('#mobileMenuBox').fadeIn(200);
+
+
+// $(document).on('click', '#closeDashBoardMenu', function() {
+//     $('#dashBoardOptions').css('width','0');
+//     $('.dashboard-option-style').each(function(){
+//         $(this).animate({'opacity':'0'},10);
+//     });
+//     $('#dashboard-menutitle-style').animate({'opacity':'0'},10);
+//     $('#closeDashBoardMenu').animate({'opacity':'0'},10);
 // });
 
-$(document).on('click', '#dashBoardMenu', function() {
-    $('#dashBoardOptions').css('width','30%');
-    $('.dashboard-option-style').each(function(){
-        $(this).animate({'opacity':'1'},600);
-    });
-    
-    $('#dashboard-menutitle-style').animate({'opacity':'1'},600);
-    $('#closeDashBoardMenu').animate({'opacity':'1'},700);
-});
-
-$(document).on('click', '#closeDashBoardMenu', function() {
-    $('#dashBoardOptions').css('width','0');
-    $('.dashboard-option-style').each(function(){
-        $(this).animate({'opacity':'0'},10);
-    });
-    $('#dashboard-menutitle-style').animate({'opacity':'0'},10);
-    $('#closeDashBoardMenu').animate({'opacity':'0'},10);
-});
-
-$(document).on('click', '.dashboard-option-style', function() {
-    $('#dashBoardOptions').css('width','0');
-    $('.dashboard-option-style').each(function(){
-        $(this).animate({'opacity':'0'},10);
-    });
-    $('#dashboard-menutitle-style').animate({'opacity':'0'},10);
-    $('#closeDashBoardMenu').animate({'opacity':'0'},10);
-});
+// $(document).on('click', '.dashboard-option-style', function() {
+//     $('#dashBoardOptions').css('width','0');
+//     $('.dashboard-option-style').each(function(){
+//         $(this).animate({'opacity':'0'},10);
+//     });
+//     $('#dashboard-menutitle-style').animate({'opacity':'0'},10);
+//     $('#closeDashBoardMenu').animate({'opacity':'0'},10);
+// });
 
 // $(document).on('dblclick', '.cmtedit', function (e) {
 //    TBox(this);
@@ -72,28 +58,98 @@ $(document).on('click', '.dashboard-option-style', function() {
 // END Menu Jquery Section
 
 // Angular Section
-
+(function(){
+    'use strict';
     var yosApp = angular.module('yosapp', ['ngRoute','ngSanitize','ngAnimate']);
+
+    yosApp.directive('fileDropzone', function() {
+        return {
+            restrict: 'A',
+            scope: {
+                filesToUpload: '='
+            },
+            link : function(scope, element, attrs) {
+                var fileObjectsArray = [];
+                element.bind('dragover',function(e){
+                    if(e != null){
+                        e.preventDefault();
+                    }
+                    e.dataTransfer.effectAllowed= 'copy';
+                    element.attr('class','file-drop-zone-over');
+                });
+
+                element.bind('dragenter',function(e){
+                    if(e != null){
+                        e.preventDefault();
+                    }
+                    e.dataTransfer.effectAllowed= 'copy';
+                    element.attr('class','file-drop-zone-over');
+                });
+
+                element.bind('click',function(e){
+                    console.log('asdasd');
+                });
+                
+                element.bind('drop',function(e){
+                    element.attr('class','file-drop-zone');
+                    if(e != null){
+                        e.preventDefault();
+                    }
+                    
+                    
+                    angular.forEach(e.dataTransfer.files,function(file){
+
+                        var reader = new  FileReader();
+                        reader.onload = function(e) {
+                            scope.$apply(function(){
+                                var image_source = e.target.result;
+                                var image_name = file.name;
+                                var image_size = file.size;
+
+                                var fileObject = {
+                                    file: file,
+                                    name: image_name,
+                                    size: image_size,
+                                    preview: image_source
+                                }
+                                fileObjectsArray.push(fileObject);
+                            });
+                        }
+                        reader.readAsDataURL(file);
+                    });
+                    scope.filesToUpload = fileObjectsArray;
+                });
+            }
+        }
+    });
 
     yosApp.factory('yosAppVar', function ($location) {
         var yosAppVar={};
-        yosAppVar.menuState=true;
+        yosAppVar.menuState=false;
+        yosAppVar.menuActive=false;
         yosAppVar.currenctPage="";
+
+        yosAppVar.openShowMenu = function(){
+            yosAppVar.menuActive=!yosAppVar.menuActive;
+        };
 
         yosAppVar.goHomepage = function(){
             window.location.href = "index.html";
         };
 
         yosAppVar.goBlogAdmin = function(){
-             $location.path("/blog");
+            yosAppVar.menuActive=false;
+            $location.path("/blog");
         };
 
-        yosAppVar.goAboutAdmin = function(){
-             $location.path("/about");
+        yosAppVar.goPortfolioAdmin = function(){
+            yosAppVar.menuActive=false;
+            $location.path("/portfolio");
         };
 
         yosAppVar.goFeaturesAdmin = function(){
-             $location.path("/features");
+            yosAppVar.menuActive=false;
+            $location.path("/features");
         };
 
         yosAppVar.logout= function(){
@@ -274,7 +330,7 @@ $(document).on('click', '.dashboard-option-style', function() {
             $scope.indexBlog=0;
             $http.get("process/blog.php")
             .then(function (response) {
-                console.log(response.data);
+                // console.log(response.data);
                 $scope.blog = response.data;
                 for(var i=0;i<$scope.blog.length;i+=1){
                     $scope.blog[i].blog_index=i;
@@ -307,11 +363,25 @@ $(document).on('click', '.dashboard-option-style', function() {
 		$scope.content = '';
 	});
 
-    yosApp.controller('adminController', function($scope,yosAppVar) {
+    yosApp.controller('adminController', function($scope,yosAppVar,$timeout) {
         $scope.yosAppVar = yosAppVar;
         $scope.yosAppVar.menuState=true;
-		$scope.message = '';
+		
+        $timeout(function () {
+             $scope.yosAppVar.menuActive=true;
+        }, 2500);
+
 	});
+
+    yosApp.controller('adminPortfolioController', function($scope,yosAppVar) {
+        $scope.yosAppVar = yosAppVar;
+        $scope.yosAppVar.menuState=true;
+		$scope.files = [];
+	});
+
+}).call(this);
+    
+
 
 
 // END Angular Section

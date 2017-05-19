@@ -1,5 +1,17 @@
 <div class='admin-about-style'>
 	<h1>ADMIN ABOUT PAGE</h1>
+	<div class="row">
+		<div class="file-drop-zone" file-dropzone files-to-upload = "files">
+			<span>Drog Image</span>
+		</div>
 
+		<div>
+			<div ng-repeat="file in files">
+				<div class="image-container">
+					<img ng-src={{file.preview}} />
+				</div>
+			</div>
+		</div>
+	</div>
 	
 </div>	

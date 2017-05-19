@@ -11,7 +11,6 @@
 
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
@@ -19,7 +18,7 @@
         <script src="js/ckeditor/ckeditor.js"></script>
         
     </head>
-    <body ng-controller="loginController">
+    <body class="bashboard-style" ng-controller="loginController">
 
         <ng-include src="'partials/adminmenu.html'" ng-show="yosAppVar.menuState"></ng-include>
 
@@ -27,6 +26,6 @@
             <div ng-view></div>
         </div>
     
-    <script src="js/admin.js"></script>
+        <script src="js/admin.js"></script>
     </body>
 </html>
