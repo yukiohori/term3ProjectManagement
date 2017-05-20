@@ -1,57 +1,3 @@
-// Menu Jquery Section
-
-// var menuShow=false;
-
-// $(document).on('click', '#mobileMenu', function() {
-//     menuShow=true;
-//     $('#mobileMenuBox').fadeIn(200);
-// });
-
-// $(document).on('click', '#dashBoardMenu', function() {
-//     $('#dashBoardOptions').css('width','30%');
-//     $('.dashboard-option-style').each(function(){
-//         $(this).animate({'opacity':'1'},600);
-//     });
-    
-//     $('#dashboard-menutitle-style').animate({'opacity':'1'},600);
-//     $('#closeDashBoardMenu').animate({'opacity':'1'},700);
-// });
-
-// $(document).on('click', '#closeDashBoardMenu', function() {
-//     $('#dashBoardOptions').css('width','0');
-//     $('.dashboard-option-style').each(function(){
-//         $(this).animate({'opacity':'0'},10);
-//     });
-//     $('#dashboard-menutitle-style').animate({'opacity':'0'},10);
-//     $('#closeDashBoardMenu').animate({'opacity':'0'},10);
-// });
-
-// $(document).on('click', '.menu-style li', function() {
-//     if($(window).width()<1024){
-//         menuShow=false;
-//         $('#mobileMenuBox').fadeOut(200);
-//     }
-// });
-
-// $(document).on('click', '#mobileMenuClose', function() {
-//     menuShow=false;
-//     $('#mobileMenuBox').fadeOut(200);
-// });
-
-// $( window ).resize(function() {
-//     if($(window).width()>1024){
-//         $('#mobileMenuBox').css('display','block');
-//     }else{
-//         if(menuShow){
-//             $('#mobileMenuBox').css('display','block');
-//         }else{
-//             $('#mobileMenuBox').css('display','none');
-//         }
-//     }
-// });
-
-
-// END Menu Jquery Section
 
 // Angular Section
 
@@ -67,7 +13,7 @@
         }
     });
 
-    yosApp.factory('yosAppVar', function ($location,$timeout) {
+    yosApp.factory('yosAppVar', function ($location,$timeout,$window) {
         var yosAppVar={};
         yosAppVar.menuState=true;
         yosAppVar.changePanel=false;
@@ -79,6 +25,7 @@
                 yosAppVar.currenctPage="/"+dir;
                 yosAppVar.changePanel=true;
                 $timeout(function () {
+                    $window.scrollTo(0, 0);
                     $location.path("/"+dir);
                 }, 1000);
             }
@@ -195,7 +142,7 @@
 
         $scope.selectBlog=function(index){
             localStorage.setItem("blog_id",$scope.blog[index].id);
-            $location.path("/blog_detail");
+            $scope.yosAppVar.changePage("blog_detail");
         }
 
         // $scope.embed=$sce.trustAsHtml($scope.blog[0].blog_embed);

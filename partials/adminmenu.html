@@ -1,14 +1,17 @@
 <a ng-click="yosAppVar.openShowMenu()" class="menu-dashboard show-for-large">MENU</a>
 <div ng-class="{'active-menu':yosAppVar.menuActive}" class="menu-dashboard-style">
     <h2 ng-class="{'active-show-menu':yosAppVar.menuActive}">MENU</h2>
+    <div ng-class="{'active-show-menu':yosAppVar.menuActive}" ng-click="yosAppVar.goAboutAdmin()" class="dashboard-option-style">
+        <p>ABOUT</p>
+    </div>
     <div ng-class="{'active-show-menu':yosAppVar.menuActive}" ng-click="yosAppVar.goPortfolioAdmin()" class="dashboard-option-style">
         <p>PORTFOLIO</p>
     </div>
-    <div ng-class="{'active-show-menu':yosAppVar.menuActive}" ng-click="yosAppVar.goFeaturesAdmin()" class="dashboard-option-style">
-        <p>FEATURED</p>
-    </div>
     <div ng-class="{'active-show-menu':yosAppVar.menuActive}" ng-click="yosAppVar.goBlogAdmin()" class="dashboard-option-style">
         <p>BLOG</p>
+    </div>
+    <div ng-class="{'active-show-menu':yosAppVar.menuActive}" ng-click="yosAppVar.goBlogAdmin()" class="dashboard-option-style">
+        <p>CHANGE PASSWORD</p>
     </div>
     <div ng-class="{'active-show-menu':yosAppVar.menuActive}" ng-click="yosAppVar.logout()" class="dashboard-option-style">
         <p>LOGOUT</p>

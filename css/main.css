@@ -3989,7 +3989,7 @@ body {
       @media (min-width: 64em) {
         .mobile-menu-box .menu-style li {
           float: left;
-          width: 16.66%; } }
+          width: 20%; } }
       @media (max-width: 63.9em) {
         .mobile-menu-box .menu-style li {
           padding: 10px 0; } }
@@ -4077,6 +4077,9 @@ h1, p {
 
 .change-page {
   height: 100vh !important; }
+
+.set-non-visible {
+  display: none; }
 
 .page-footer {
   background-color: #242424; }
@@ -4877,6 +4880,9 @@ body, html {
   .form-blog-tab {
     position: absolute;
     top: -30px; } }
+
+.modalbox-show {
+  display: initial; }
 
 .admin-about-style {
   background-color: #242424; }

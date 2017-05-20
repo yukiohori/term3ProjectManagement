@@ -29,7 +29,7 @@
             cursor: pointer;
             @include respond-to(desktop) {
                 float:left;
-                width:16.66%;
+                width:20%;
             }
             @include respond-to(tabmob) {
                 padding: 10px 0;

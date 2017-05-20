@@ -1,25 +1,6 @@
-// Menu Jquery Section
 
 
 
-
-// $(document).on('click', '#closeDashBoardMenu', function() {
-//     $('#dashBoardOptions').css('width','0');
-//     $('.dashboard-option-style').each(function(){
-//         $(this).animate({'opacity':'0'},10);
-//     });
-//     $('#dashboard-menutitle-style').animate({'opacity':'0'},10);
-//     $('#closeDashBoardMenu').animate({'opacity':'0'},10);
-// });
-
-// $(document).on('click', '.dashboard-option-style', function() {
-//     $('#dashBoardOptions').css('width','0');
-//     $('.dashboard-option-style').each(function(){
-//         $(this).animate({'opacity':'0'},10);
-//     });
-//     $('#dashboard-menutitle-style').animate({'opacity':'0'},10);
-//     $('#closeDashBoardMenu').animate({'opacity':'0'},10);
-// });
 
 // $(document).on('dblclick', '.cmtedit', function (e) {
 //    TBox(this);
@@ -47,87 +28,17 @@
 // });
 
 
-// $(document).on('click', '#nextBtn', function() {
-//     setCookie(1);
-//     $('#closeOverlay').animate({'height':'100vh'},700,function(){
-//         window.location.replace("#home");
-//     });
-// });
-
-
-// END Menu Jquery Section
-
 // Angular Section
 (function(){
     'use strict';
     var yosApp = angular.module('yosapp', ['ngRoute','ngSanitize','ngAnimate']);
 
-    yosApp.directive('fileDropzone', function() {
-        return {
-            restrict: 'A',
-            scope: {
-                filesToUpload: '='
-            },
-            link : function(scope, element, attrs) {
-                var fileObjectsArray = [];
-                element.bind('dragover',function(e){
-                    if(e != null){
-                        e.preventDefault();
-                    }
-                    e.dataTransfer.effectAllowed= 'copy';
-                    element.attr('class','file-drop-zone-over');
-                });
-
-                element.bind('dragenter',function(e){
-                    if(e != null){
-                        e.preventDefault();
-                    }
-                    e.dataTransfer.effectAllowed= 'copy';
-                    element.attr('class','file-drop-zone-over');
-                });
-
-                element.bind('click',function(e){
-                    console.log('asdasd');
-                });
-                
-                element.bind('drop',function(e){
-                    element.attr('class','file-drop-zone');
-                    if(e != null){
-                        e.preventDefault();
-                    }
-                    
-                    
-                    angular.forEach(e.dataTransfer.files,function(file){
-
-                        var reader = new  FileReader();
-                        reader.onload = function(e) {
-                            scope.$apply(function(){
-                                var image_source = e.target.result;
-                                var image_name = file.name;
-                                var image_size = file.size;
-
-                                var fileObject = {
-                                    file: file,
-                                    name: image_name,
-                                    size: image_size,
-                                    preview: image_source
-                                }
-                                fileObjectsArray.push(fileObject);
-                            });
-                        }
-                        reader.readAsDataURL(file);
-                    });
-                    scope.filesToUpload = fileObjectsArray;
-                });
-            }
-        }
-    });
-
-    yosApp.factory('yosAppVar', function ($location) {
+    yosApp.factory('yosAppVar', function ($location, $window) {
         var yosAppVar={};
         yosAppVar.menuState=false;
         yosAppVar.menuActive=false;
         yosAppVar.currenctPage="";
+        yosAppVar.images=[];
 
         yosAppVar.openShowMenu = function(){
             yosAppVar.menuActive=!yosAppVar.menuActive;
@@ -140,35 +51,84 @@
         yosAppVar.goBlogAdmin = function(){
             yosAppVar.menuActive=false;
             $location.path("/blog");
+            $window.scrollTo(0, 0);
         };
 
         yosAppVar.goPortfolioAdmin = function(){
             yosAppVar.menuActive=false;
             $location.path("/portfolio");
+            $window.scrollTo(0, 0);
         };
 
         yosAppVar.goFeaturesAdmin = function(){
             yosAppVar.menuActive=false;
             $location.path("/features");
+            $window.scrollTo(0, 0);
         };
 
         yosAppVar.logout= function(){
             $location.path("/login");
         };
 
-        yosAppVar.closeBodalBox= function(){
-            $('#modalBox').fadeOut();
-        };
-
-        yosAppVar.openBodalBoxMsg= function(){
-            $('#modalBoxMsg').fadeIn();
-        };
-
-        yosAppVar.closeBodalBoxMsg= function(){
-            $('#modalBoxMsg').fadeOut();
-        };
-
         return yosAppVar;
+    });
+
+    yosApp.directive('fileDropzone', function(yosAppVar) {
+        return {
+            restrict: 'A',
+            scope: {
+                filesToUpload: '='
+            },
+            link : function(scope, element, attrs) {
+
+                element.bind('dragover',function(e){
+                    if(e != null){
+                        e.preventDefault();
+                    }
+                     (e.originalEvent || e).dataTransfer.effectAllowed ='copy';
+                    element.attr('class','file-drop-zone-over');
+                });
+
+                element.bind('dragenter',function(e){
+                    if(e != null){
+                        e.preventDefault();
+                    }
+                    (e.originalEvent || e).dataTransfer.effectAllowed = 'copy';
+                    element.attr('class','file-drop-zone-over');
+                });
+
+                element.bind('click',function(e){
+                    angular.element(document.querySelector('.upload-class'))[0].click();
+                });
+                
+                element.bind('drop',function(e){
+                    element.attr('class','file-drop-zone');
+                    if(e != null){
+                        e.preventDefault();
+                    }
+                    
+                    
+                    angular.forEach((e.originalEvent || e).dataTransfer.files,function(file){
+
+                        var reader = new  FileReader();
+                        reader.onload = function(e) {
+                            scope.$apply(function(){
+                                var image_source = e.target.result;
+                                var image_name = file.name;
+
+                                var fileObject = {
+                                    file: file,
+                                    name: image_name,
+                                    preview: image_source
+                                }
+                                yosAppVar.images.push(fileObject);
+                            });
+                        }
+                        reader.readAsDataURL(file);
+                    });
+                });
+            }
+        }
     });
 
     yosApp.config(function($routeProvider, $locationProvider) {
@@ -199,9 +159,9 @@
                 controller  : 'adminPortfolioController'
             })
 
-            .when('/features', {
-                templateUrl : 'pages/dashboard/admin_features.html',
-                controller  : 'adminFeaturesController'
+            .when('/about', {
+                templateUrl : 'pages/dashboard/admin_about.html',
+                controller  : 'adminAboutController'
             })
             .otherwise({redirectTo:'/'});
 
@@ -243,6 +203,7 @@
         $scope.content="";
         $scope.img="";
         $scope.type=0;
+        $scope.modalForm=false;
         $scope.blogForm=1;
         localStorage.setItem("admin_blog",1);
 
@@ -277,7 +238,7 @@
 			  }
             }).then((responce) => {
                 uploadBlog();
-                $scope.yosAppVar.closeBodalBox();
+                $scope.modalForm=false;
             });
         };
 
@@ -285,13 +246,16 @@
             if(newBlog==1){
                 $scope.type=0;
                 $scope.title="";
-                bloged.setData('');
             }
-            $('#modalBox').fadeIn();
+            $scope.modalForm=true;
         };
 
         $scope.changeTabBlog = (tabNum) =>{
             $scope.blogForm=tabNum;
+        }
+
+        $scope.closeModalBoxForm = () =>{
+            $scope.modalForm=false;
         }
 
         $scope.deleteBlog = function(index){
@@ -323,7 +287,7 @@
             $scope.type=1;
             $scope.title=$scope.blog[index].blog_title;
             bloged.setData($scope.blog[index].blog_content);
-            $scope.openBodalBox(0);
+            $scope.modalForm=true;
         }
 
         function uploadBlog(){
@@ -351,17 +315,6 @@
 		$scope.content = '';
 	});
 
-    yosApp.controller('adminFeaturesController', function($scope, $http, $sce,yosAppVar) {
-        $scope.yosAppVar = yosAppVar;
-        $scope.yosAppVar.menuState=true;
-        // $http.get("process/blog.php")
-        // .then(function (response) {
-        //     console.log(response);
-        //     $scope.blog = response.data;
-        // });
-
-		$scope.content = '';
-	});
 
     yosApp.controller('adminController', function($scope,yosAppVar,$timeout) {
         $scope.yosAppVar = yosAppVar;
@@ -376,7 +329,31 @@
     yosApp.controller('adminPortfolioController', function($scope,yosAppVar) {
         $scope.yosAppVar = yosAppVar;
         $scope.yosAppVar.menuState=true;
-		$scope.files = [];
+
+		// $scope.files = [];
+
+        $scope.addImage=function(element){
+            console.log(element.files[0]);
+            var reader = new  FileReader();
+            reader.onload = function(event) {
+                $scope.$apply(function($scope){
+                    var image_source = event.target.result;
+                    var image_name = element.files.name;
+
+                    var fileObject = {
+                        file: element.files,
+                        name: image_name,
+                        preview: image_source
+                    }
+                    $scope.yosAppVar.images.push(fileObject);
+                });
+            }
+            reader.readAsDataURL(element.files[0]);
+        }
+
+        $scope.sendImages=()=>{
+            console.log($scope.files);
+        }
 	});
 
 }).call(this);

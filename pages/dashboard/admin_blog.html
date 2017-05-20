@@ -30,7 +30,7 @@
 		</div>
 	</div>
 
-	<div id="modalBox" class="modalbox-bg">
+	<div id="modalBox" class="modalbox-bg" ng-class="{'modalbox-show':modalForm}">
 		<div class="modalbox-style">
 			<form class="blog-form-style" ng-submit="submit()">
 				<div class="form-blog-tab">
@@ -40,7 +40,7 @@
 					<div class="clearfix">
 						<h2>New Blog</h2>
 						<div class="form-blog-buttons">
-							<input class="form-submit-style" type="submit" value="POST!"><a ng-click="yosAppVar.closeBodalBox()">CLOSE</a>
+							<input class="form-submit-style" type="submit" value="POST!"><a ng-click="closeModalBoxForm()">CLOSE</a>
 						</div>
 						<div class="small-12 medium-12 large-12 column text-center">
 							<h4>Title</h4>
