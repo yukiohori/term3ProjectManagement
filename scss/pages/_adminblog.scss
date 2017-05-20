@@ -107,15 +107,6 @@
     }
 }
 
-.form-submit-style{
-    border:none;
-    background-color: #242424;
-    color: white;
-    padding: 5px 10px;
-    margin: 10px 5px 0px 0px;
-    cursor: pointer;
-}
-
 .form-blog-tab{
     @include respond-to(desktop) {
         position: absolute;

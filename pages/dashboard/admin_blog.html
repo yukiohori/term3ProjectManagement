@@ -36,12 +36,13 @@
 				<div class="form-blog-tab">
 					<a class="remove-margin" ng-click="changeTabBlog(1)">Blog Information</a><a ng-click="changeTabBlog(2)">Blog Content</a>
 				</div>
+				<div class="close-btn-form" ng-click="closeModalBoxForm()"><i class="fa fa-times" aria-hidden="true"></i></div>
+				<div class="form-blog-buttons">
+					<input class="form-submit-style" type="submit" value="POST!">
+				</div>
 				<div class="small-12 medium-12 large-12 column" ng-show="blogForm==1">
 					<div class="clearfix">
 						<h2>New Blog</h2>
-						<div class="form-blog-buttons">
-							<input class="form-submit-style" type="submit" value="POST!"><a ng-click="closeModalBoxForm()">CLOSE</a>
-						</div>
 						<div class="small-12 medium-12 large-12 column text-center">
 							<h4>Title</h4>
 						</div>
@@ -67,7 +68,7 @@
 		resize_enabled: 'false',
 		removePlugins: 'elementspath',
 		filebrowserUploadUrl: '/term3ProjectManagement/process/upload.php',
-		height : '80vh',
+		height : '68vh',
 		image_previewText : CKEDITOR.tools.repeat( 'Select Image', 1 ),
 		toolbar: [
 				[ 'Image','Bold', 'Italic', '-', 'NumberedList','BulletedList', '-', 'Link', 'Unlink' ]

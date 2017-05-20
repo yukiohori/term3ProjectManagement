@@ -19,22 +19,44 @@
 }
 
 .file-drop-zone{
-    border:2px white dashed;
-    padding: 30px;
+    border:2px #242424 dashed;
+    height: 100px;
     text-align: center;
     width: 100%;
+    margin-top: 35px;
     span{
-        color: white;
+        color: #242424;
     }
 }
 
 .file-drop-zone-over{
-    border:2px white dashed;
-    padding: 30px;
+    border:2px #242424 dashed;
+    height: 100px;
     text-align: center;
     width: 100%;
+    margin-top: 35px;
     span{
-        color: white;
+        color: #242424;
+    }
+}
+
+.image-container{
+    display: flex;
+    flex-flow: wrap;
+    .image-flex{
+        width:33.33%;
+    }
+}
+
+.portfolio-form-style{
+    // padding: 30px;
+    h4{
+        margin: 0;
+        padding: 0;
+    }
+    textarea{
+        width: 100%;
+        height: 108px;
     }
 }
 

@@ -23,6 +23,7 @@
 }
 
 .modalbox-style{
+    // overflow: auto;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -43,6 +44,24 @@
 
 h1,p{
     word-break: break-all;
+}
+
+.form-submit-style{
+    margin: 0;
+    border:none;
+    background-color: #242424;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.form-blog-buttons{
+    padding: 5px 0;
+    background-color:#242424;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
 
 #openOverlay{

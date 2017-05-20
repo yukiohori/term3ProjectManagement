@@ -4064,6 +4064,22 @@ body {
 h1, p {
   word-break: break-all; }
 
+.form-submit-style {
+  margin: 0;
+  border: none;
+  background-color: #242424;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer; }
+
+.form-blog-buttons {
+  padding: 5px 0;
+  background-color: #242424;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center; }
+
 #openOverlay {
   z-index: 999;
   position: fixed;
@@ -4777,6 +4793,34 @@ body, html {
   100% {
     right: 40%; } }
 
+.menu-list-show {
+  width: 30vw; }
+
+@media (min-width: 64em) {
+  .close-btn-form {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 40px;
+    top: -40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    background-color: #242424;
+    cursor: pointer; }
+    .close-btn-form i {
+      transition: all 0.5s ease;
+      color: white; }
+    .close-btn-form:hover i {
+      font-size: 30px; } }
+
 .admin-blog-style {
   padding: 20px;
   background-color: #242424; }
@@ -4868,14 +4912,6 @@ body, html {
   .blog-form-style .cke_contents {
     height: 88%; }
 
-.form-submit-style {
-  border: none;
-  background-color: #242424;
-  color: white;
-  padding: 5px 10px;
-  margin: 10px 5px 0px 0px;
-  cursor: pointer; }
-
 @media (min-width: 64em) {
   .form-blog-tab {
     position: absolute;
@@ -4896,20 +4932,39 @@ body, html {
     text-align: center; }
 
 .file-drop-zone {
-  border: 2px white dashed;
-  padding: 30px;
+  border: 2px #242424 dashed;
+  height: 100px;
   text-align: center;
-  width: 100%; }
+  width: 100%;
+  margin-top: 35px; }
   .file-drop-zone span {
-    color: white; }
+    color: #242424; }
 
 .file-drop-zone-over {
-  border: 2px white dashed;
-  padding: 30px;
+  border: 2px #242424 dashed;
+  height: 100px;
   text-align: center;
-  width: 100%; }
+  width: 100%;
+  margin-top: 35px; }
   .file-drop-zone-over span {
-    color: white; }
+    color: #242424; }
+
+.image-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap; }
+  .image-container .image-flex {
+    width: 33.33%; }
+
+.portfolio-form-style h4 {
+  margin: 0;
+  padding: 0; }
+
+.portfolio-form-style textarea {
+  width: 100%;
+  height: 108px; }
 
 .admin-features-style {
   background-color: #242424;

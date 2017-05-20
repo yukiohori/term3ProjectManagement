@@ -330,8 +330,6 @@
         $scope.yosAppVar = yosAppVar;
         $scope.yosAppVar.menuState=true;
 
-		// $scope.files = [];
-
         $scope.addImage=function(element){
             console.log(element.files[0]);
             var reader = new  FileReader();
@@ -349,6 +347,18 @@
                 });
             }
             reader.readAsDataURL(element.files[0]);
+        }
+
+        $scope.openBodalBox= function(newBlog){
+            if(newBlog==1){
+                $scope.type=0;
+                $scope.title="";
+            }
+            $scope.modalForm=true;
+        };
+
+        $scope.closeModalBoxForm = () =>{
+            $scope.modalForm=false;
         }
 
         $scope.sendImages=()=>{
