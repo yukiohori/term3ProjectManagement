@@ -1,5 +1,6 @@
 .sass-cache/*
 css/main.css
 img/blog/*
+img/portfolio/*
 node_modules/*
 config.ini

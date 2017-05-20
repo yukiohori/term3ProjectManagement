@@ -1,33 +1,4 @@
 
-
-
-
-// $(document).on('dblclick', '.cmtedit', function (e) {
-//    TBox(this);
-// });
-
-// $(document).on('blur', "input",function (e) {
-//    RBox(this);
-// });
-
-// $(document).on('click', '#mobileMenuClose', function() {
-//     menuShow=false;
-//     $('#mobileMenuBox').fadeOut(200);
-// });
-
-// $( window ).resize(function() {
-//     if($(window).width()>1024){
-//         $('#mobileMenuBox').css('display','block');
-//     }else{
-//         if(menuShow){
-//             $('#mobileMenuBox').css('display','block');
-//         }else{
-//             $('#mobileMenuBox').css('display','none');
-//         }
-//     }
-// });
-
-
 // Angular Section
 (function(){
     'use strict';
@@ -322,24 +293,30 @@
 		
         $timeout(function () {
              $scope.yosAppVar.menuActive=true;
-        }, 2500);
+        }, 2000);
 
 	});
 
-    yosApp.controller('adminPortfolioController', function($scope,yosAppVar) {
+    yosApp.controller('adminPortfolioController', function($scope,$http,yosAppVar) {
         $scope.yosAppVar = yosAppVar;
         $scope.yosAppVar.menuState=true;
+        $scope.type=0;
+        $scope.title="";
+        $scope.description="";
+        $scope.embed="";
+        $scope.id=0;
+        $scope.img="";
 
         $scope.addImage=function(element){
-            console.log(element.files[0]);
+            // console.log(element.files[0]);
             var reader = new  FileReader();
             reader.onload = function(event) {
                 $scope.$apply(function($scope){
                     var image_source = event.target.result;
-                    var image_name = element.files.name;
+                    var image_name = element.files[0].name;
 
                     var fileObject = {
-                        file: element.files,
+                        file: element.files[0],
                         name: image_name,
                         preview: image_source
                     }
@@ -349,10 +326,10 @@
             reader.readAsDataURL(element.files[0]);
         }
 
-        $scope.openBodalBox= function(newBlog){
-            if(newBlog==1){
+        $scope.openBodalBox= function(newPort){
+            if(newPort==1){
                 $scope.type=0;
-                $scope.title="";
+                $scope.description="";
             }
             $scope.modalForm=true;
         };
@@ -361,30 +338,36 @@
             $scope.modalForm=false;
         }
 
-        $scope.sendImages=()=>{
-            console.log($scope.files);
-        }
+        $scope.submit = () => {
+            if($scope.yosAppVar.images.length>0){
+                $scope.img=$scope.yosAppVar.images[0];
+                console.log($scope.img);
+            }
+
+	      	$http({
+			  method  : 'POST',
+			  url     : 'process/portfolio_process.php',
+			  processData: false,
+			  transformRequest: function (data) {
+			      var formData = new FormData();
+                  formData.append('type', $scope.type);
+                  formData.append('id', $scope.id);
+                  formData.append('image', $scope.img.file);
+                  formData.append('title', $scope.title);
+                  formData.append('description', $scope.description);
+                  formData.append('embed',$scope.embed);
+			      return formData;
+			  }, 
+			  data : $scope.form,
+			  headers: {
+			         'Content-Type': undefined
+			  }
+            }).then((responce) => {
+                console.log(responce);
+                $scope.modalForm=false;
+            });
+        };
 	});
 
 }).call(this);
     
-
-
-
-// END Angular Section
-
-// function TBox(obj) {
-//         var id = $(obj).attr("id");
-//         var tid = id.replace("cmt_edit_", "cmt_tedit_");
-//         var input = $('<input />', { 'type': 'text', 'name': 'n' + tid, 'id': tid, 'class': 'text_box', 'value': $(obj).html() });
-//         $(obj).parent().append(input);
-//         $(obj).remove();
-//         input.focus();
-// }
-// function RBox(obj) {
-//     var id = $(obj).attr("id");
-//     var tid = id.replace("cmt_tedit_", "cmt_edit_");
-//     var input = $('<p />', { 'id': tid, 'class': 'cmtedit', 'html': $(obj).val() });
-//     $(obj).parent().append(input);
-//     $(obj).remove();
-// }
