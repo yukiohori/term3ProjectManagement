@@ -4026,10 +4026,15 @@ body {
   z-index: 200;
   padding-top: 30px; }
   .desktop-menu-btn a {
+    transition: all 0.7s ease;
     padding: 10px 20px;
     border: 2px solid #242424;
     color: #242424;
     cursor: pointer; }
+    .desktop-menu-btn a:hover {
+      border: 2px solid #242424;
+      box-shadow: inset 0 0 0 25px #242424;
+      color: white; }
 
 .menu-active-main {
   border: 3px solid white;
@@ -4057,11 +4062,13 @@ body {
 .logo-style {
   position: absolute;
   cursor: pointer; }
-  .logo-style img {
+  .logo-style svg {
     width: 61px; }
     @media (min-width: 64em) {
-      .logo-style img {
-        width: 68px; } }
+      .logo-style svg {
+        width: 59px;
+        padding: 11px;
+        fill: white; } }
   @media (min-width: 64em) {
     .logo-style {
       float: left; } }

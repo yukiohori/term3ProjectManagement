@@ -17,6 +17,7 @@
         var yosAppVar={};
         yosAppVar.menuState=true;
         yosAppVar.menuFooter=true;
+        yosAppVar.menuShow=false;
         yosAppVar.changePanel=false;
         yosAppVar.currenctPage=$location.url();
         yosAppVar.blog;
