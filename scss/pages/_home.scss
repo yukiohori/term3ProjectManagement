@@ -13,6 +13,13 @@
     justify-content: center;
 }
 
+.overlay-homedetail{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), #242424);
+    pointer-events: none;
+}
+
 .home-welcome{
     text-align: center;
     color: white;

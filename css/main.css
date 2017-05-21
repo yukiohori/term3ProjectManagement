@@ -4027,6 +4027,9 @@ body {
     .logo-style {
       float: left; } }
 
+.body-index {
+  background-color: #242424; }
+
 .overlay-gradient {
   position: absolute;
   width: 100%;
@@ -4212,7 +4215,8 @@ body, html {
 
 .intro-div {
   height: 100vh;
-  transition: all 0.5s ease; }
+  transition: all 0.5s ease;
+  background: white; }
   @media (min-width: 64em) {
     .intro-div {
       padding: 70px; } }
@@ -4391,7 +4395,7 @@ body, html {
   bottom: 5px;
   padding: 5px; }
 
-.welcome-style {
+.about-style {
   height: 100vh;
   background-image: url("../img/bg-image.jpg");
   background-size: cover;
@@ -4606,6 +4610,31 @@ body, html {
   color: white;
   padding: 5px;
   cursor: pointer; }
+
+.blogdetail-style {
+  position: relative;
+  z-index: -1;
+  height: 75vh;
+  background-image: url("../img/blog-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+.overlay-gradient-blogdetail {
+  width: 100%;
+  height: 75vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), #242424);
+  pointer-events: none; }
+
+.blog-detail-content {
+  padding: 50px;
+  background-color: white; }
+  .blog-detail-content p, .blog-detail-content h1 {
+    color: #242424; }
+
+.blog-list-detail {
+  position: relative;
+  margin-top: -35vh; }
 
 .bashboard-style {
   background-color: #242424; }
@@ -4966,6 +4995,13 @@ body, html {
   width: 100%;
   height: 108px; }
 
+.portfolio-list-style {
+  -o-object-fit: cover;
+     object-fit: cover; }
+  .portfolio-list-style img {
+    height: 300px;
+    width: 100%; }
+
 .admin-features-style {
   background-color: #242424;
   height: 100vh; }
@@ -4993,6 +5029,12 @@ body, html {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
+
+.overlay-homedetail {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), #242424);
+  pointer-events: none; }
 
 .home-welcome {
   text-align: center;

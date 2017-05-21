@@ -307,6 +307,8 @@
         $scope.id=0;
         $scope.img="";
 
+        uploadPortfolio();
+
         $scope.addImage=function(element){
             // console.log(element.files[0]);
             var reader = new  FileReader();
@@ -364,9 +366,21 @@
 			  }
             }).then((responce) => {
                 console.log(responce);
+                uploadPortfolio();
                 $scope.modalForm=false;
             });
         };
+
+        function uploadPortfolio(){
+            $http.get("process/portfolio.php")
+            .then(function (response) {
+                console.log(response.data);
+                $scope.portfolio = response.data;
+                for(var i=0;i<$scope.portfolio.length;i+=1){
+                    $scope.portfolio[i].portfolio_index=i;
+                }
+            });
+        }
 	});
 
 }).call(this);

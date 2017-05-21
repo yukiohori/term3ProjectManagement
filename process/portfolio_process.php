@@ -27,10 +27,10 @@ if(!$conn){
         $file_name_tmp = $_FILES['image']['tmp_name'];
         $file_new_name = '../img/portfolio/';
         $full_path = $file_new_name . basename($_FILES["image"]["name"]);
-        $http_path = 'img/portfolio/'.$file_name;
+        $http_path = 'img/portfolio/'.basename($_FILES["image"]["name"]);
         if(move_uploaded_file($file_name_tmp, $full_path)){
             $title = mysqli_real_escape_string($conn, $_POST['title']);
-            $query = "INSERT INTO portfolio_tb (portfolio_title,portfolio_image,portfolio_content, portfolio_image_option, portfolio_embed) VALUES ('".$title."','".$full_path."','".$description."','','".$embed."')";
+            $query = "INSERT INTO portfolio_tb (portfolio_title,portfolio_image,portfolio_content, portfolio_image_option, portfolio_embed) VALUES ('".$title."','".$http_path."','".$description."','','".$embed."')";
         }else{
             echo "upload failed";
         }

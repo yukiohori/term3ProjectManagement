@@ -1,8 +1,18 @@
 <div class='admin-about-style'>
 	<h1>ADMIN ABOUT PAGE</h1>
-	<div class="row">
-
-		
+	<div class="row admin-portfolio-list">
+		<div class="small-12 medium-6 large-4 column portfolio-list-style" ng-repeat="x in filtered = (portfolio)">
+			<img ng-src="{{x.portfolio_image}}" />
+			<!--<div class="small-12 medium-12 small-12 column">
+				
+			</div>-->
+			<!--<div ng-bind-html="x.blog_content" class="small-12 medium-12 large-9 column">
+			</div>-->
+			<!--<div class="option-list-style">
+				<i class="fa fa-pencil-square" ng-click="changeContentBlog(x.portfolio_index)" aria-hidden="true"></i>
+				<i class="fa fa-trash" ng-click="deleteBlog(x.portfolio_index)" aria-hidden="true"></i>
+			</div>-->
+		</div>
 	</div>
 
 	<div class="blog-menu-option">
