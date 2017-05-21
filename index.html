@@ -18,13 +18,13 @@
         
     </head>
     <body class="body-index" ng-controller="mainController">
-        <ng-include ng-show="yosAppVar.menuState" src="'partials/header.html'"></ng-include>
+        <ng-include  ng-show="yosAppVar.menuState" src="'partials/header.html'"></ng-include>
         
         <div id="main">
             <div ng-view></div>
         </div>
 
-        <ng-include ng-show="yosAppVar.menuState" src="'partials/footer.html'"></ng-include>
+        <ng-include ng-show="yosAppVar.menuFooter" src="'partials/footer.html'"></ng-include>
 
         <div id="openOverlay" ng-class="{'change-page':yosAppVar.changePanel==true}">
             <div class="relative-panel-home">

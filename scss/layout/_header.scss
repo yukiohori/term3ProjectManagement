@@ -2,12 +2,19 @@
 // Header
 // -----------------------------------------------------------------------------
 
+
 .menu-main{
-    background-color:rgba(100,100,100,0.5);
+    background-color:#242400;
+}
+
+.menu-top-show{
+    @include respond-to(desktop) {
+        transform: translateY(0) !important;
+    }
 }
 
 .mobile-menu-box{
-    background-color:rgba(100,100,100,0.5);
+    // background-color:rgba(100,100,100,0.5);
     @include respond-to(tabmob) {
         display: none;
         position: fixed;
@@ -28,12 +35,23 @@
             padding: 20px 0;
             cursor: pointer;
             @include respond-to(desktop) {
+                color: white;
                 float:left;
                 width:20%;
             }
             @include respond-to(tabmob) {
                 padding: 10px 0;
             }
+            &:hover a{
+                border: 3px solid white;
+                box-shadow: inset 0 0 0 25px white;
+                color: #242424;
+            }
+        }
+        a{
+            transition: all 0.7s ease;
+            border: 3px solid transparent;
+            padding: 5px 9px;
         }
     }
     .mobile-menu-close{
@@ -48,7 +66,26 @@
     }
 }
 
+.desktop-menu-btn{
+    width:350px;
+    text-align: center;
+    position: absolute;
+    right: 0px;
+    z-index: 200;
+    padding-top: 30px;
+    a{
+        padding: 10px 20px;
+        border: 2px solid #242424;
+        color: #242424;
+        cursor: pointer;
+    }
+}
 
+.menu-active-main{
+    border: 3px solid white;
+    box-shadow: inset 0 0 0 25px white;
+    color: #242424;
+}
 
 .mobile-menu{
     float: right;
@@ -58,6 +95,10 @@
 }
 
 .menu-main {
+    transition: all 0.5s ease;
+    @include respond-to(desktop) {
+        transform: translateY(-100%);
+    }
     position:fixed;
     top:0;
     left:0;
@@ -67,6 +108,7 @@
 
 .logo-style{
     position: absolute;
+    cursor: pointer;
     img {
         width: 61px;
         @include respond-to(desktop) {

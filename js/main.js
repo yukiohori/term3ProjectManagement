@@ -16,6 +16,7 @@
     yosApp.factory('yosAppVar', function ($location,$timeout,$window) {
         var yosAppVar={};
         yosAppVar.menuState=true;
+        yosAppVar.menuFooter=true;
         yosAppVar.changePanel=false;
         yosAppVar.currenctPage=$location.url();
         yosAppVar.blog;
@@ -82,27 +83,33 @@
         $locationProvider.hashPrefix('');
     });
 
-	yosApp.controller('mainController', function($scope, yosAppVar) {
+	yosApp.controller('mainController', function($scope, $window, yosAppVar) {
        $scope.yosAppVar=yosAppVar;
        $scope.yosAppVar.menuState=true;
+       $scope.yosAppVar.menuFooter=true;
        
 
        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             $scope.yosAppVar.changePanel=false;
+        });
+
+        angular.element($window).bind("scroll", function() {
+            $scope.scroll=this.scrollY;
+            $scope.$apply();
         });
 	});
 
     yosApp.controller('introController', function($scope, yosAppVar) {
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=false;
+        $scope.yosAppVar.menuFooter=false;
 
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             $scope.yosAppVar.changePanel=false;
         });
-
 	});
 
-    yosApp.controller('blogController', function($scope, $http, $location , $sce, yosAppVar) {
+    yosApp.controller('blogController', function($scope, $http, $location , $sce, $window, yosAppVar) {
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=true;
         $scope.blogIndex=0;
@@ -124,6 +131,7 @@
 
         $scope.setPage = function(pageNo) {
             $scope.currentPage = pageNo;
+            $window.scrollTo(0, 0);
         };
 
         $scope.updatePagination = function() {

@@ -1,18 +1,23 @@
 <header class="page-header">
-    <nav class="menu-main">
+    <div class="row set-relative">
+        <div class="desktop-menu-btn">
+            <a>MENU</a>
+        </div>
+    </div>
+    <nav ng-class="{'menu-top-show':scroll>150}" class="menu-main">
         <div class="logo-style">
             <img src="apple-touch-icon.png" alt="site logo" ng-click="yosAppVar.changePage('intro')">
         </div>
-        <div id="mobileMenu" class="mobile-menu hide-for-large">
+        <div class="mobile-menu hide-for-large">
             <i class="fa fa-2x fa-bars" aria-hidden="true"></i>
         </div>
         <div id="mobileMenuBox" class="row mobile-menu-box">
             <ul class="small-12 column menu-style">
-                <li class="menu-option" ng-click="yosAppVar.changePage('home')">Home</li>
-                <li class="menu-option" ng-click="yosAppVar.changePage('about')">About</li>
-                <li class="menu-option" ng-click="yosAppVar.changePage('portfolio')">Portfolio</li>
-                <li class="menu-option" ng-click="yosAppVar.changePage('blog')">Blog</li>
-                <li class="menu-option" ng-click="yosAppVar.changePage('contact')">Contact</li>
+                <li class="menu-option" ng-click="yosAppVar.changePage('home')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/home'}">Home</a></li>
+                <li class="menu-option" ng-click="yosAppVar.changePage('about')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/about'}">About</a></li>
+                <li class="menu-option" ng-click="yosAppVar.changePage('portfolio')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/portfolio'}">Portfolio</a></li>
+                <li class="menu-option" ng-click="yosAppVar.changePage('blog')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/blog'}">Blog</a></li>
+                <li class="menu-option" ng-click="yosAppVar.changePage('contact')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/contact'}">Contact</a></li>
             </ul>
             <div id="mobileMenuClose" class="row mobile-menu-close hide-for-large">
                 <i class="fa fa-2x fa-times" aria-hidden="true"></i>
