@@ -116,7 +116,9 @@
     position: absolute;
     cursor: pointer;
     svg {
-        width: 61px;
+        width: 55px;
+        padding: 11px;
+        fill: white;
         @include respond-to(desktop) {
             width: 59px;
             padding: 11px;
@@ -125,6 +127,38 @@
     }
     @include respond-to(desktop) {
         float: left;
+    }
+}
+
+.menu-show-detail{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    z-index: 999;
+    background-color: #242424;
+    transition: all 0.8s ease;
+    overflow: hidden;
+    // display: none;
+}
+
+.menu-show-detail.active-menu-index{
+    height: 100vh;
+}
+
+.menu-show-list-style{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    li{
+        padding: 5px 12px;
+        margin: 10px;
+        cursor: pointer;
+    }
+    a{
+        padding: 5px 12px;
     }
 }
 

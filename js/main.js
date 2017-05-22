@@ -22,11 +22,28 @@
         yosAppVar.currenctPage=$location.url();
         yosAppVar.blog;
 
+        yosAppVar.showMenuBtn = () =>{
+            yosAppVar.menuShow=!yosAppVar.menuShow;
+        }
+
         yosAppVar.changePage=(dir)=>{
             if(yosAppVar.currenctPage!="/"+dir){
                 yosAppVar.currenctPage="/"+dir;
                 yosAppVar.changePanel=true;
                 $timeout(function () {
+                    yosAppVar.menuShow=false;
+                    $window.scrollTo(0, 0);
+                    $location.path("/"+dir);
+                }, 1000);
+            }
+        }
+
+        yosAppVar.changePage=(dir)=>{
+            if(yosAppVar.currenctPage!="/"+dir){
+                yosAppVar.currenctPage="/"+dir;
+                yosAppVar.changePanel=true;
+                $timeout(function () {
+                    yosAppVar.menuShow=false;
                     $window.scrollTo(0, 0);
                     $location.path("/"+dir);
                 }, 1000);
@@ -37,9 +54,9 @@
     });
 
     yosApp.config(function($routeProvider, $locationProvider) {
-        $routeProvider
+        // $locationProvider.html5Mode(true);
 
-            .when('/', {
+        $routeProvider.when('/', {
                 templateUrl : 'pages/intro.html',
                 controller  : 'introController'
             })
@@ -81,6 +98,7 @@
 
             .otherwise({redirectTo:'/'});
 
+        
         $locationProvider.hashPrefix('');
     });
 
@@ -93,6 +111,11 @@
        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             $scope.yosAppVar.changePanel=false;
         });
+
+        $scope.getoffsetTop = function(object){
+            var element = angular.element(document.querySelector('#'+object));
+            return element[0].offsetTop-($window.innerHeight-100);
+        }
 
         angular.element($window).bind("scroll", function() {
             $scope.scroll=this.scrollY;

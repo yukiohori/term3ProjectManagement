@@ -1,11 +1,23 @@
 <header class="page-header">
-    <div class="row set-relative">
-        <div class="desktop-menu-btn">
+    <div class="row set-relative show-for-large">
+        <div ng-click="yosAppVar.showMenuBtn()" class="desktop-menu-btn">
             <a>MENU</a>
         </div>
     </div>
-    <div ng-class="" class="menu-show-detail">
-        
+    <div ng-class="{'active-menu-index':yosAppVar.menuShow==true}" class="menu-show-detail">
+        <div class="row">
+            <div class="small-12 medium-12 large-8 column menu-show-list-style">
+                <ul class="">
+                    <li class="menu-option" ng-click="yosAppVar.changePage('home')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/home'}">HOME</a></li>
+                    <li class="menu-option" ng-click="yosAppVar.changePage('about')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/about'}">ABOUT</a></li>
+                    <li class="menu-option" ng-click="yosAppVar.changePage('portfolio')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/portfolio'}">PORTFOLIO</a></li>
+                    <li class="menu-option" ng-click="yosAppVar.changePage('blog')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/blog'}">BLOG</a></li>
+                    <li class="menu-option" ng-click="yosAppVar.changePage('contact')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/contact'}">CONTACT</a></li>
+                </ul>
+            </div>
+            <div class="small-12 medium-12 large-4 column show-only-large">
+            </div>
+        </div>
     </div>
     <nav ng-class="{'menu-top-show':scroll>150}" class="menu-main">
         <div class="logo-style">
@@ -18,11 +30,11 @@
         </div>
         <div id="mobileMenuBox" class="row mobile-menu-box">
             <ul class="small-12 column menu-style">
-                <li class="menu-option" ng-click="yosAppVar.changePage('home')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/home'}">Home</a></li>
-                <li class="menu-option" ng-click="yosAppVar.changePage('about')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/about'}">About</a></li>
-                <li class="menu-option" ng-click="yosAppVar.changePage('portfolio')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/portfolio'}">Portfolio</a></li>
-                <li class="menu-option" ng-click="yosAppVar.changePage('blog')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/blog'}">Blog</a></li>
-                <li class="menu-option" ng-click="yosAppVar.changePage('contact')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/contact'}">Contact</a></li>
+                <li class="menu-option" ng-click="yosAppVar.changePage('home')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/home'}">HOME</a></li>
+                <li class="menu-option" ng-click="yosAppVar.changePage('about')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/about'}">ABOUT</a></li>
+                <li class="menu-option" ng-click="yosAppVar.changePage('portfolio')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/portfolio'}">PORTFOLIO</a></li>
+                <li class="menu-option" ng-click="yosAppVar.changePage('blog')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/blog'}">BLOG</a></li>
+                <li class="menu-option" ng-click="yosAppVar.changePage('contact')"><a ng-class="{'menu-active-main':yosAppVar.currenctPage=='/contact'}">CONTACT</a></li>
             </ul>
             <div id="mobileMenuClose" class="row mobile-menu-close hide-for-large">
                 <i class="fa fa-2x fa-times" aria-hidden="true"></i>
