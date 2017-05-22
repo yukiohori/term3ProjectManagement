@@ -4,7 +4,7 @@
 
 .about-style{
     height:100vh;
-    background-image: url("../img/bg-image.jpg");
+    background-image: url("../img/about/about-bg.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -13,42 +13,31 @@
     justify-content: center;
 }
 
-.home-welcome{
-    text-align: center;
-    color: white;
-    h1{
-        margin:0;
+.about-skill-bar{
+    transition: all 1s ease;
+    width: 0;
+    background-color:#006666;
+    @include respond-to(mobile) {
+        height: 30px;
     }
-}
-
-.logoAniHome {
+    @include respond-to(tablet) {
+        height: 55px;
+    }
     @include respond-to(desktop) {
-        width: 200px;
-        height: 200px;
-        padding: 20px;
+        height: 70px;
     }
+}
+
+.about-skill-info{
+    margin: 10px;
+}
+
+.icon-skill-about{
+    padding: 10px;
     @include respond-to(tabmob) {
-        width: 100px;
-        height: 100px;
-        padding: 10px;
-    }
-    transition: all 0.5s ease;
-    
-    path {
-        fill: white;
-        stroke: white;
+        padding: 0;
     }
 }
-
-.relative-panel-home{
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    z-index: -1;
-}
-
-
-
 
 // -----------------------------------------------------------------------------
 // END Welcome Page

@@ -51,7 +51,7 @@
         a{
             transition: all 0.7s ease;
             border: 3px solid transparent;
-            padding: 5px 9px;
+            padding: 5px 20px;
         }
     }
     .mobile-menu-close{
@@ -160,6 +160,13 @@
     a{
         padding: 5px 12px;
     }
+}
+
+.menu-contact-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: white;
 }
 
 // -----------------------------------------------------------------------------

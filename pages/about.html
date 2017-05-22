@@ -1,8 +1,56 @@
 <ng-include src="'partials/header.html'"></ng-include>
 
-<div class='welcome-style'>
-	<div class="jumbotron text-center">
-		<h1>About Page</h1>
-		<div ng-bind-html="content"></div>
+<div class='about-style'>
+	<div class="home-welcome">
+		
+	</div>
+	<div class="overlay-homedetail">
+		<div class="row set-relative">
+			<div class="white-box-top show-for-large">
+				<h1 class="text-center">ABOUT ME</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="about-home-content">
+	<div class="row set-relative">
+		<div class="home-box-position">
+			<div class="home-box-design"></div>
+		</div>
+		<div class="small-12 medium-12 large-12 column">
+			<div class="home-about-style">
+				<h2>Hi I'm Ahmed Hindawy</h2>
+				<p>My name is Ahmed Hindawy, I am a business school graduate with over 10 years of work experience as
+					 a business analyst. I have decided it was never too late to chase  my dream to learn digital art 
+					 and persue a career in the game industry.
+				</p>
+				<p>I left Cairo, Egpyt and moved to Vancouver, 
+					Canada where I joined Vancouver Institute of Media Arts (VanArts) where I am currently living and studing.
+				</p>
+				<p>I have always been facinated by video games and would often wonder about how are they made. 
+					My first step was discovering level editors, but later on I was fasinated by 3D programs. 
+					For me creating art for games is a passion that is coming true.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="about-home-content">
+	<div class="row">
+		<div class="small-12 medium-12 large-12 column">
+			<div class="home-about-style">
+				<h2>My Skill</h2>
+				<div class="row about-skill-info" ng-repeat="x in skill">
+					<div class="small-1 medium-1 large-1 icon-skill-about column">
+						<img ng-src="{{x.skill_icon}}" />
+					</div>
+					<div class="small-11 medium-11 large-11 column">
+						 <!--ng-style="{'background-color':'#006666','width':x.skill_level+'%'}"-->
+						<div id="skill$index" class="about-skill-bar" ng-style="{'width':(x.skill_level+'%')}">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

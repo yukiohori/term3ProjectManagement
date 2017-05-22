@@ -3,31 +3,34 @@
 		
 	</div>
 	<div class="overlay-homedetail">
-		<div class="row set-relative">
+		<div class="row set-relative" id="section1">
 			<div class="white-box-top show-for-large">
 				<h1 class="text-center">WELCOME</h1>
 			</div>
 		</div>
 		<div class="row home-header">
-			<img src="img/home/warriorflip.png" class="animate-fadeleft active-show" id="mydesign2" alt="my best design" />
+			<img src="img/home/warriorflip.png" class="animate-fadeleft" ng-class="{'active-show':yosAppVar.animationState['section1']}" alt="my best design" />
 		</div>
 	</div>
 </div>
 <div class="about-home-content">
-	<div class="row set-relative">
+	<div class="row set-relative" id="section2">
 		<div class="home-box-position">
 			<div class="home-box-design"></div>
 		</div>
 		<div class="small-12 medium-12 large-7 column">
-			<div class="home-about-style">
+			<div class="home-about-style animate-fadeleft" ng-class="{'active-show':yosAppVar.animationState['section2']}">
 				<h2>Hi I'm Ahmed Hindawy</h2>
 				<p>I'm a very passionate person who loves design and learning new skills. 
 					Always looking, listening, thinking and studying towards my love of art, culture, entertainment, games and design.
 				</p>
+				<div class="text-center">
+					<a ng-click="yosAppVar.changePage('about')" class="home-blog-btn">SEE MORE!</a>
+				</div>
 			</div>
 		</div>
 		<div class="small-12 medium-12 large-5 column text-center">
-			<img src="img/home/squall.png" class="animate-faderight" ng-class="{'active-show':scroll>getoffsetTop('mydesign1')}" id="mydesign1" alt="my best design" />
+			<img src="img/home/squall.png" class="animate-faderight" ng-class="{'active-show':yosAppVar.animationState['section2']}"  alt="my best design" />
 		</div>
 	</div>
 	<div class="row skill-home-row">
@@ -114,7 +117,7 @@
 			<h2>MY BLOG</h2>
 		</div>
 		<div class="small-12 medium-12 large-12 column text-center remove-padding">
-			<div class="row blog-style-each" ng-repeat="x in blog">
+			<div class="row blog-style-each" ng-repeat="x in blog" ng-show="$first">
 				<div class="blog-short-image remove-padding small-12 medium-6 large-6 column text-center">
 					<img ng-src="{{x.blog_img}}" />
 				</div>
@@ -126,6 +129,9 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="text-center">
+			<a ng-click="yosAppVar.changePage('blog')" class="home-blog-btn">READ MORE MY BLOGS</a>
 		</div>
 	</div>
 </div>
