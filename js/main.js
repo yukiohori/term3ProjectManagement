@@ -157,14 +157,6 @@
             $scope.blog = response.data;
         });
 
-        // $scope.checkAnimation = () =>{
-        //     if($scope.scroll>$scope.getoffsetTop('section1')){
-        //         $scope.animateSection1=true;
-        //     }else{
-        //         $scope.animateSection1=false;
-        //     }
-        // }
-
 	});
 
     yosApp.controller('introController', function($scope, yosAppVar) {

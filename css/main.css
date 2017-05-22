@@ -4549,6 +4549,68 @@ body, html {
     .icon-skill-about {
       padding: 0; } }
 
+.about-work-content-style {
+  padding: 30px;
+  background-color: #006666;
+  color: white; }
+
+.about-bgcontent {
+  color: white;
+  margin: 50px 0.9375rem; }
+
+@media (min-width: 64em) {
+  .content-whatido-style {
+    padding: 50px; } }
+
+.content-whatcenter-style {
+  position: relative;
+  width: 100%;
+  color: white;
+  margin: auto; }
+  @media (max-width: 63.9em) {
+    .content-whatcenter-style {
+      background-color: #dddddd;
+      color: #242424;
+      height: auto; } }
+  @media (min-width: 64em) {
+    .content-whatcenter-style {
+      width: 72rem; } }
+
+.video-image-about {
+  text-align: center;
+  width: 50%;
+  height: 300px;
+  max-height: 300px;
+  margin: auto; }
+  .video-image-about img {
+    height: 100%; }
+
+.video-background {
+  border: 5px solid #006666;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%); }
+
+.video-background-overlay {
+  border: 10px solid #006666;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -99; }
+
+.about-title-content {
+  margin-bottom: 40px; }
+
 .portfolio-style {
   height: 75vh;
   background-image: url("../img/portfolio-bg.jpg");
@@ -4603,33 +4665,37 @@ body, html {
   padding: 50px 0;
   background-color: #242424; }
   .contact-style-content input[type=text] {
-    color: white;
+    color: #242424;
     padding: 8px 10px;
     width: 100%;
     margin: 30px 0;
     border: none;
     background-color: transparent;
-    border-bottom: 2px solid white;
-    border-left: 2px solid white; }
+    border-bottom: 2px solid #242424;
+    border-left: 2px solid #242424; }
     .contact-style-content input[type=text]:active {
       background-color: transparent; }
   .contact-style-content textarea {
-    color: white;
+    color: #242424;
     padding: 8px 10px;
     width: 100%;
     margin: 30px 0;
     border: none;
     background-color: transparent;
-    border-bottom: 2px solid white;
-    border-left: 2px solid white;
+    border-bottom: 2px solid #242424;
+    border-left: 2px solid #242424;
     height: 200px; }
     .contact-style-content textarea:active {
       background-color: transparent; }
 
 .contact-form {
+  background-color: white;
   padding: 50px; }
+  .contact-form p {
+    color: #242424; }
 
 .contact-info {
+  background-color: #006666;
   padding: 20px;
   color: white;
   margin-bottom: 50px; }
@@ -4645,6 +4711,18 @@ body, html {
   height: 100vh;
   position: relative;
   z-index: -1; }
+
+.contact-submit {
+  padding: 10px 20px;
+  background-color: #006666;
+  color: white;
+  cursor: pointer;
+  transition: all 0.6s ease;
+  border: 3px solid transparent; }
+  .contact-submit:hover {
+    box-shadow: inset 0 0 0 50px white;
+    color: #006666;
+    border: 3px solid #006666; }
 
 .blog-style {
   height: 75vh;
