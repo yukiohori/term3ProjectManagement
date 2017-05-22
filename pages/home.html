@@ -30,12 +30,12 @@
 			<img src="img/home/squall.png" class="animate-faderight" ng-class="{'active-show':scroll>getoffsetTop('mydesign1')}" id="mydesign1" alt="my best design" />
 		</div>
 	</div>
-	<div class="row">
+	<div class="row skill-home-row">
 		<div class="small-12 medium-12 large-12 column text-center">
-			<h2>My Skills</h2>
+			<h2>MY SKILLS</h2>
 		</div>
-		<div class="small-12 medium-12 large-12 column text-center">
-			<div class="small-12 medium-12 large-12 column text-center">
+		<div class="small-12 medium-12 large-12 column text-center remove-padding">
+			<div class="small-12 medium-12 large-12 column text-center remove-padding">
 				<div class="skill-space column">
 					<img src="img/home/maya.png" alt="maya icon">
 				</div>
@@ -57,14 +57,75 @@
 </div>
 <div class="about-home-bgcontent">
 	<div class="row text-center">
-		<h2>My Works</h2>
+		<h2>MY WORKS</h2>
 	</div>
-	<div class="small-12 medium-12 large-12 column">
-		<div class="small-12 medium-6 large-6 column">
-			
+	<div class="work-first-bg clearfix">
+		<div class="small-12 medium-12 large-12 column work-home-style">
+			<div class="small-12 medium-12 large-12 column remove-padding">
+				<img src="img/home/body.png" />
+			</div>
+			<div class="small-12 medium-12 large-12 column remove-padding">
+				<div class="work-home-style-content">
+					<h2 class="text-center">My work 1</h2>
+					<p>Description</p>
+				</div>
+			</div>
 		</div>
-		<div class="small-12 medium-6 large-6 column">
-
+	</div>
+	<div class="cleaxfix set-relative">
+		<div class="white-box-work"></div>
+		<div ng-click="yosAppVar.changePage('portfolio')" class="home-portfolio-btn">SEE MY WORKS</div>
+		<div class="row list-home-works clearfix">
+			<div class="small-12 medium-12 large-12 column remove-padding">
+				<div class="small-12 medium-6 large-6 column remove-padding">
+					<img src="img/home/work1.jpg" />
+				</div>
+				<div class="small-12 medium-6 large-6 column remove-padding">
+					<img src="img/home/work2.jpg" />
+				</div>
+			</div>
+			<div class="small-12 medium-12 large-12 column remove-padding show-for-medium">
+				<div class="small-12 medium-6 large-6 column remove-padding">
+					<img src="img/home/work3.jpg" />
+				</div>
+				<div class="small-12 medium-6 large-6 column remove-padding">
+					<img src="img/home/work4.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="work-second-bg clearfix">
+		<div class="small-12 medium-12 large-12 column work-home-style">
+			<div class="small-12 medium-12 large-12 column remove-padding">
+				<img src="img/home/ship.png" />
+			</div>
+			<div class="small-12 medium-12 large-12 column">
+				<div class="work-home-style-leftcontent remove-padding">
+					<h2 class="text-center">My work 2</h2>
+					<p>Description</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="about-home-content">
+	<div class="row skill-home-row">
+		<div class="small-12 medium-12 large-12 column text-center">
+			<h2>MY BLOG</h2>
+		</div>
+		<div class="small-12 medium-12 large-12 column text-center remove-padding">
+			<div class="row blog-style-each" ng-repeat="x in blog">
+				<div class="blog-short-image remove-padding small-12 medium-6 large-6 column text-center">
+					<img ng-src="{{x.blog_img}}" />
+				</div>
+				<div class="remove-margin small-12 medium-6 large-6 column blog-short-content">
+					<h1 class="text-center" ng-bind="x.blog_title"></h1>
+					<div class="block-with-text" ng-bind-html="x.blog_content"></div>
+					<div class="text-center">
+						<a ng-click="selectBlog(x.blog_index)" class="read-more-btn">READ MORE</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

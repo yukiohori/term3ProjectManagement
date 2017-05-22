@@ -28,8 +28,10 @@
 .blog-style-each{
     overflow: hidden;
     margin-bottom: 100px;
+    
     @include respond-to(destab) {
-        height: 31.25rem;
+        height: 50vw;
+        max-height: 31.25rem;
     }
     background-color: white;
 }

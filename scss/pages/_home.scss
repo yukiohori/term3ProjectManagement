@@ -17,7 +17,7 @@
     width:350px;
     height: 65vh;
     padding-bottom: 100px;
-    background-color: white;
+    background-color: #dddddd;
     position: absolute;
     right: 0;
     display: flex;
@@ -33,7 +33,9 @@
     display: flex;
     align-items: center;
     img{
-        height: 60vh;
+        @include respond-to(desktop) {
+            height: 60vh;
+        }
     }
 }
 
@@ -89,7 +91,7 @@
 }
 
 .about-home-bgcontent{
-    padding: 50px;
+    padding: 50px 0;
     background-color: #242424;
     color: white;
 }
@@ -115,6 +117,118 @@
 .skill-space{
     float: left;
     width: 20%;
+    @include respond-to(mobile) {
+        padding: 5px;
+    }
+}
+
+.skill-home-row{
+    padding: 30px 0;
+}
+
+.work-first-bg{
+    background-image: url('../img/home/desert.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    @include respond-to(desktop) {
+        // height: 50vw;
+        max-height: 70%;
+    }
+}
+
+.work-second-bg{
+    background-image: url('../img/home/galaxy.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    @include respond-to(desktop) {
+        max-height: 70%;
+    }
+    img{
+        float: right;
+    }
+}
+
+.work-home-style{
+    position: relative;
+    padding: 20px;
+    img{
+        width: 100%;
+        @include respond-to(desktop) {
+            width: 70%;
+        }
+    }
+}
+
+.list-home-works{
+    position: relative;
+    background-color: white;
+    img{
+        object-fit: cover;
+        height: 50vw;
+        max-height: 31.25rem;
+        @include respond-to(mobile) {
+            width: 100%;
+            height: 100vw;
+        }
+    }
+}
+
+.work-home-style-content{
+    padding: 30px 50px;
+    @include respond-to(desktop) {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform:translateY(-50%);
+        padding: 30px 100px;
+    }
+    background-color: white;
+    color: #242424;
+}
+
+.work-home-style-leftcontent{
+    padding: 30px 50px;
+    @include respond-to(desktop) {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        padding: 30px 100px;
+        transform:translateY(-50%);
+    }
+    background-color: white;
+    color: #242424;
+}
+
+.white-box-work{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #006666;
+    height: 30%;
+    width: 85%;
+}
+
+.home-portfolio-btn{
+    border-radius: 50%;
+    padding: 60px 10px;
+    background-color: #006666;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    cursor: pointer;
+    transition: all 0.6s ease;
+    &:hover{
+        box-shadow: inset 0 0 0 90px white;
+        color: #242424;
+    }
 }
 
 

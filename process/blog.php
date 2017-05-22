@@ -10,7 +10,11 @@
         if(isset($_GET['id'])){
             $query = "SELECT * FROM blog_tb WHERE id=".$_GET['id'];
         }else{
-            $query = "SELECT * FROM blog_tb";
+            if($_GET['type']==1){
+                $query = "SELECT * FROM blog_tb ORDER BY id DESC";
+            }else{
+                $query = "SELECT * FROM blog_tb ORDER BY id DESC LIMIT 3";
+            }
         }
         
         $result = mysqli_query($conn,$query);

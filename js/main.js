@@ -22,11 +22,11 @@
         yosAppVar.currenctPage=$location.url();
         yosAppVar.blog;
 
-        yosAppVar.showMenuBtn = () =>{
+        yosAppVar.showMenuBtn = () => {
             yosAppVar.menuShow=!yosAppVar.menuShow;
         }
 
-        yosAppVar.changePage=(dir)=>{
+        yosAppVar.changePage=(dir) => {
             if(yosAppVar.currenctPage!="/"+dir){
                 yosAppVar.currenctPage="/"+dir;
                 yosAppVar.changePanel=true;
@@ -68,7 +68,7 @@
 
             .when('/home', {
                 templateUrl : 'pages/home.html',
-                controller  : 'mainController'
+                controller  : 'homeController'
             })
 
             .when('/about', {
@@ -102,7 +102,28 @@
         $locationProvider.hashPrefix('');
     });
 
-	yosApp.controller('mainController', function($scope, $window, yosAppVar) {
+	yosApp.controller('mainController', function($scope, $http, $window, yosAppVar) {
+        $scope.yosAppVar=yosAppVar;
+        $scope.yosAppVar.menuState=true;
+        $scope.yosAppVar.menuFooter=true;
+
+        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+            $scope.yosAppVar.changePanel=false;
+        });
+
+        $scope.getoffsetTop = function(object){
+            var element = angular.element(document.querySelector('#'+object));
+            return element[0].offsetTop-($window.innerHeight-100);
+        }
+
+        angular.element($window).bind("scroll", function() {
+            $scope.scroll=this.scrollY;
+            $scope.$apply();
+        });
+       
+	});
+
+    yosApp.controller('homeController', function($scope, $http, $window, yosAppVar) {
        $scope.yosAppVar=yosAppVar;
        $scope.yosAppVar.menuState=true;
        $scope.yosAppVar.menuFooter=true;
@@ -117,9 +138,10 @@
             return element[0].offsetTop-($window.innerHeight-100);
         }
 
-        angular.element($window).bind("scroll", function() {
-            $scope.scroll=this.scrollY;
-            $scope.$apply();
+        $http.get("process/blog.php?type=2")
+        .then(function (response) {
+            // console.log(response.data);
+            $scope.blog = response.data;
         });
 	});
 
@@ -142,7 +164,7 @@
             $scope.yosAppVar.changePanel=false;
         });
 
-        $http.get("process/blog.php?page=1")
+        $http.get("process/blog.php?page=1&type=1")
         .then(function (response) {
             $scope.blog = response.data;
             $scope.currentPage = 1; 
@@ -225,11 +247,6 @@
             var element = angular.element(document.querySelector('#'+object));
             return element[0].offsetTop-($window.innerHeight-100);
         }
-
-        angular.element($window).bind("scroll", function() {
-            $scope.scroll=this.scrollY;
-            $scope.$apply();
-        });
 
 	});
 
