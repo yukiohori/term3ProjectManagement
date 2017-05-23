@@ -83,7 +83,10 @@
 .about-home-content{
     overflow: hidden;
     @include respond-to(desktop) {
-         padding: 50px;
+         padding: 80px 0;
+    }
+    @include respond-to(tabmob) {
+         padding: 40px 0;
     }
     background-color: #dddddd;
     .home-about-style{

@@ -4611,6 +4611,9 @@ body, html {
 .about-title-content {
   margin-bottom: 40px; }
 
+.skill-box {
+  margin-bottom: 80px; }
+
 .portfolio-style {
   height: 75vh;
   background-image: url("../img/portfolio-bg.jpg");
@@ -5283,7 +5286,10 @@ body, html {
   background-color: #dddddd; }
   @media (min-width: 64em) {
     .about-home-content {
-      padding: 50px; } }
+      padding: 80px 0; } }
+  @media (max-width: 63.9em) {
+    .about-home-content {
+      padding: 40px 0; } }
   .about-home-content .home-about-style {
     position: relative;
     background-color: white;
