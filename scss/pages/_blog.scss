@@ -12,17 +12,17 @@
     align-items: center;
     justify-content: center;
     h1{
-        color: white;
+        color: #242424;
         position: absolute;
     }
 }
 
 .blog-list-short{
-    padding: 100px 0;
     background-color: #242424;
     h1,p{
         color:white;
     }
+    padding-bottom: 100px;
 }
 
 .blog-style-each{
@@ -73,6 +73,10 @@
     color: white;
     padding: 5px;
     cursor: pointer;
+}
+
+.filter-blog{
+    margin-bottom: 100px;
 }
 
 

@@ -14,7 +14,7 @@
 }
 
 .about-skill-bar{
-    transition: all 1s ease;
+    transition: all 3s ease;
     width: 0;
     background-color:#006666;
     @include respond-to(mobile) {
@@ -26,6 +26,10 @@
     @include respond-to(desktop) {
         height: 70px;
     }
+}
+
+.animate-bar-skill{
+    width: 100%;
 }
 
 .about-skill-info{

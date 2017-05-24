@@ -1,15 +1,25 @@
 <ng-include src="'partials/header.html'"></ng-include>
-<div class="overlay-gradient">
-	
-</div>
 <div class='blog-style'>
-	<h1>MY BLOG</h1>
+	<div class="home-welcome">
+		
+	</div>
+	<div class="overlay-homedetail">
+		<div class="row set-relative">
+			<div class="white-box-top show-for-large">
+				<h1 class="text-center">MY BLOG</h1>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="blog-list-short">
-	<div class="pagination-style">
-
-	</div>
-	 <div class="row">
+	
+	
+	 <div class="row filter-blog">
+		 <div class="pagination-right text-center" ng-show="filteredItems > 0">
+			<span class="pagination-list" ng-repeat="i in updatePagination()">
+				<a ng-click="setPage(i)" ng-bind="i" ng-class="{'pagina-active':i==currentPage}"></a>
+			</span>
+		</div>
         <!--<div class="large-2">Page Size:
             <select ng-model="entryLimit" ng-change="setPage(1)" class="">
                 <option>5</option>
@@ -32,11 +42,9 @@
 		</div>
 	</div>
 	<div class="pagination text-center" ng-show="filteredItems > 0">
-		<ul>
-			<li ng-repeat="i in updatePagination()">
-				<a ng-click="setPage(i)" ng-bind="i"></a>
-			</li>
-		</ul>
+		<span class="pagination-list" ng-repeat="i in updatePagination()">
+			<a ng-click="setPage(i)" ng-bind="i" ng-class="{'pagina-active':i==currentPage}"></a>
+		</span>
 	</div>
 </div>
 

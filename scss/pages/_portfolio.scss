@@ -14,24 +14,49 @@
     align-items: center;
     justify-content: center;
     h1{
-        color: white;
+        color: #242424;
         position: absolute;
     }
+    .detail-portfolio{
+        position: absolute;
+        left: 0;
+        bottom: 50px;
+        p{
+            color: white;
+        }
+    }
+    .header-portfolio{
+        position: relative;
+        height: 100%;
+    }
+    
 }
 
 .portfolio-style-content{
     padding: 50px 0;
     background-color: #242424;
     overflow: hidden;
-    img{
-        opacity: 0;
-        transition: all 1s ease;
-        transform: translateY(50%);
-    }
 }
 
 .port-design{
+    // position: relative;
     padding: 3px;
+}
+
+.port-animate{
+    opacity: 0;
+    transition: all 1s ease;
+    transform: translateY(50%);
+}
+
+.work-detail-desc{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    padding: 5px;
 }
 
 

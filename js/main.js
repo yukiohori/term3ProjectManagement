@@ -19,6 +19,7 @@
                 
                 yosAppVar.scroll=this.scrollY;
                 for(key in yosAppVar.animationState){
+                    console.log(yosAppVar.getoffsetTop(key));
                     if(yosAppVar.scroll>yosAppVar.getoffsetTop(key)){
                         yosAppVar.animationState[key]=true;
                     }else{
@@ -59,6 +60,7 @@
 
         yosAppVar.getoffsetTop = function(object){
             var element = angular.element(document.querySelector('#'+object));
+            console.log(element[0].offsetTop);
             return element[0].offsetTop-($window.innerHeight-100);
         }
 
@@ -251,7 +253,9 @@
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=true;
         $scope.yosAppVar.menuFooter=true;
-        yosAppVar.animationState={};
+        yosAppVar.animationState={
+            section1:false
+        };
 
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             yosAppVar.currenctPage="/about";
@@ -269,7 +273,7 @@
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=true;
         $scope.yosAppVar.menuFooter=true;
-        yosAppVar.animationState={};
+        $scope.yosAppVar.animationState={};
         
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             yosAppVar.currenctPage="/portfolio";
@@ -287,7 +291,7 @@
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=true;
         $scope.yosAppVar.menuFooter=false;
-        yosAppVar.animationState={};
+        $scope.yosAppVar.animationState={};
 
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             yosAppVar.currenctPage="/contact";

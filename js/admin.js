@@ -176,7 +176,7 @@
         $scope.type=0;
         $scope.modalForm=false;
         $scope.blogForm=1;
-        localStorage.setItem("admin_blog",1);
+        // localStorage.setItem("admin_blog",1);
 
         uploadBlog();
 
@@ -263,9 +263,9 @@
 
         function uploadBlog(){
             $scope.indexBlog=0;
-            $http.get("process/blog.php")
+            $http.get("process/blog.php?type=1")
             .then(function (response) {
-                // console.log(response.data);
+                console.log(response.data);
                 $scope.blog = response.data;
                 for(var i=0;i<$scope.blog.length;i+=1){
                     $scope.blog[i].blog_index=i;

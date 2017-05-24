@@ -104,3 +104,21 @@ h1,p{
     opacity: 1 !important;
     transform: translateY(0) !important;
 }
+
+
+.pagination-list{
+    margin: 0 10px;
+    a{
+        cursor: pointer;
+    }
+    .pagina-active{
+        padding: 3px 13px;
+        // border-radius: 50%;
+        background-color: white;
+        color: #242424;
+    }
+}
+
+.pagination-right{
+    text-align: right;
+}

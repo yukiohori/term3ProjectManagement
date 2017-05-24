@@ -11,7 +11,7 @@
     align-items: center;
     justify-content: center;
     h1{
-        color: white;
+        color: #242424;
         position: absolute;
     }
 }
@@ -60,7 +60,10 @@
     background-color: #006666;
     padding: 20px;
     color: white;
-    margin-bottom: 50px;
+    margin-bottom: 45px;
+    img{
+        width: 20%;
+    }
 }
 
 .home-welcome{

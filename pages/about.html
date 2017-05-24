@@ -102,15 +102,16 @@
 <div class="about-home-content">
 	<div class="row skill-box">
 		<div class="small-12 medium-12 large-12 column">
-			<div class="home-about-style">
+			<div class="home-about-style" id="section1">
 				<h1 class="text-center">MY SKILLS</h1>
 				<div class="row about-skill-info" ng-repeat="x in skill">
 					<div class="small-1 medium-1 large-1 icon-skill-about column">
 						<img ng-src="{{x.skill_icon}}" />
 					</div>
 					<div class="small-11 medium-11 large-11 column">
-						 <!--ng-style="{'background-color':'#006666','width':x.skill_level+'%'}"-->
-						<div id="skill$index" class="about-skill-bar" ng-style="{'width':(x.skill_level+'%')}">
+						<div class="remove-padding"  ng-style="{'width':(x.skill_level+'%')}">
+							<div class="about-skill-bar" ng-class="{'animate-bar-skill':yosAppVar.animationState['section1']}">
+							</div>
 						</div>
 					</div>
 				</div>

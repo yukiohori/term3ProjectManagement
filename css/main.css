@@ -4209,6 +4209,18 @@ h1, p {
   -webkit-transform: translateY(0) !important;
           transform: translateY(0) !important; }
 
+.pagination-list {
+  margin: 0 10px; }
+  .pagination-list a {
+    cursor: pointer; }
+  .pagination-list .pagina-active {
+    padding: 3px 13px;
+    background-color: white;
+    color: #242424; }
+
+.pagination-right {
+  text-align: right; }
+
 .page-footer {
   background-color: #242424; }
   .page-footer h1, .page-footer h2, .page-footer h3, .page-footer h4, .page-footer p, .page-footer div {
@@ -4527,7 +4539,7 @@ body, html {
           justify-content: center; }
 
 .about-skill-bar {
-  transition: all 1s ease;
+  transition: all 3s ease;
   width: 0;
   background-color: #006666; }
   @media (max-width: 39.9em) {
@@ -4539,6 +4551,9 @@ body, html {
   @media (min-width: 64em) {
     .about-skill-bar {
       height: 70px; } }
+
+.animate-bar-skill {
+  width: 100%; }
 
 .about-skill-info {
   margin: 10px; }
@@ -4630,21 +4645,40 @@ body, html {
       -ms-flex-pack: center;
           justify-content: center; }
   .portfolio-style h1 {
-    color: white;
+    color: #242424;
     position: absolute; }
+  .portfolio-style .detail-portfolio {
+    position: absolute;
+    left: 0;
+    bottom: 50px; }
+    .portfolio-style .detail-portfolio p {
+      color: white; }
+  .portfolio-style .header-portfolio {
+    position: relative;
+    height: 100%; }
 
 .portfolio-style-content {
   padding: 50px 0;
   background-color: #242424;
   overflow: hidden; }
-  .portfolio-style-content img {
-    opacity: 0;
-    transition: all 1s ease;
-    -webkit-transform: translateY(50%);
-            transform: translateY(50%); }
 
 .port-design {
   padding: 3px; }
+
+.port-animate {
+  opacity: 0;
+  transition: all 1s ease;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%); }
+
+.work-detail-desc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px; }
 
 .contact-style {
   height: 75vh;
@@ -4661,7 +4695,7 @@ body, html {
       -ms-flex-pack: center;
           justify-content: center; }
   .contact-style h1 {
-    color: white;
+    color: #242424;
     position: absolute; }
 
 .contact-style-content {
@@ -4701,7 +4735,9 @@ body, html {
   background-color: #006666;
   padding: 20px;
   color: white;
-  margin-bottom: 50px; }
+  margin-bottom: 45px; }
+  .contact-info img {
+    width: 20%; }
 
 .home-welcome {
   text-align: center;
@@ -4743,12 +4779,12 @@ body, html {
       -ms-flex-pack: center;
           justify-content: center; }
   .blog-style h1 {
-    color: white;
+    color: #242424;
     position: absolute; }
 
 .blog-list-short {
-  padding: 100px 0;
-  background-color: #242424; }
+  background-color: #242424;
+  padding-bottom: 100px; }
   .blog-list-short h1, .blog-list-short p {
     color: white; }
 
@@ -4798,6 +4834,9 @@ body, html {
   padding: 5px;
   cursor: pointer; }
 
+.filter-blog {
+  margin-bottom: 100px; }
+
 .blogdetail-style {
   position: relative;
   z-index: -1;
@@ -4806,6 +4845,23 @@ body, html {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center; }
+
+.white-box-blog-detail {
+  width: 350px;
+  height: 20vh;
+  padding-bottom: 100px;
+  background-color: #dddddd;
+  position: absolute;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .white-box-blog-detail h1 {
+    -ms-flex-item-align: end;
+        align-self: flex-end; }
 
 .overlay-gradient-blogdetail {
   width: 100%;
