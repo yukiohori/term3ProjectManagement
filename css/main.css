@@ -4594,7 +4594,8 @@ body, html {
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center; }
+          justify-content: center;
+  background-attachment: fixed; }
 
 .about-skill-bar {
   transition: all 1.3s linear;
@@ -4692,6 +4693,7 @@ body, html {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4743,6 +4745,7 @@ body, html {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4843,6 +4846,7 @@ body, html {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4939,7 +4943,8 @@ body, html {
   background-image: url("../img/bg-image2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center; }
+  background-position: center;
+  background-attachment: fixed; }
 
 .white-box-blog-detail {
   width: 350px;
@@ -5357,12 +5362,11 @@ body, html {
   width: 100%;
   height: 108px; }
 
-.portfolio-list-style {
+.portfolio-list-style img {
   -o-object-fit: cover;
-     object-fit: cover; }
-  .portfolio-list-style img {
-    height: 300px;
-    width: 100%; }
+     object-fit: cover;
+  height: 300px;
+  width: 100%; }
 
 .admin-about-style {
   padding: 20px;
@@ -5468,6 +5472,7 @@ body, html {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5596,6 +5601,7 @@ body, html {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background-attachment: fixed;
   width: 100%; }
   @media (min-width: 64em) {
     .work-first-bg {
@@ -5606,6 +5612,7 @@ body, html {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background-attachment: fixed;
   width: 100%; }
   @media (min-width: 64em) {
     .work-second-bg {
@@ -5624,12 +5631,16 @@ body, html {
 
 .list-home-works {
   position: relative;
-  background-color: white; }
+  background-color: #dddddd; }
   .list-home-works img {
     -o-object-fit: cover;
        object-fit: cover;
-    height: 50vw;
+    height: 25vw;
     max-height: 31.25rem; }
+    @media (min-width: 40em) and (max-width: 63.9em) {
+      .list-home-works img {
+        width: 100%;
+        height: 50vw; } }
     @media (max-width: 39.9em) {
       .list-home-works img {
         width: 100%;
@@ -5683,8 +5694,10 @@ body, html {
           transform: translate(-50%, -50%);
   z-index: 10;
   cursor: pointer;
-  transition: all 0.6s ease; }
+  transition: all 0.6s ease;
+  border: 5px solid #003333; }
   .home-portfolio-btn:hover {
+    border: 5px solid #006666;
     box-shadow: inset 0 0 0 90px white;
     color: #242424; }
 
@@ -5699,3 +5712,35 @@ body, html {
     box-shadow: inset 0 0 0 50px white;
     color: #006666;
     border: 3px solid #006666; }
+
+.move-to-right-work {
+  transition: all 2.5s ease;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%); }
+
+.move-to-left-work {
+  transition: all 2.5s ease;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%); }
+
+.move-activate-work {
+  -webkit-transform: translateX(0);
+          transform: translateX(0); }
+
+.work-bg-change {
+  background-color: #006666;
+  height: 25vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px; }

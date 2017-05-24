@@ -75,24 +75,40 @@
 			</div>
 		</div>
 	</div>
-	<div class="cleaxfix set-relative">
+	<div class="cleaxfix set-relative" id='section3'>
 		<div class="white-box-work"></div>
-		<div ng-click="yosAppVar.changePage('portfolio')" class="home-portfolio-btn">SEE MY WORKS</div>
-		<div class="row list-home-works clearfix">
+		<div ng-click="yosAppVar.changePage('portfolio')" class="home-portfolio-btn hide-for-large">SEE MY WORKS</div>
+		<div class="list-home-works clearfix">
 			<div class="small-12 medium-12 large-12 column remove-padding">
-				<div class="small-12 medium-6 large-6 column remove-padding">
-					<img src="img/home/work1.jpg" />
+				<div class="small-12 medium-6 large-3 column remove-padding work-bg-change show-for-large">
+					<h3 class="text-center">MINOTAURO</h3>
+					<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet tortor accumsan, efficitur ligula imperdiet, convallis nulla. Donec dapibus egestas eleifend.</p>
 				</div>
-				<div class="small-12 medium-6 large-6 column remove-padding">
-					<img src="img/home/work2.jpg" />
+				<div class="small-12 medium-6 large-3 column remove-padding">
+					<img class="move-to-right-work" src="img/home/work1.jpg" ng-class="{'move-activate-work':yosAppVar.animationState['section3']}" />
+				</div>
+				<div class="small-12 medium-6 large-3 column remove-padding work-bg-change show-for-large">
+					<h3 class="text-center">METEO DRAGON</h3>
+					<p class="text-center">Work Description Lorem Ipsum</p>
+				</div>
+				<div class="small-12 medium-6 large-3 column remove-padding">
+					<img class="move-to-right-work" src="img/home/work2.jpg" ng-class="{'move-activate-work':yosAppVar.animationState['section3']}"/>
 				</div>
 			</div>
 			<div class="small-12 medium-12 large-12 column remove-padding show-for-medium">
-				<div class="small-12 medium-6 large-6 column remove-padding">
-					<img src="img/home/work3.jpg" />
+				<div class="small-12 medium-6 large-3 column remove-padding">
+					<img class="move-to-left-work" src="img/home/work3.jpg" ng-class="{'move-activate-work':yosAppVar.animationState['section3']}"/>
 				</div>
-				<div class="small-12 medium-6 large-6 column remove-padding">
-					<img src="img/home/work4.jpg" />
+				<div class="small-12 medium-6 large-3 column remove-padding work-bg-change show-for-large">
+					<h3 class="text-center">SPACE SHIP</h3>
+					<p class="text-center">Work Description Lorem Ipsum</p>
+				</div>
+				<div class="small-12 medium-6 large-3 column remove-padding">
+					<img class="move-to-left-work" src="img/home/work4.jpg" ng-class="{'move-activate-work':yosAppVar.animationState['section3']}"/>
+				</div>
+				<div class="small-12 medium-6 large-3 column remove-padding work-bg-change show-for-large">
+					<h3 class="text-center">CHURCH</h3>
+					<p class="text-center">Work Description Lorem Ipsum</p>
 				</div>
 			</div>
 		</div>

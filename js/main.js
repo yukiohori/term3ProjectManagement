@@ -146,7 +146,8 @@
        $scope.animateSection1=false;
        $scope.yosAppVar.animationState={
            section1:false,
-           section2:false
+           section2:false,
+           section3:false
        };
        
        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
