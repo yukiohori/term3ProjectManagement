@@ -19,7 +19,7 @@
                 
                 yosAppVar.scroll=this.scrollY;
                 for(key in yosAppVar.animationState){
-                    console.log(yosAppVar.getoffsetTop(key));
+                    // console.log(yosAppVar.getoffsetTop(key));
                     if(yosAppVar.scroll>yosAppVar.getoffsetTop(key)){
                         yosAppVar.animationState[key]=true;
                     }else{
@@ -60,7 +60,7 @@
 
         yosAppVar.getoffsetTop = function(object){
             var element = angular.element(document.querySelector('#'+object));
-            console.log(element[0].offsetTop);
+            // console.log(element[0].offsetTop);
             return element[0].offsetTop-($window.innerHeight-100);
         }
 
@@ -176,6 +176,7 @@
     yosApp.controller('blogController', function($scope, $http, $location , $sce, $window, yosAppVar) {
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=true;
+        $scope.yosAppVar.menuFooter=true;
         $scope.blogIndex=0;
         yosAppVar.animationState={};
 
@@ -256,6 +257,12 @@
         yosAppVar.animationState={
             section1:false
         };
+
+        $http.get("process/about_process.php?type=1")
+        .then(function (response) {
+            // console.log(response.data[0]);
+            $scope.about = response.data[0];
+        });
 
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             yosAppVar.currenctPage="/about";

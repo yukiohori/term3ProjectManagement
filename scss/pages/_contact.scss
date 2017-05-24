@@ -57,11 +57,20 @@
 }
 
 .contact-form{
+    opacity: 0;
+    transition: all 0.7s ease;
+    transform: translateX(-50%);
     background-color: white;
     padding: 50px;
     p{
         color: #242424;
     }
+}
+
+.contact-info-pg{
+    opacity: 0;
+    transition: all 0.7s ease;
+    transform: translateX(50%);
 }
 
 .contact-info{

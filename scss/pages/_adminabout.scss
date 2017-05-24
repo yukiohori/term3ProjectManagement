@@ -1,0 +1,80 @@
+// -----------------------------------------------------------------------------
+// Welcome Page
+// -----------------------------------------------------------------------------
+
+.admin-about-style{
+    padding: 20px;
+    background-color: #242424;
+    .about-admin-content{
+        position: relative;
+        margin: 1% auto;
+        background-color: white;
+        padding: 40px;
+        h1,h2,h3,h4,h5,h6,p,div{
+            text-align: left;
+            color: #242424;;
+        }
+    }
+    
+}
+
+#cke_abouteditor{
+    height: 100% !important;
+}
+.cke_inner{
+    height: 100% !important;
+}
+
+.cke_inner{
+    height: 100% !important;
+}
+
+#cke_1_contents{
+    height: 100% !important;
+}
+
+.about-form-ckediotor{
+    flex-grow: 100;
+    height: 100%;
+    overflow: hidden;
+}
+
+// .cke_1_top
+
+.about-form-style{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#cke_1_bottom{
+    display: none !important;
+}
+
+.cke_top{
+    padding: 0 !important;
+    width: 100% !important;
+    position: fixed !important;
+    top: 0px !important;
+}
+
+.form-top-bar-about,.form-about-buttons{
+    text-align: center;
+    flex-grow: 1;
+    width: 100%;
+    height: 40px;
+    background-color: #242424;
+}
+
+.form-close-btn-about{
+    position: absolute;
+    top: -40px;
+    right: 0;
+    i{
+        color: white;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// END Welcome Page
+// -----------------------------------------------------------------------------

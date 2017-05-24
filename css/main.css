@@ -3970,7 +3970,7 @@ body {
   position: relative; }
 
 .menu-main {
-  background-color: #242400; }
+  background-color: black; }
 
 @media (min-width: 64em) {
   .menu-top-show {
@@ -4094,6 +4094,7 @@ body {
       .logo-style svg {
         width: 59px;
         padding: 11px;
+        margin-left: 20px;
         fill: white; } }
   @media (min-width: 64em) {
     .logo-style {
@@ -4136,11 +4137,45 @@ body {
   .menu-show-list-style a {
     padding: 5px 12px; }
 
+.menu-show-list-style-info {
+  width: 350px;
+  background-color: #006666;
+  position: relative;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+  .menu-show-list-style-info ul {
+    width: 100%;
+    margin: 0;
+    padding: 0; }
+  .menu-show-list-style-info li {
+    padding: 5px 12px;
+    margin: 10px;
+    cursor: pointer; }
+  .menu-show-list-style-info a {
+    padding: 5px 12px; }
+
 .menu-contact-list {
   margin: 0;
   padding: 0;
   list-style: none;
   color: white; }
+
+.menu-option img {
+  width: 50px;
+  float: left;
+  margin-left: 5px; }
 
 .body-index {
   background-color: #242424; }
@@ -4755,10 +4790,20 @@ body, html {
   pointer-events: none; }
 
 .contact-form {
+  opacity: 0;
+  transition: all 0.7s ease;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   background-color: white;
   padding: 50px; }
   .contact-form p {
     color: #242424; }
+
+.contact-info-pg {
+  opacity: 0;
+  transition: all 0.7s ease;
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%); }
 
 .contact-info {
   background-color: #006666;
@@ -4822,6 +4867,9 @@ body, html {
   padding-bottom: 100px; }
   .blog-list-short h1, .blog-list-short p {
     color: white; }
+  @media (max-width: 63.9em) {
+    .blog-list-short {
+      padding: 10px 10px 100px 10px; } }
 
 .blog-style-each {
   overflow: hidden;
@@ -4831,6 +4879,18 @@ body, html {
     .blog-style-each {
       height: 50vw;
       max-height: 31.25rem; } }
+
+.blog-animate-left {
+  opacity: 0;
+  transition: all 1s ease;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%); }
+
+.blog-animate-right {
+  opacity: 0;
+  transition: all 1s ease;
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%); }
 
 .blog-short-image {
   height: 100%; }
@@ -4870,7 +4930,7 @@ body, html {
   cursor: pointer; }
 
 .filter-blog {
-  margin-bottom: 100px; }
+  margin-bottom: 10px; }
 
 .blogdetail-style {
   position: relative;
@@ -5144,13 +5204,11 @@ body, html {
 
 .blog-list-style {
   position: relative;
-  padding: 10px;
   border: 2px solid white;
   margin: 1% 0; }
   .blog-list-style h4 {
     text-align: center;
     color: white;
-    margin: 0;
     padding: 0; }
   .blog-list-style p {
     color: white; }
@@ -5175,7 +5233,6 @@ body, html {
 
 .option-list-style {
   text-align: center;
-  background-color: white;
   position: absolute;
   top: 0;
   right: 0;
@@ -5191,14 +5248,29 @@ body, html {
       -webkit-transform: scale(1.2);
               transform: scale(1.2); }
 
+.option-list-style-blog {
+  text-align: center;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .option-list-style-blog i {
+    padding: 10px;
+    width: 100%;
+    color: #242424;
+    transition: all 0.4s ease; }
+    .option-list-style-blog i:hover {
+      -webkit-transform: scale(1.2);
+              transform: scale(1.2); }
+
 .modalbox-style {
   width: 80%;
   height: 80%; }
   .modalbox-style a {
+    float: left;
     background-color: #242424;
     color: white;
     padding: 5px 10px;
-    margin: 10px 5px 0px 0px;
     cursor: pointer; }
   .modalbox-style textarea {
     height: 100%; }
@@ -5226,6 +5298,18 @@ body, html {
 
 .modalbox-show {
   display: initial; }
+
+#cke_blogeditor {
+  height: 100%; }
+
+.form-close-btn-blog {
+  width: 100%;
+  position: absolute;
+  top: -38px;
+  right: 0; }
+  .form-close-btn-blog i {
+    float: right;
+    color: white; }
 
 .admin-about-style {
   background-color: #242424; }
@@ -5280,17 +5364,71 @@ body, html {
     height: 300px;
     width: 100%; }
 
-.admin-features-style {
-  background-color: #242424;
-  height: 100vh; }
-  .admin-features-style h2 {
-    text-align: center;
-    margin: 0;
+.admin-about-style {
+  padding: 20px;
+  background-color: #242424; }
+  .admin-about-style .about-admin-content {
+    position: relative;
+    margin: 1% auto;
+    background-color: white;
+    padding: 40px; }
+    .admin-about-style .about-admin-content h1, .admin-about-style .about-admin-content h2, .admin-about-style .about-admin-content h3, .admin-about-style .about-admin-content h4, .admin-about-style .about-admin-content h5, .admin-about-style .about-admin-content h6, .admin-about-style .about-admin-content p, .admin-about-style .about-admin-content div {
+      text-align: left;
+      color: #242424; }
+
+#cke_abouteditor {
+  height: 100% !important; }
+
+.cke_inner {
+  height: 100% !important; }
+
+.cke_inner {
+  height: 100% !important; }
+
+#cke_1_contents {
+  height: 100% !important; }
+
+.about-form-ckediotor {
+  -webkit-box-flex: 100;
+      -ms-flex-positive: 100;
+          flex-grow: 100;
+  height: 100%;
+  overflow: hidden; }
+
+.about-form-style {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+#cke_1_bottom {
+  display: none !important; }
+
+.cke_top {
+  padding: 0 !important;
+  width: 100% !important;
+  position: fixed !important;
+  top: 0px !important; }
+
+.form-top-bar-about, .form-about-buttons {
+  text-align: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 100%;
+  height: 40px;
+  background-color: #242424; }
+
+.form-close-btn-about {
+  position: absolute;
+  top: -40px;
+  right: 0; }
+  .form-close-btn-about i {
     color: white; }
-  .admin-features-style h1 {
-    color: white;
-    width: 100%;
-    text-align: center; }
 
 .welcome-style {
   height: 100vh;

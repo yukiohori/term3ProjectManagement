@@ -1,5 +1,42 @@
-<div class='admin-features-style'>
+<div class='admin-about-style'>
 	<h1>ADMIN ABOUT PAGE</h1>
 
+	<div class="row about-admin-content">
+		<div ng-bind-html="about.content">
+		</div>
+		<div class="option-list-style">
+			<i class="fa fa-2x fa-pencil-square" ng-click="showAboutForm()" aria-hidden="true"></i>
+		</div>
+	</div>
+
+	<div id="modalBox" class="modalbox-bg" ng-class="{'modalbox-show':aboutForm}">
+		<div class="modalbox-style">
+			<form class="about-form-style" ng-submit="submit()">
+				<div class="form-close-btn-about"><i ng-click="showAboutForm()" class="fa fa-2x fa-times" aria-hidden="true"></i></div>
+				<div class="form-top-bar-about"></div>
+				<div class="about-form-ckediotor remove-padding">
+					<textarea name="abouteditor"></textarea>
+				</div>
+				<div class="form-about-buttons">
+					<input class="form-submit-style" type="submit" value="POST!">
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="modalBoxMsg" class="modalbox-bg">
+	</div>
+
+	<script>
+		var aboutEd = CKEDITOR.replace( 'abouteditor',{
+		resize_enabled: 'false',
+		removePlugins: 'elementspath',
+		height : '100%',
+		toolbar: [
+				['Bold', 'Italic', '-', 'NumberedList','BulletedList', '-', 'Link', 'Unlink' ]
+			]
+		});
+		
+	</script>
 	
 </div>	

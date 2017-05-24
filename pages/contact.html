@@ -13,7 +13,7 @@
 </div>
 <div class='contact-style-content'>
 	<div class="row">
-		<div class="small-12 medium-8 large-8 column contact-form">
+		<div class="small-12 medium-8 large-8 column contact-form" id='contact-form' ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('contact-form')}">
 			<p>
 				I'm always happy to answer questions, provide further details, 
 				and collaborate with you. Fill out the fields below to get in contact with me!
@@ -34,7 +34,7 @@
 				<a class="contact-submit">SUBMIT</a>
 			</div>
 		</div>
-		<div class="small-12 medium-4 large-4 column">
+		<div class="small-12 medium-4 large-4 column contact-info-pg" id='contact-info' ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('contact-info')}">
 			<div class="contact-info">
 				<h4>CONTACT</h4>
 				<p>CANADA +123456789</p>

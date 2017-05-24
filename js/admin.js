@@ -31,9 +31,15 @@
             $window.scrollTo(0, 0);
         };
 
-        yosAppVar.goFeaturesAdmin = function(){
+        yosAppVar.goAboutAdmin = function(){
             yosAppVar.menuActive=false;
-            $location.path("/features");
+            $location.path("/about");
+            $window.scrollTo(0, 0);
+        };
+
+        yosAppVar.goChangePassAdmin = function(){
+            yosAppVar.menuActive=false;
+            $location.path("/change");
             $window.scrollTo(0, 0);
         };
 
@@ -277,13 +283,20 @@
     yosApp.controller('adminAboutController', function($scope, $http, $sce,yosAppVar) {
         $scope.yosAppVar = yosAppVar;
         $scope.yosAppVar.menuState=true;
-        // $http.get("process/blog.php")
-        // .then(function (response) {
-        //     console.log(response);
-        //     $scope.blog = response.data;
-        // });
+        $scope.aboutForm=false;
 
-		$scope.content = '';
+        $http.get("process/about_process.php?type=1")
+        .then(function (response) {
+            $scope.about = response.data[0];
+        });
+
+        $scope.showAboutForm = () =>{
+            if(!$scope.aboutForm)
+            aboutEd.setData($scope.about.content);
+
+            $scope.aboutForm=!$scope.aboutForm;
+        }
+
 	});
 
 

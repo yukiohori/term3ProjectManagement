@@ -26,13 +26,13 @@
 
 .blog-list-style{
     position: relative;
-    padding:10px;
+    // padding:10px;
     border:2px solid white;
     margin: 1% 0;
     h4{
         text-align: center;
         color: white;
-        margin: 0;
+        // margin: 0;
         padding:0;
     }
     p{
@@ -56,10 +56,25 @@
 
 .option-list-style{
     text-align: center;
-    background-color: white;
+    // background-color: white;
     position: absolute;
     top: 0;
     right: 0;
+    display: flex;
+    i{
+        padding: 10px;
+        width: 100%;
+        color: #242424;
+        transition:all 0.4s ease;
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+}
+
+.option-list-style-blog{
+    text-align: center;
+    background-color: white;
     display: flex;
     i{
         padding: 10px;
@@ -76,10 +91,11 @@
     width: 80%;
     height: 80%;
     a{
+        float: left;
         background-color: #242424;
         color: white;
         padding: 5px 10px;
-        margin: 10px 5px 0px 0px;
+        // margin: 10px 5px 0px 0px;
         cursor: pointer;
     }
     textarea{
@@ -119,6 +135,20 @@
     display: initial;
 }
 
+#cke_blogeditor{
+    height: 100%;
+}
+
+.form-close-btn-blog{
+    width: 100%;
+    position: absolute;
+    top: -38px;
+    right: 0;
+    i{
+        float: right;
+        color: white;
+    }
+}
 
 
 // -----------------------------------------------------------------------------

@@ -30,6 +30,9 @@
         color:white;
     }
     padding-bottom: 100px;
+    @include respond-to(tabmob) {
+        padding: 10px 10px 100px 10px;
+    }
 }
 
 .blog-style-each{
@@ -41,6 +44,18 @@
         max-height: 31.25rem;
     }
     background-color: white;
+}
+
+.blog-animate-left{
+    opacity: 0;
+    transition: all 1s ease;
+    transform: translateX(-50%);
+}
+
+.blog-animate-right{
+    opacity: 0;
+    transition: all 1s ease;
+    transform: translateX(50%);
 }
 
 .blog-short-image{
@@ -83,7 +98,7 @@
 }
 
 .filter-blog{
-    margin-bottom: 100px;
+    margin-bottom: 10px;
 }
 
 

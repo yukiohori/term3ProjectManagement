@@ -4,7 +4,7 @@
 
 
 .menu-main{
-    background-color:#242400;
+    background-color:black;
 }
 
 .menu-top-show{
@@ -146,6 +146,7 @@
         @include respond-to(desktop) {
             width: 59px;
             padding: 11px;
+            margin-left: 20px;
             fill: white;
         }
     }
@@ -188,11 +189,43 @@
     }
 }
 
+.menu-show-list-style-info{
+    width: 350px;
+    background-color: #006666;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    ul{
+        width: 100%;
+        margin: 0;
+        padding:0;
+    }
+    li{
+        padding: 5px 12px;
+        margin: 10px;
+        cursor: pointer;
+    }
+    a{
+        padding: 5px 12px;
+    }
+}
+
 .menu-contact-list{
     margin: 0;
     padding: 0;
     list-style: none;
     color: white;
+}
+
+.menu-option{
+    img{
+        width: 50px;
+        float: left;
+        margin-left: 5px;
+    }
 }
 
 // -----------------------------------------------------------------------------
