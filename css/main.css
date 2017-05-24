@@ -5430,6 +5430,38 @@ body, html {
   .form-close-btn-about i {
     color: white; }
 
+.skill-box-admin {
+  margin: 50px auto;
+  background-color: white;
+  padding: 20px; }
+  .skill-box-admin h1 {
+    color: #242424; }
+  .skill-box-admin p {
+    margin: 0; }
+
+.about-skill-bar-admin {
+  background-color: #006666;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .about-skill-bar-admin p {
+    color: white; }
+  @media (max-width: 39.9em) {
+    .about-skill-bar-admin {
+      height: 30px; } }
+  @media (min-width: 40em) and (max-width: 63.9em) {
+    .about-skill-bar-admin {
+      height: 55px; } }
+  @media (min-width: 64em) {
+    .about-skill-bar-admin {
+      height: 70px; } }
+
 .welcome-style {
   height: 100vh;
   background-image: url("../img/bg-image.jpg");

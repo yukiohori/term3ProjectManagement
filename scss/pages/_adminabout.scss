@@ -75,6 +75,38 @@
     }
 }
 
+.skill-box-admin{
+    margin: 50px auto;
+    background-color: white;
+    padding: 20px;
+    h1{
+        color: #242424;
+    }
+    p{
+        margin: 0;
+    }
+}
+
+.about-skill-bar-admin{
+    // width: 0;
+    background-color:#006666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+        color: white;
+    }
+    @include respond-to(mobile) {
+        height: 30px;
+    }
+    @include respond-to(tablet) {
+        height: 55px;
+    }
+    @include respond-to(desktop) {
+        height: 70px;
+    }
+}
+
 // -----------------------------------------------------------------------------
 // END Welcome Page
 // -----------------------------------------------------------------------------

@@ -289,6 +289,12 @@
         .then(function (response) {
             $scope.about = response.data[0];
         });
+        
+        $http.get("process/skill.php")
+        .then(function (response) {
+            console.log(response.data);
+            $scope.skill = response.data;
+        });
 
         $scope.showAboutForm = () =>{
             if(!$scope.aboutForm)
