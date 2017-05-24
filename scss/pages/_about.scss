@@ -14,7 +14,7 @@
 }
 
 .about-skill-bar{
-    transition: all 3s ease;
+    transition: all 1.3s linear;
     width: 0;
     background-color:#006666;
     @include respond-to(mobile) {

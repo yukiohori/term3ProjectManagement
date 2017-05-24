@@ -4014,15 +4014,13 @@ body {
     border: 3px solid transparent;
     padding: 5px 20px; }
 
-.mobile-menu-box .mobile-menu-close {
-  color: white;
+.mobile-menu-close {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  margin: 0;
-  padding: 10px 0;
+  bottom: 20px;
   text-align: center;
   cursor: pointer; }
+  .mobile-menu-close i {
+    color: white !important; }
 
 .desktop-menu-btn {
   width: 350px;
@@ -4042,10 +4040,30 @@ body {
       box-shadow: inset 0 0 0 25px #242424;
       color: white; }
 
+.desktop-menuhide-btn {
+  width: 350px;
+  text-align: center;
+  position: absolute;
+  right: 0px;
+  z-index: 200;
+  padding-top: 30px; }
+  .desktop-menuhide-btn a {
+    transition: all 0.7s ease;
+    padding: 10px 20px;
+    border: 2px solid white;
+    color: white;
+    cursor: pointer; }
+    .desktop-menuhide-btn a:hover {
+      border: 2px solid white;
+      box-shadow: inset 0 0 0 25px white;
+      color: #242424; }
+
 .menu-active-main {
   border: 3px solid white;
   box-shadow: inset 0 0 0 25px white;
   color: #242424; }
+  .menu-active-main a {
+    color: #242424; }
 
 .mobile-menu {
   float: right;
@@ -4096,6 +4114,7 @@ body {
   height: 100vh; }
 
 .menu-show-list-style {
+  position: relative;
   height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4105,7 +4124,11 @@ body {
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center; }
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
   .menu-show-list-style li {
     padding: 5px 12px;
     margin: 10px;
@@ -4539,7 +4562,7 @@ body, html {
           justify-content: center; }
 
 .about-skill-bar {
-  transition: all 3s ease;
+  transition: all 1.3s linear;
   width: 0;
   background-color: #006666; }
   @media (max-width: 39.9em) {
@@ -4630,7 +4653,6 @@ body, html {
   margin-bottom: 80px; }
 
 .portfolio-style {
-  height: 75vh;
   background-image: url("../img/portfolio-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -4685,6 +4707,7 @@ body, html {
   background-image: url("../img/contact-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4724,6 +4747,12 @@ body, html {
     height: 200px; }
     .contact-style-content textarea:active {
       background-color: transparent; }
+
+.overlay-contactdetail {
+  width: 100%;
+  height: 75vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), #242424);
+  pointer-events: none; }
 
 .contact-form {
   background-color: white;
@@ -4765,7 +4794,7 @@ body, html {
 
 .blog-style {
   height: 75vh;
-  background-image: url("../img/blog-bg.jpg");
+  background-image: url("../img/bg-image3.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -4781,6 +4810,12 @@ body, html {
   .blog-style h1 {
     color: #242424;
     position: absolute; }
+
+.overlay-blog {
+  width: 100%;
+  height: 75vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), #242424);
+  pointer-events: none; }
 
 .blog-list-short {
   background-color: #242424;
@@ -4841,7 +4876,7 @@ body, html {
   position: relative;
   z-index: -1;
   height: 75vh;
-  background-image: url("../img/blog-bg.jpg");
+  background-image: url("../img/bg-image2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center; }
