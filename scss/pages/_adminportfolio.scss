@@ -44,11 +44,20 @@
     display: flex;
     flex-flow: wrap;
     .image-flex{
-        width:33.33%;
+        img{
+            width:100%;
+        }
+        width:100%;
+    }
+    h3{
+        width: 100%;
+        text-align: center;
     }
 }
 
 .portfolio-form-style{
+    height: 100%;
+    overflow: auto;
     // padding: 30px;
     h4{
         margin: 0;
