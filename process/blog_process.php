@@ -19,7 +19,7 @@ if(!$conn){
             unlink("'/".$t[0]."'");
             // echo $t[0];
         }
-        $query = "DELETE FROM blog_tb WHERE id=".$id;
+        $query = "DELETE FROM blog_tb WHERE blog_id=".$id;
 
     }else if($type==0){
         $mydate=getdate(date("U"));
@@ -43,16 +43,20 @@ if(!$conn){
     }else{
         $title = mysqli_real_escape_string($conn, $_POST['title']);
         $image = mysqli_real_escape_string($conn, $_POST['image']);
-        $query = "UPDATE blog_tb SET blog_title='".$title."', blog_img='".$image."', blog_content='".$content."' WHERE id=".$id;
+        $query = "UPDATE blog_tb SET blog_title='".$title."', blog_img='".$image."', blog_content='".$content."' WHERE blog_id=".$id;
 
         $result = mysqli_query($conn,$query);
         if($result){
             $categories = explode(',',$_POST['categories']);
-            for($i=0;$i<count($categories);$i+=1){
-                $query = "INSERT INTO blogCategory_tb (blog_id,category_id) VALUES (".$last_id.",".$categories[$i].")";
-                mysqli_query($conn, $query);
+            $query = "DELETE FROM blogCategory_tb WHERE blog_id=".$id;
+
+            if(mysqli_query($conn, $query)){
+                for($i=0;$i<count($categories);$i+=1){
+                    $query = "INSERT INTO blogCategory_tb (blog_id,category_id) VALUES (".$id.",".$categories[$i].")";
+                    mysqli_query($conn, $query);
+                }
+                echo "1";
             }
-            echo "1";
         }else{
             echo "3";
         }

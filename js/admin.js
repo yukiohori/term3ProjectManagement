@@ -258,11 +258,6 @@
             $scope.blogForm=tabNum;
         }
 
-        $scope.setChecked = (number) =>{
-            console.log(number);
-            return true;
-        }
-
         $scope.showNewCategoryForm = () => {
             $scope.newCagegoryForm=!$scope.newCagegoryForm;
         }
@@ -296,7 +291,8 @@
         };
 
         $scope.changeContentBlog = function(){
-            $scope.id=this.x.id;
+            console.log(this.x.blog_id);
+            $scope.id=this.x.blog_id;
             $scope.type=1;
             $scope.title=this.x.blog_title;
             bloged.setData(this.x.blog_content);
@@ -340,14 +336,16 @@
 
         function convertToStringCategories(){
             let sCategories="";
-            for(var i=0;i<$scope.categories.length;i+=1){
-                if($scope.categories[i].checkBox==true){
-                    sCategories+=$scope.categories[i]+",";
+            // console.log('ad');
+            for(var i=0;i<$scope.category.length;i+=1){
+                if($scope.category[i].checkBox==true){
+                    sCategories+=$scope.category[i].id+",";
                 }
             }
             if(sCategories.charAt(sCategories.length - 1)==","){
                 sCategories=sCategories.substring(0, sCategories.length-1);
             }
+            // console.log(sCategories);
             return sCategories;
         }
 

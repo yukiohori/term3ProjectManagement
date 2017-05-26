@@ -26,7 +26,6 @@
                         yosAppVar.animationState[key]=false;
                     }
                 }
-                
                 scope.$apply();
             });
         };
