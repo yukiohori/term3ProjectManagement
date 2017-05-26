@@ -13,9 +13,17 @@
 </div>
 <div class="blog-list-short">
 	
+	<div class="row category-style">
+		<div class="each-category">
+			<a>ALL</a>
+		</div>
+		<div class="each-category" ng-repeat="x in category">
+			<a ng-bind="x.category_name"></a>
+		</div>
+	</div>
 	
 	 <div class="row filter-blog">
-		 <div class="pagination-right text-center" ng-show="filteredItems > 0">
+		<div class="pagination-right text-center" ng-show="filteredItems > 0">
 			<span class="pagination-list" ng-repeat="i in updatePagination()">
 				<a ng-click="setPage(i)" ng-bind="i" ng-class="{'pagina-active':i==currentPage}"></a>
 			</span>

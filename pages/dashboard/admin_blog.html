@@ -4,8 +4,8 @@
 	<div class="row admin-blog-list">
 		<div class="small-12 medium-12 small-12 column blog-list-style remove-padding" ng-repeat="x in blog">
 			<div class="option-list-style-blog">
-				<i class="fa fa-2x fa-pencil-square" ng-click="changeContentBlog(x.blog_index)" aria-hidden="true"></i>
-				<i class="fa fa-2x fa-trash" ng-click="deleteBlog(x.blog_index)" aria-hidden="true"></i>
+				<i class="fa fa-2x fa-pencil-square" ng-click="changeContentBlog()" id="demo{{$index}}" aria-hidden="true"></i>
+				<i class="fa fa-2x fa-trash" ng-click="deleteBlog()" aria-hidden="true"></i>
 			</div>
 			<div class="small-12 medium-12 large-12 column">
 				<h4 ng-bind="x.blog_title"></h4>
@@ -42,10 +42,22 @@
 					<div class="clearfix">
 						<h2>New Blog</h2>
 						<div class="small-12 medium-12 large-12 column text-center">
-							<h4>Title</h4>
+							<h4>Title*</h4>
 						</div>
 						<div class="small-12 medium-12 large-12 column">
 							<input ng-model="title" class="text-center" name="blog-title" type="text">
+						</div>
+						<div class="small-12 medium-12 large-12 column text-center">
+							<h4>Category* <i ng-click="showNewCategoryForm()" class="fa fa-plus-circle" aria-hidden="true"></i></h4>
+						</div>
+						<div class="small-12 medium-12 large-12 column category-form-style" ng-show="newCagegoryForm">
+							<span>New Category* : </span>
+							<input type="text" id="nameCategory" ng-model="categoryName"><a ng-click="submitCategory()">Add Category</a>
+						</div>
+						<div class="category-row">
+							<div class="small-12 medium-6 large-6 column" ng-repeat="x in category">
+								<input type="checkbox" ng-model="x.checkBox" id="category{{x.id}}" /><label for="category{{x.id}}" ng-bind="x.category_name"></label>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -56,33 +68,6 @@
 					<input class="form-submit-style" type="submit" value="POST!">
 				</div>
 			</form>
-
-
-			<!--<form class="blog-form-style" ng-submit="submit()">
-				<div class="form-blog-tab">
-					<a class="remove-margin" ng-click="changeTabBlog(1)">Blog Information</a><a ng-click="changeTabBlog(2)">Blog Content</a>
-				</div>
-				<div class="close-btn-form" ng-click="closeModalBoxForm()"><i class="fa fa-times" aria-hidden="true"></i></div>
-				<div class="form-blog-buttons">
-					<input class="form-submit-style" type="submit" value="POST!">
-				</div>
-				<div class="small-12 medium-12 large-12 column" ng-show="blogForm==1">
-					<div class="clearfix">
-						<h2>New Blog</h2>
-						<div class="small-12 medium-12 large-12 column text-center">
-							<h4>Title</h4>
-						</div>
-						<div class="small-12 medium-12 large-12 column">
-							<input ng-model="title" class="text-center" name="blog-title" type="text">
-						</div>
-					</div>
-				</div>
-				<div class="small-12 medium-12 large-12 column remove-padding" ng-show="blogForm==2">
-					<div class="small-12 medium-12 large-12 column remove-padding">
-						<textarea id="blogContent" name="blogeditor"></textarea>
-					</div>
-				</div>
-			</form>-->
 		</div>
 	</div>
 

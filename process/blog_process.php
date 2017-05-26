@@ -23,21 +23,40 @@ if(!$conn){
 
     }else if($type==0){
         $mydate=getdate(date("U"));
-        $date = $mydate[weekday].",". $mydate[month].", ".$mydate[mday].", ".$mydate[year];
+        $date = $mydate[weekday].",". $mydate[month]." ".$mydate[mday].", ".$mydate[year];
         $title = mysqli_real_escape_string($conn, $_POST['title']);
         $image = mysqli_real_escape_string($conn, $_POST['image']);
-        $query = "INSERT INTO blog_tb (blog_title,blog_date,blog_img,blog_content,blog_embed) 
-            VALUES ('".$title."','".$date."','".$image."','".$content."','embed')";
+        $query = "INSERT INTO blog_tb (blog_title,blog_date,blog_img,blog_content) VALUES ('".$title."','".$date."','".$image."','".$content."')";
+            
+        if (mysqli_query($conn, $query)) {
+            $last_id = mysqli_insert_id($conn);
+            $categories = explode(',',$_POST['categories']);
+            for($i=0;$i<count($categories);$i+=1){
+                $query = "INSERT INTO blogCategory_tb (blog_id,category_id) VALUES (".$last_id.",".$categories[$i].")";
+                mysqli_query($conn, $query);
+            }
+            echo "1";
+        }else{
+            echo "3";
+        }
+            
     }else{
         $title = mysqli_real_escape_string($conn, $_POST['title']);
         $image = mysqli_real_escape_string($conn, $_POST['image']);
-        $query = "UPDATE blog_tb SET blog_title='".$title."', blog_img='".$image."', blog_content='".$content."', blog_embed='embed' WHERE id=".$id;
+        $query = "UPDATE blog_tb SET blog_title='".$title."', blog_img='".$image."', blog_content='".$content."' WHERE id=".$id;
+
+        $result = mysqli_query($conn,$query);
+        if($result){
+            $categories = explode(',',$_POST['categories']);
+            for($i=0;$i<count($categories);$i+=1){
+                $query = "INSERT INTO blogCategory_tb (blog_id,category_id) VALUES (".$last_id.",".$categories[$i].")";
+                mysqli_query($conn, $query);
+            }
+            echo "1";
+        }else{
+            echo "3";
+        }
     }
 
-    $result = mysqli_query($conn,$query);
-    if($result){
-        echo "1";
-    }else{
-        echo "3";
-    }
+    
 }

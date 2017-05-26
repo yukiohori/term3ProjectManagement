@@ -182,9 +182,12 @@
         $scope.type=0;
         $scope.modalForm=false;
         $scope.blogForm=1;
+        $scope.newCagegoryForm=false;
+        $scope.categories = [];
         // localStorage.setItem("admin_blog",1);
 
-        uploadBlog();
+        updateBlog();
+        updateCategories();
 
         $scope.submit = () => {
             // console.log($(bloged.getData()).find('img').length);
@@ -206,6 +209,7 @@
                   formData.append("image", $scope.img);
                   formData.append("title", $scope.title);
                   formData.append("content", bloged.getData());
+                  formData.append("categories", convertToStringCategories());
 			      return formData;
 
 			  }, 
@@ -214,13 +218,36 @@
 			         'Content-Type': undefined
 			  }
             }).then((responce) => {
-                uploadBlog();
+                console.log("FROM : "+responce.data);
+                updateBlog();
                 $scope.modalForm=false;
+            });
+        };
+
+        $scope.submitCategory = () => {
+	      	$http({
+			  method  : 'POST',
+			  url     : 'process/category_process.php',
+			  processData: false,
+			  transformRequest: function (data) {
+			      var formData = new FormData();
+                  formData.append("catagoryName", $scope.categoryName);
+			      return formData;
+			  }, 
+			  data : $scope.form,
+			  headers: {
+			         'Content-Type': undefined
+			  }
+            }).then((responce) => {
+                updateCategories();
+                $scope.newCagegoryForm=false;
+                $scope.categoryName="";
             });
         };
 
         $scope.openBodalBox= function(newBlog){
             if(newBlog==1){
+                resetCategories();
                 $scope.type=0;
                 $scope.title="";
             }
@@ -229,6 +256,15 @@
 
         $scope.changeTabBlog = (tabNum) =>{
             $scope.blogForm=tabNum;
+        }
+
+        $scope.setChecked = (number) =>{
+            console.log(number);
+            return true;
+        }
+
+        $scope.showNewCategoryForm = () => {
+            $scope.newCagegoryForm=!$scope.newCagegoryForm;
         }
 
         $scope.closeModalBoxForm = () =>{
@@ -254,30 +290,67 @@
 			         'Content-Type': undefined
 			  }
             }).then((responce) => {
-                console.log(responce.data);
+                // console.log(responce.data);
                 uploadBlog();
             });
         };
 
-        $scope.changeContentBlog = function(index){
-            $scope.id=$scope.blog[index].id;
+        $scope.changeContentBlog = function(){
+            $scope.id=this.x.id;
             $scope.type=1;
-            $scope.title=$scope.blog[index].blog_title;
-            bloged.setData($scope.blog[index].blog_content);
+            $scope.title=this.x.blog_title;
+            bloged.setData(this.x.blog_content);
+            
+            var catList=this.x.categoryID.split(',');
+            resetCategories();
+            for(var i=0;i<catList.length;i+=1){
+                for(var j=0;j<$scope.category.length;j+=1){
+                    if($scope.category[j].id==catList[i]){
+                        $scope.category[j].checkBox=true;
+                    }
+                }
+            }
             $scope.modalForm=true;
         }
 
-        function uploadBlog(){
+        function updateBlog(){
             $scope.indexBlog=0;
             $http.get("process/blog.php?type=1")
             .then(function (response) {
-                console.log(response.data);
                 $scope.blog = response.data;
-                for(var i=0;i<$scope.blog.length;i+=1){
-                    $scope.blog[i].blog_index=i;
-                }
             });
         }
+
+        function resetCategories(){
+            for(var j=0;j<$scope.category.length;j+=1){
+                $scope.category[j].checkBox=false;
+            }
+        }
+
+        function updateCategories(){
+            $http.get("process/category_process.php?type=1")
+            .then(function (response) {
+                $scope.category = response.data;
+                for(var i=0;i<$scope.category.length;i+=1){
+                    $scope.category[i].checkBox = false;
+                }
+                console.log($scope.category);
+            });
+        }
+
+        function convertToStringCategories(){
+            let sCategories="";
+            for(var i=0;i<$scope.categories.length;i+=1){
+                if($scope.categories[i].checkBox==true){
+                    sCategories+=$scope.categories[i]+",";
+                }
+            }
+            if(sCategories.charAt(sCategories.length - 1)==","){
+                sCategories=sCategories.substring(0, sCategories.length-1);
+            }
+            return sCategories;
+        }
+
 	});
 
     yosApp.controller('adminAboutController', function($scope, $http, $sce,yosAppVar) {
@@ -355,7 +428,7 @@
             $scope.modalForm=true;
         };
 
-        $scope.closeModalBoxForm = () =>{
+        $scope.closeModalBoxForm = () => {
             $scope.modalForm=false;
         }
 

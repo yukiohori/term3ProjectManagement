@@ -103,6 +103,21 @@
     margin-bottom: 10px;
 }
 
+.category-style{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 100%;
+}
+
+.each-category{
+    margin: 3px;
+    padding: 5px 7px;
+    border: 2px solid white;
+    // float: left;
+}
+
 
 // -----------------------------------------------------------------------------
 // END Blog Page

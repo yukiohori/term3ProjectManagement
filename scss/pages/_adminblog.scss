@@ -128,7 +128,6 @@
         position: absolute;
         top: -30px;
     }
-    
 }
 
 .modalbox-show{
@@ -147,6 +146,28 @@
     i{
         float: right;
         color: white;
+    }
+}
+
+.category-form-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include respond-to(tabmob) {
+        flex-direction: column;
+    }
+    input{
+        width: auto !important;
+    }
+}
+
+.category-row{
+    @include respond-to(desktop) {
+        width: 50%;
+        margin: auto;
+    }
+    input[type='checkbox']{
+        margin-right:20px;
     }
 }
 

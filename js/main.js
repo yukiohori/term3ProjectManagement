@@ -186,15 +186,21 @@
             $scope.yosAppVar.changePanel=false;
         });
 
-        $http.get("process/blog.php?page=1&type=1")
+        $http.get("process/blog.php?type=1")
         .then(function (response) {
             $scope.blog = response.data;
-            $scope.currentPage = 1; 
-            $scope.entryLimit = 5; 
+            $scope.currentPage = 1;
+            $scope.entryLimit = 5;
             $scope.filteredItems = $scope.blog.length;
             $scope.totalItems = $scope.blog.length;
-            console.log($scope.filteredItems);
-            updateiframe();
+            // console.log($scope.filteredItems);
+            // updateiframe();
+        });
+
+        $http.get("process/category_process.php?type=1")
+        .then(function (response) {
+            console.log(response.data);
+            $scope.category = response.data;
         });
 
         $scope.setPage = function(pageNo) {
@@ -223,13 +229,13 @@
 
         // $scope.embed=$sce.trustAsHtml($scope.blog[0].blog_embed);
 
-        function updateiframe(){
-            for(var i=0;i<$scope.blog.length;i+=1){
-                $scope.blog[i].blog_index=i;
-                $scope.blog[i].blog_embed=$sce.trustAsHtml($scope.blog[i].blog_embed);
-                $scope.blog[i].blog_content=$scope.blog[i].blog_content;
-            }
-        }
+        // function updateiframe(){
+        //     for(var i=0;i<$scope.blog.length;i+=1){
+        //         $scope.blog[i].blog_index=i;
+        //         $scope.blog[i].blog_embed=$sce.trustAsHtml($scope.blog[i].blog_embed);
+        //         $scope.blog[i].blog_content=$scope.blog[i].blog_content;
+        //     }
+        // }
         
 	});
 
