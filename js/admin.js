@@ -17,6 +17,16 @@
             yosAppVar.menuActive=!yosAppVar.menuActive;
         };
 
+        yosAppVar.removeImages = function(index){
+            var images=[];
+            angular.forEach(yosAppVar.images,function(file,key){
+                if(index!=key){
+                    images.push(file);
+                }
+            });
+            yosAppVar.images=images;
+        };
+
         yosAppVar.goHomepage = function(){
             window.location.href = "index.html";
         };
@@ -516,7 +526,7 @@
         $scope.description="";
         $scope.embed="";
         $scope.id=0;
-        $scope.img="";
+        $scope.img=[];
 
         uploadPortfolio();
 
@@ -543,6 +553,17 @@
             if(newPort==1){
                 $scope.type=0;
                 $scope.description="";
+                $scope.embed="";
+                $scope.yosAppVar.images=[];
+            }else{
+                $scope.img=[];
+                $scope.type=1;
+                $scope.title=newPort.portfolio_title;
+                $scope.description=newPort.portfolio_content;
+                $scope.embed=newPort.portfolio_embed;
+                $scope.img.push(newPort.portfolio_image);
+                $scope.yosAppVar.images=[];
+                // $scope.img.
             }
             $scope.modalForm=true;
         };
@@ -552,31 +573,51 @@
         }
 
         $scope.submit = () => {
-            if($scope.yosAppVar.images.length>0){
-                $scope.img=$scope.yosAppVar.images[0];
-                console.log($scope.img);
-            }
-
 	      	$http({
 			  method  : 'POST',
 			  url     : 'process/portfolio_process.php',
 			  processData: false,
 			  transformRequest: function (data) {
-			      var formData = new FormData();
-                  formData.append('type', $scope.type);
-                  formData.append('id', $scope.id);
-                  formData.append('image', $scope.img.file);
-                  formData.append('title', $scope.title);
-                  formData.append('description', $scope.description);
-                  formData.append('embed',$scope.embed);
-			      return formData;
+                var formData = new FormData();
+                formData.append('type', $scope.type);
+                formData.append('id', $scope.id);
+                angular.forEach($scope.yosAppVar.images,function(file,key){
+                    var imageObj = 'image'+ key;
+                    console.log(imageObj);
+                formData.append(imageObj, file.file);
+                });
+                formData.append('title', $scope.title);
+                formData.append('description', $scope.description);
+                formData.append('embed',$scope.embed);
+                return formData;
 			  }, 
 			  data : $scope.form,
 			  headers: {
 			         'Content-Type': undefined
 			  }
             }).then((responce) => {
-                console.log(responce);
+                console.log(responce.data);
+                uploadPortfolio();
+                $scope.modalForm=false;
+            });
+        };
+
+        $scope.deletePortfolio = (index) => {
+	      	$http({
+			  method  : 'POST',
+			  url     : 'process/portfolio_process.php',
+			  processData: false,
+			  transformRequest: function (data) {
+                var formData = new FormData();
+                formData.append('type', -1);
+                formData.append('id', index.id);
+                return formData;
+			  }, 
+			  data : $scope.form,
+			  headers: {
+			         'Content-Type': undefined
+			  }
+            }).then((responce) => {
                 uploadPortfolio();
                 $scope.modalForm=false;
             });
@@ -585,11 +626,11 @@
         function uploadPortfolio(){
             $http.get("process/portfolio.php")
             .then(function (response) {
-                console.log(response.data);
+                // console.log(response.data);
                 $scope.portfolio = response.data;
-                for(var i=0;i<$scope.portfolio.length;i+=1){
-                    $scope.portfolio[i].portfolio_index=i;
-                }
+                // for(var i=0;i<$scope.portfolio.length;i+=1){
+                //     $scope.portfolio[i].portfolio_index=i;
+                // }
             });
         }
 	});

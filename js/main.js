@@ -287,20 +287,28 @@
         });
 	});
 
-    yosApp.controller('portfolioController', function($scope,$window,yosAppVar) {
+    yosApp.controller('portfolioController', function($scope,$http,$window,yosAppVar) {
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=true;
         $scope.yosAppVar.menuFooter=true;
         $scope.yosAppVar.animationState={};
+
+        uploadPortfolio();
         
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             yosAppVar.currenctPage="/portfolio";
             $scope.yosAppVar.changePanel=false;
         });
 
-        $scope.getoffsetTop = function(object){
-            var element = angular.element(document.querySelector('#'+object));
-            return element[0].offsetTop-($window.innerHeight-100);
+        function uploadPortfolio(){
+            $http.get("process/portfolio.php")
+            .then(function (response) {
+                console.log(response.data);
+                $scope.portfolio = response.data;
+                for(var i=0;i<$scope.portfolio.length;i+=1){
+                    $scope.portfolio[i].portfolio_index=i;
+                }
+            });
         }
 
 	});

@@ -3,15 +3,11 @@
 	<div class="row admin-portfolio-list">
 		<div class="small-12 medium-6 large-4 column portfolio-list-style" ng-repeat="x in filtered = (portfolio)">
 			<img ng-src="{{x.portfolio_image}}" />
-			<!--<div class="small-12 medium-12 small-12 column">
-				
-			</div>-->
-			<!--<div ng-bind-html="x.blog_content" class="small-12 medium-12 large-9 column">
-			</div>-->
-			<!--<div class="option-list-style">
-				<i class="fa fa-pencil-square" ng-click="changeContentBlog(x.portfolio_index)" aria-hidden="true"></i>
-				<i class="fa fa-trash" ng-click="deleteBlog(x.portfolio_index)" aria-hidden="true"></i>
-			</div>-->
+			<div class="work-detail-desc-admin">
+				<!--<i class="fa fa-cube" aria-hidden="true"></i>-->
+				<i class="fa fa-pencil-square" ng-click="openBodalBox(x)" aria-hidden="true"></i>
+				<i class="fa fa-trash" ng-click="deletePortfolio(x)" aria-hidden="true"></i>
+			</div>
 		</div>
 	</div>
 
@@ -42,7 +38,7 @@
 						<h4>Embed</h4>
 						<input ng-model="embed" class="text-center" type="text">
 						<div class="file-drop-zone" file-dropzone files-to-upload = "files">
-							<span>Click or Drog Image</span>
+							<span>Click or Drop Image (MAX 3 IMAGES)</span>
 						</div>
 					</div>
 				</div>
@@ -51,7 +47,12 @@
 				<div class="small-12 medium-12 large-12 column">
 					<div class="text-center"><h3>PREVIEW</h3></div>
 					<div class="image-container">
+						<div class="image-flex" ng-repeat="file in img">
+							<p ng-click="yosAppVar.removeImages($index)">X</p>
+							<img ng-src={{file}} />
+						</div>
 						<div class="image-flex" ng-repeat="file in yosAppVar.images">
+							<p ng-click="yosAppVar.removeImages($index)">X</p>
 							<img ng-src={{file.preview}} />
 						</div>
 					</div>

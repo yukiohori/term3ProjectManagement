@@ -4723,8 +4723,29 @@ body, html {
 
 .port-design {
   padding: 3px; }
+  @media (max-width: 39.9em) {
+    .port-design {
+      height: 100vw; } }
+  @media (min-width: 40em) and (max-width: 63.9em) {
+    .port-design {
+      height: 50vw; } }
+  @media (min-width: 64em) {
+    .port-design {
+      height: 333.33px; } }
+  .port-design img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 100%; }
+
+.portfolio-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
 
 .port-animate {
+  height: 100%;
   opacity: 0;
   transition: all 1s ease;
   -webkit-transform: translateY(50%);
@@ -5440,11 +5461,36 @@ body, html {
     width: 100%;
     height: 108px; }
 
-.portfolio-list-style img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  height: 300px;
-  width: 100%; }
+.portfolio-list-style {
+  position: relative;
+  padding: 3px !important; }
+  .portfolio-list-style img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    width: 100%; }
+    @media (max-width: 39.9em) {
+      .portfolio-list-style img {
+        height: 100vw; } }
+    @media (min-width: 40em) and (max-width: 63.9em) {
+      .portfolio-list-style img {
+        height: 50vw; } }
+    @media (min-width: 64em) {
+      .portfolio-list-style img {
+        height: 333.33px; } }
+
+.admin-portfolio-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
+.work-detail-desc-admin {
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 5px;
+  margin-bottom: 20px; }
 
 .admin-about-style {
   padding: 20px;

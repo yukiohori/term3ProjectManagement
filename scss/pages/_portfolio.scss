@@ -41,10 +41,29 @@
 
 .port-design{
     // position: relative;
+    @include respond-to(mobile) {
+        height: 100vw;
+    }
+    @include respond-to(tablet) {
+        height: 50vw;
+    }
+    @include respond-to(desktop) {
+        height: 333.33px;
+    }
     padding: 3px;
+    img{
+        object-fit: cover;
+        height: 100%;
+    }
+}
+
+.portfolio-flex{
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .port-animate{
+    height: 100%;
     opacity: 0;
     transition: all 1s ease;
     transform: translateY(50%);
