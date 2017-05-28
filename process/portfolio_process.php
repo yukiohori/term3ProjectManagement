@@ -22,7 +22,6 @@ if(!$conn){
         $query = "DELETE FROM portfolio_tb WHERE id=".$id;
 
     }else if($type==0){
-        // var_dump($_FILES);
         $firstImage="";
         $otherImage="";
         $passed=false;
@@ -54,7 +53,54 @@ if(!$conn){
         
     }else{
         $title = mysqli_real_escape_string($conn, $_POST['title']);
-        $query = "UPDATE portfolio_tb SET portfolio_title='".$title."',portfolio_image='".$image."', portfolio_content='".$description."',portfolio_image_option='".$description."', portfolio_embed='".$embed."' WHERE id=".$id;
+        $imageEdit=explode('@',$_POST['imageEdit']);
+        $otherImage="";
+        if(count($imageEdit)!=0){
+            for($i=0;$i<count($imageEdit);$i+=1){
+                if($i==0){
+                    $firstImage=$imageEdit[0];
+                }else{
+                    $otherImage.=$imageEdit[$i];
+                }
+            }
+        }
+
+        
+
+        $passed=false;
+        if(count($_FILES)!=0){
+            for($i=0;$i<count($_FILES);$i+=1){
+                $index = "image".$i;
+                if(isset($_FILES[$index])){
+                    $file_name = $_FILES[$index]['name'];
+                    $file_name_tmp = $_FILES[$index]['tmp_name'];
+                    $file_new_name = '../img/portfolio/';
+                    $full_path = $file_new_name . basename($_FILES[$index]["name"]);
+                    $http_path = 'img/portfolio/'.basename($_FILES[$index]["name"]);
+                    if(move_uploaded_file($file_name_tmp, $full_path)){
+                        if($i==0){
+                            if($firstImage!=""){
+                                $otherImage.=$http_path."@";
+                            }else{
+                                $firstImage=$http_path;
+                            }
+                        }else{
+                            $otherImage.=$http_path."@";
+                        }
+                        $passed=true;
+                    }else{
+                        $passed=false;
+                    }
+                }
+            }
+            if($passed){
+                $otherImage=rtrim($otherImage,'@');
+                $query = "UPDATE portfolio_tb SET portfolio_title='".$title."',portfolio_image='".$firstImage."', portfolio_image_option='".$otherImage."',portfolio_content='".$description."', portfolio_embed='".$embed."' WHERE id=".$id;
+            }
+        }else{
+            $otherImage=rtrim($otherImage,'@');
+            $query = "UPDATE portfolio_tb SET portfolio_title='".$title."',portfolio_image='".$firstImage."', portfolio_image_option='".$otherImage."',portfolio_content='".$description."', portfolio_embed='".$embed."' WHERE id=".$id;
+        }
     }
 
     $result = mysqli_query($conn,$query);

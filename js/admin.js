@@ -554,19 +554,36 @@
                 $scope.type=0;
                 $scope.description="";
                 $scope.embed="";
+                $scope.img=[];
                 $scope.yosAppVar.images=[];
             }else{
                 $scope.img=[];
+                $scope.id=newPort.id;
                 $scope.type=1;
                 $scope.title=newPort.portfolio_title;
                 $scope.description=newPort.portfolio_content;
                 $scope.embed=newPort.portfolio_embed;
                 $scope.img.push(newPort.portfolio_image);
+                if(newPort.portfolio_image_option!=""){
+                    for(var i=0;i<newPort.portfolio_image_option.split('@').length;i+=1){
+                        $scope.img.push(newPort.portfolio_image_option.split('@')[i]);
+                    }
+                }
                 $scope.yosAppVar.images=[];
                 // $scope.img.
             }
             $scope.modalForm=true;
         };
+
+        $scope.deleteImageUpdate=(index)=>{
+            let upImage=[];
+            for(var i=0;i<$scope.img.length;i+=1){
+                if(i!=index){
+                    upImage.push($scope.img[i]);
+                }
+            }
+            $scope.img=upImage;
+        }
 
         $scope.closeModalBoxForm = () => {
             $scope.modalForm=false;
@@ -583,9 +600,9 @@
                 formData.append('id', $scope.id);
                 angular.forEach($scope.yosAppVar.images,function(file,key){
                     var imageObj = 'image'+ key;
-                    console.log(imageObj);
-                formData.append(imageObj, file.file);
+                    formData.append(imageObj, file.file);
                 });
+                formData.append('imageEdit', $scope.img.join('@'));
                 formData.append('title', $scope.title);
                 formData.append('description', $scope.description);
                 formData.append('embed',$scope.embed);

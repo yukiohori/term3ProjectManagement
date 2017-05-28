@@ -48,7 +48,7 @@
 					<div class="text-center"><h3>PREVIEW</h3></div>
 					<div class="image-container">
 						<div class="image-flex" ng-repeat="file in img">
-							<p ng-click="yosAppVar.removeImages($index)">X</p>
+							<p ng-click="deleteImageUpdate($index)">X</p>
 							<img ng-src={{file}} />
 						</div>
 						<div class="image-flex" ng-repeat="file in yosAppVar.images">

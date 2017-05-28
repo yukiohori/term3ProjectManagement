@@ -79,7 +79,52 @@
     padding: 5px;
 }
 
+.modalbox-style-potfolio{
+    overflow: auto;
+    i{
+        color: white;
+    }
+}
 
+.small-img-portfolio{
+    display: flex;
+    flex-direction: column;
+}
+
+.embed-style{
+    margin: auto;
+    width: 80vw;
+    height: 70vh;
+}
+
+.image-portfolio-section{
+    overflow: auto;
+    padding: 30px;
+    img{
+        width:100%;
+    }
+}
+
+.embed-portfolio-section{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.option-portfolio{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    a{
+        padding: 10px 15px;
+        border:3px solid white;
+        color: white;
+        margin: 0 10px;
+    }
+}
 
 // -----------------------------------------------------------------------------
 // END Portfolio Page

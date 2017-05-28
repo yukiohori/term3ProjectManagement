@@ -24,67 +24,39 @@
 <div class="portfolio-style-content">
 	<div class="row portfolio-flex">
 		<div class="small-12 medium-6 large-4 column port-design" ng-repeat="x in portfolio">
-			<div id='image{{$index}}' class="port-animate set-relative" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('image{{$index}}')}">
+			<div ng-click="openDetailPortfolio(x)" id='image{{$index}}' class="port-animate set-relative" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('image{{$index}}')}">
 				<img ng-src="{{x.portfolio_image}}" alt="" />
-				<div class="work-detail-desc">
-					<i class="fa fa-cube" aria-hidden="true"></i>
+				<div ng-show="x.moreOption" class="work-detail-desc">
+					<i ng-show="x.embedShow" class="fa fa-cube" aria-hidden="true"></i>
+					<i ng-show="x.multiShow" class="fa fa-clone" aria-hidden="true"></i>
 				</div>
 			</div>
 		</div>
-		<!--<div class="small-12 medium-6 large-4 column port-design">
-			<div id='image1' class="port-animate set-relative" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('image1')}">
-				<img src="img/no-image.png" alt="" />
-				<div class="work-detail-desc">
-					<i class="fa fa-cube" aria-hidden="true"></i>
+	</div>
+</div>
+
+<div id="modalBox" class="modalbox-bg" ng-class="{'modalbox-show':detailModalBox}">
+	<div class="modalbox-style-potfolio">
+		<div class="option-portfolio">
+			<a ng-click="changeShowMode(0)">IMAGE</a>
+			<a ng-show="embedCode!=''" ng-click="changeShowMode(1)">EMBED</a>
+			<i ng-click="changeShowMode(2)" class="fa fa-2x fa-times" aria-hidden="true"></i>
+		</div>
+		<div ng-show="showMode==0" class="image-portfolio-section">
+			<div class="small-12 medium-12 large-2 column small-img-portfolio">
+				<div ng-repeat="port in imageListPostfolio">
+					<img ng-click="selectedImagePort(port)" ng-src="{{port}}" alt="{{port}}">
 				</div>
 			</div>
-		</div>
-		<div class="small-12 medium-6 large-4 column port-design">
-			<div id='image2' class="port-animate set-relative" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('image2')}">
-				<img src="img/no-image.png" alt="" />
+			<div class="large-10 column show-for-large">
+				<img ng-src="{{imgSelected}}" alt="{{imgSelected}}">
 			</div>
 		</div>
-		<div class="small-12 medium-6 large-4 column port-design">
-			<div id='image3' class="port-animate set-relative" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('image3')}">
-				<img src="img/no-image.png" alt="" />
-			</div>
+		<div ng-show="showMode==1" class="embed-portfolio-section text-center">
+			<iframe class="embed-style" width="640px" height="360px" src="{{embedCode}}" 
+			frameborder="0" allowfullscreen mozallowfullscreen="true" 
+			webkitallowfullscreen="true" onmousewheel="" scrolling="no"> </iframe>
 		</div>
-		<div class="small-12 medium-6 large-4 column port-design">
-			<div id='image4' class="port-animate set-relative" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('image4')}">
-				<img src="img/no-image.png" alt="" />
-			</div>
-		</div>
-		<div class="small-12 medium-6 large-4 column port-design">
-			<div id='image5' class="port-animate set-relative" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('image5')}">
-				<img src="img/no-image.png" alt="" />
-				<div class="work-detail-desc">
-					<i class="fa fa-cube" aria-hidden="true"></i> <i class="fa fa-clone" aria-hidden="true"></i>
-				</div>
-			</div>
-		</div>
-		<div class="small-12 medium-6 large-4 column port-design">
-			<div id='image6' class="port-animate set-relative" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('image6')}">
-				<img src="img/no-image.png" alt="" />
-			</div>
-		</div>
-		<div class="small-12 medium-6 large-4 column port-design">
-			<div id='image7' class="port-animate set-relative" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('image7')}">
-				<img src="img/no-image.png" alt="" />
-				<div class="work-detail-desc">
-					<i class="fa fa-clone" aria-hidden="true"></i>
-				</div>
-			</div>
-		</div>
-		<div class="small-12 medium-6 large-4 column port-design">
-			<div id='image8' class="port-animate set-relative" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('image8')}">
-				<img src="img/no-image.png" alt="" />
-			</div>
-		</div>
-		<div class="small-12 medium-6 large-4 column port-design">
-			<div id='image9' class="port-animate set-relative" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('image9')}">
-				<img src="img/no-image.png" alt="" />
-			</div>
-		</div>-->
 	</div>
 </div>
 

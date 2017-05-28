@@ -4190,6 +4190,7 @@ body {
   top: 0; }
 
 .modalbox-bg {
+  z-index: 999;
   background-color: black;
   position: fixed;
   width: 100%;
@@ -4759,6 +4760,62 @@ body, html {
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 5px; }
+
+.modalbox-style-potfolio {
+  overflow: auto; }
+  .modalbox-style-potfolio i {
+    color: white; }
+
+.small-img-portfolio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+.embed-style {
+  margin: auto;
+  width: 80vw;
+  height: 70vh; }
+
+.image-portfolio-section {
+  overflow: auto;
+  padding: 30px; }
+  .image-portfolio-section img {
+    width: 100%; }
+
+.embed-portfolio-section {
+  height: 80vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.option-portfolio {
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .option-portfolio a {
+    padding: 10px 15px;
+    border: 3px solid white;
+    color: white;
+    margin: 0 10px; }
 
 .contact-style {
   height: 75vh;

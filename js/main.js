@@ -175,7 +175,7 @@
         });
 	});
 
-    yosApp.controller('blogController', function($scope, $http, $location , $sce, $window, yosAppVar) {
+    yosApp.controller('blogController', function($scope, $http, $location , $window, yosAppVar) {
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=true;
         $scope.yosAppVar.menuFooter=true;
@@ -231,8 +231,6 @@
             $scope.yosAppVar.changePage("blog_detail");
         }
 
-        // $scope.embed=$sce.trustAsHtml($scope.blog[0].blog_embed);
-
         // function updateiframe(){
         //     for(var i=0;i<$scope.blog.length;i+=1){
         //         $scope.blog[i].blog_index=i;
@@ -282,16 +280,21 @@
 
         $http.get("process/skill.php?type=1")
         .then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             $scope.skill = response.data;
         });
 	});
 
-    yosApp.controller('portfolioController', function($scope,$http,$window,yosAppVar) {
+    yosApp.controller('portfolioController', function($scope,$http,$window,yosAppVar,$sce) {
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=true;
         $scope.yosAppVar.menuFooter=true;
+        $scope.detailModalBox=false;
         $scope.yosAppVar.animationState={};
+        $scope.imgSelected="";
+        $scope.showMode=0;
+
+        $scope.embedCode="";
 
         uploadPortfolio();
         
@@ -300,6 +303,40 @@
             $scope.yosAppVar.changePanel=false;
         });
 
+        $scope.openDetailPortfolio=(portObj)=>{
+            console.log(portObj);
+            $scope.imageListPostfolio=[];
+            $scope.imageListPostfolio.push(portObj.portfolio_image);
+            $scope.imgSelected=portObj.portfolio_image;
+            $scope.embedCode="";
+
+            if(portObj.portfolio_image_option!=""){
+                let imageMore=portObj.portfolio_image_option.split('@');
+                for(var i=0;i<imageMore.length;i+=1){
+                    $scope.imageListPostfolio.push(imageMore[i]);
+                }
+            }
+
+            if(portObj.portfolio_embed!="")
+            $scope.embedCode=$sce.trustAsResourceUrl("https://www.artstation.com/embed/"+portObj.portfolio_embed);
+
+            $scope.detailModalBox=true;
+        }
+
+        $scope.changeShowMode=(mode)=>{
+            
+            if(mode==2){
+                $scope.showMode=0;
+                $scope.detailModalBox=false;
+            }else{
+                $scope.showMode=mode;
+            }
+        }
+
+        $scope.selectedImagePort=(src)=>{
+            $scope.imgSelected=src;
+        }
+
         function uploadPortfolio(){
             $http.get("process/portfolio.php")
             .then(function (response) {
@@ -307,10 +344,22 @@
                 $scope.portfolio = response.data;
                 for(var i=0;i<$scope.portfolio.length;i+=1){
                     $scope.portfolio[i].portfolio_index=i;
+                    $scope.portfolio[i].moreOption=false;
+                    if($scope.portfolio[i].portfolio_embed!=""){
+                        $scope.portfolio[i].moreOption=true;
+                        $scope.portfolio[i].embedShow=true;
+                    }else{
+                        $scope.portfolio[i].embedShow=false;
+                    }
+                    if($scope.portfolio[i].portfolio_image_option!=""){
+                        $scope.portfolio[i].moreOption=true;
+                        $scope.portfolio[i].multiShow=true;
+                    }else{
+                        $scope.portfolio[i].multiShow=false;
+                    }
                 }
             });
         }
-
 	});
 
 	yosApp.controller('contactController', function($scope, yosAppVar) {
