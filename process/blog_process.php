@@ -20,6 +20,12 @@ if(!$conn){
             // echo $t[0];
         }
         $query = "DELETE FROM blog_tb WHERE blog_id=".$id;
+        if (mysqli_query($conn, $query)) {
+             $query = "DELETE FROM blogCategory_tb WHERE blog_id=".$id;
+             if (mysqli_query($conn, $query)) {
+                echo "1";
+            }
+        }
 
     }else if($type==0){
         $mydate=getdate(date("U"));

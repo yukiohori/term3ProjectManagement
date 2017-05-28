@@ -12,7 +12,6 @@ if(!$conn){
     $embed = mysqli_real_escape_string($conn, $_POST['embed']);
     
     if($type==-1){
-          
         // echo $content;
         $s = explode('src=\"',$description);
         for($i=1;$i<count($s);$i+=1){

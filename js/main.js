@@ -157,8 +157,10 @@
         $http.get("process/blog.php?type=2")
         .then(function (response) {
             $scope.blog = response.data;
+            for(var i=0;i<$scope.blog.length;i+=1){
+                $scope.blog[i].categoryNameArray=$scope.blog[i].categoryName.split(',');
+            }
         });
-
 	});
 
     yosApp.controller('introController', function($scope, yosAppVar) {
@@ -192,6 +194,9 @@
             $scope.entryLimit = 5;
             $scope.filteredItems = $scope.blog.length;
             $scope.totalItems = $scope.blog.length;
+            for(var i=0;i<$scope.blog.length;i+=1){
+                $scope.blog[i].categoryNameArray=$scope.blog[i].categoryName.split(',');
+            }
             // console.log($scope.filteredItems);
             // updateiframe();
         });
@@ -221,8 +226,8 @@
             $scope.reverse = !$scope.reverse;
         };
 
-        $scope.selectBlog=function(index){
-            localStorage.setItem("blog_id",$scope.blog[index].id);
+        $scope.selectBlog=function(){
+            localStorage.setItem("blog_id",this.$parent.x.blog_id);
             $scope.yosAppVar.changePage("blog_detail");
         }
 
@@ -275,7 +280,7 @@
             $scope.yosAppVar.changePanel=false;
         });
 
-        $http.get("process/skill.php")
+        $http.get("process/skill.php?type=1")
         .then(function (response) {
             console.log(response.data);
             $scope.skill = response.data;

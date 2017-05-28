@@ -3,7 +3,7 @@
   overflow: hidden;
   position: relative;
   line-height: 1.2em;
-  max-height: 7.2em;
+  max-height: 6em;
   text-align: justify;
   margin-right: -1em;
   padding-right: 1em; }
@@ -4928,6 +4928,24 @@ body, html {
   .blog-short-content div {
     text-align: center;
     width: 100%; }
+  .blog-short-content .category-style {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    text-align: center;
+    width: 100%; }
+  .blog-short-content .each-category {
+    width: auto !important;
+    margin: 3px;
+    padding: 5px 7px;
+    border: 2px solid #242424 !important; }
+    .blog-short-content .each-category a {
+      color: #242424 !important; }
 
 .read-more-btn {
   background-color: #242424;
@@ -4949,11 +4967,18 @@ body, html {
       flex-wrap: wrap;
   text-align: center;
   width: 100%; }
-
-.each-category {
-  margin: 3px;
-  padding: 5px 7px;
-  border: 2px solid white; }
+  .category-style .each-category {
+    width: auto !important;
+    margin: 3px;
+    padding: 5px 7px;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all 1s ease; }
+    .category-style .each-category:hover {
+      box-shadow: inset 0 0 0 50px white;
+      border: 2px solid white; }
+      .category-style .each-category:hover a {
+        color: #242424 !important; }
 
 .blogdetail-style {
   position: relative;
@@ -5490,11 +5515,21 @@ body, html {
 .skill-box-admin {
   margin: 50px auto;
   background-color: white;
-  padding: 20px; }
+  padding-left: 20px; }
   .skill-box-admin h1 {
     color: #242424; }
   .skill-box-admin p {
     margin: 0; }
+
+.skill-form-style {
+  padding: 10px; }
+  .skill-form-style a {
+    background-color: #242424;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer; }
+  .skill-form-style .skill-btn-submit {
+    padding: 20px; }
 
 .about-skill-bar-admin {
   background-color: #006666;

@@ -4,12 +4,14 @@
     'use strict';
     var yosApp = angular.module('yosapp', ['ngRoute','ngSanitize','ngAnimate']);
 
-    yosApp.factory('yosAppVar', function ($location, $window) {
+    yosApp.factory('yosAppVar', function ($location, $window,$http) {
         var yosAppVar={};
         yosAppVar.menuState=false;
         yosAppVar.menuActive=false;
         yosAppVar.currenctPage="";
         yosAppVar.images=[];
+        yosAppVar.about="";
+        yosAppVar.skill=[];
 
         yosAppVar.openShowMenu = function(){
             yosAppVar.menuActive=!yosAppVar.menuActive;
@@ -43,9 +45,26 @@
             $window.scrollTo(0, 0);
         };
 
-        yosAppVar.logout= function(){
+        yosAppVar.logout = function(){
             $location.path("/login");
         };
+
+        yosAppVar.updateAbout = function(){
+            $http.get("process/about_process.php?type=1")
+            .then(function (response) {
+                yosAppVar.about = response.data[0];
+            });
+        }
+
+        yosAppVar.updateSkill = function(){
+            $http.get("process/skill.php?type=1")
+            .then(function (response) {
+                yosAppVar.skill = response.data;
+                for(var i=0;i<yosAppVar.skill.length;i+=1){
+                    yosAppVar.skill[i].skillEdit=false;
+                }
+            });
+        }
 
         return yosAppVar;
     });
@@ -266,9 +285,8 @@
             $scope.modalForm=false;
         }
 
-        $scope.deleteBlog = function(index){
-            $scope.id=$scope.blog[index].id;
-            $scope.content=$scope.blog[index].blog_content;
+        $scope.deleteBlog = function(){
+            $scope.id=this.x.blog_id;
             $http({
 			  method  : 'POST',
 			  url     : 'process/blog_process.php',
@@ -277,16 +295,14 @@
 			      var formData = new FormData();
                   formData.append("type", -1);
                   formData.append("id", $scope.id);
-                  formData.append("content",$scope.content );
 			      return formData;  
-			  }, 
+			  },
 			  data : $scope.form,
 			  headers: {
 			         'Content-Type': undefined
 			  }
             }).then((responce) => {
-                // console.log(responce.data);
-                uploadBlog();
+                updateBlog();
             });
         };
 
@@ -336,7 +352,6 @@
 
         function convertToStringCategories(){
             let sCategories="";
-            // console.log('ad');
             for(var i=0;i<$scope.category.length;i+=1){
                 if($scope.category[i].checkBox==true){
                     sCategories+=$scope.category[i].id+",";
@@ -345,7 +360,6 @@
             if(sCategories.charAt(sCategories.length - 1)==","){
                 sCategories=sCategories.substring(0, sCategories.length-1);
             }
-            // console.log(sCategories);
             return sCategories;
         }
 
@@ -355,23 +369,130 @@
         $scope.yosAppVar = yosAppVar;
         $scope.yosAppVar.menuState=true;
         $scope.aboutForm=false;
+        $scope.skillForm=false;
+        $scope.skillIcon=null;
+        $scope.skillName="";
+        $scope.skillLevel="";
+        $scope.type=0;
 
-        $http.get("process/about_process.php?type=1")
-        .then(function (response) {
-            $scope.about = response.data[0];
-        });
+        $scope.yosAppVar.updateAbout();
+        $scope.yosAppVar.updateSkill();
         
-        $http.get("process/skill.php")
-        .then(function (response) {
-            console.log(response.data);
-            $scope.skill = response.data;
-        });
 
-        $scope.showAboutForm = () =>{
+        $scope.showAboutForm = () => {
             if(!$scope.aboutForm)
-            aboutEd.setData($scope.about.content);
+            aboutEd.setData($scope.yosAppVar.about.content);
 
             $scope.aboutForm=!$scope.aboutForm;
+        }
+
+        $scope.showSkillForm = () => {
+            for(var i=0;i<$scope.yosAppVar.skill.length;i+=1){
+                $scope.yosAppVar.skill[i].skillEdit=false;
+            }
+            $scope.skillForm=!$scope.skillForm;
+            if($scope.skillForm)
+            $scope.type=2;
+        }
+
+        $scope.submitAboutContent = () => {
+	      	$http({
+			  method  : 'POST',
+			  url     : 'process/about_process.php?type=2',
+			  processData: false,
+			  transformRequest: function (data) {
+			      var formData = new FormData();
+                  formData.append("content", aboutEd.getData());
+			      return formData;
+			  }, 
+			  data : $scope.form,
+			  headers: {
+			         'Content-Type': undefined
+			  }
+            }).then((responce) => {
+               $scope.yosAppVar.updateAbout();
+               $scope.aboutForm=false;
+            });
+        };
+
+        $scope.submitSkill = (number,id,index) => {
+            console.log(id);
+            $scope.type = number;
+            $scope.skillIconFlag=0;
+            if($scope.skillIcon!=null){
+                $scope.skillIconFlag=1;
+                $scope.skillIcon=$scope.skillIcon[0];
+            }
+
+            if(number==3){
+                $scope.skillName=$scope.yosAppVar.skill[index].skill_name;
+                $scope.skillLevel=$scope.yosAppVar.skill[index].skill_level;
+            }
+	      	$http({
+			  method  : 'POST',
+			  url     : 'process/skill.php',
+			  processData: false,
+			  transformRequest: function (data) {
+			      var formData = new FormData();
+                  formData.append("type", $scope.type);
+                  formData.append("id", id);
+                  formData.append("skillIcon", $scope.skillIcon);
+                  formData.append("skillIconFlag", $scope.skillIconFlag);
+                  formData.append("skillName", $scope.skillName);
+                  formData.append("skillLevel", $scope.skillLevel);
+			      return formData;
+			  },
+			  data : $scope.form,
+			  headers: {
+			         'Content-Type': undefined
+			  }
+            }).then((responce) => {
+                $scope.skillName="";
+                $scope.skillLevel="";
+                $scope.skillIcon=null;
+                $scope.yosAppVar.updateSkill();
+            });
+        };
+
+        $scope.deleteSkill = (index) => {
+	      	$http({
+			  method  : 'POST',
+			  url     : 'process/skill.php',
+			  processData: false,
+			  transformRequest: function (data) {
+			      var formData = new FormData();
+                  formData.append("type", 4);
+                  formData.append("id", index);
+			      return formData;
+			  },
+			  data : $scope.form,
+			  headers: {
+			         'Content-Type': undefined
+			  }
+            }).then((responce) => {
+                $scope.yosAppVar.updateSkill();
+            });
+        };
+
+        $scope.editFormShow=(index)=>{
+            $scope.skillForm=false;
+            $scope.skillIcon=null;
+            if($scope.yosAppVar.skill[index].skillEdit){
+                $scope.yosAppVar.skill[index].skillEdit=false;
+            }else{
+                for(var i=0;i<$scope.yosAppVar.skill.length;i+=1){
+                    $scope.yosAppVar.skill[i].skillEdit=false;
+                }
+                $scope.yosAppVar.skill[index].skillEdit=true;
+            }
+            
+           
+        }
+
+        $scope.setIconSkill=(element)=>{
+            $scope.$apply(function($scope) {
+                $scope.skillIcon=element.files;    
+            });
         }
 
 	});

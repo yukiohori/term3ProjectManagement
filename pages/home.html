@@ -138,8 +138,13 @@
 					<img ng-src="{{x.blog_img}}" />
 				</div>
 				<div class="remove-margin small-12 medium-6 large-6 column blog-short-content">
+					<div class="category-style" >
+						<div class="each-category" ng-repeat="ca in x.categoryNameArray">
+							<a ng-bind="ca"></a>
+						</div>
+					</div>
 					<h1 class="text-center" ng-bind="x.blog_title"></h1>
-					<div class="block-with-text" ng-bind-html="x.blog_content"></div>
+					<!--<div class="block-with-text" ng-bind-html="x.blog_content"></div>-->
 					<div class="text-center">
 						<a ng-click="selectBlog(x.blog_index)" class="read-more-btn">READ MORE</a>
 					</div>

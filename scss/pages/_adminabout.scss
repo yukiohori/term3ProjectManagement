@@ -78,12 +78,25 @@
 .skill-box-admin{
     margin: 50px auto;
     background-color: white;
-    padding: 20px;
+    padding-left: 20px;
     h1{
         color: #242424;
     }
     p{
         margin: 0;
+    }
+}
+
+.skill-form-style{
+    padding: 10px;
+    a{
+        background-color: #242424;
+        color: white;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+    .skill-btn-submit{
+        padding: 20px;
     }
 }
 
