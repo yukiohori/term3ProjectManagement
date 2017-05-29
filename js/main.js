@@ -19,7 +19,6 @@
                 
                 yosAppVar.scroll=this.scrollY;
                 for(key in yosAppVar.animationState){
-                    // console.log(yosAppVar.getoffsetTop(key));
                     if(yosAppVar.scroll>yosAppVar.getoffsetTop(key)){
                         yosAppVar.animationState[key]=true;
                     }else{
@@ -60,7 +59,7 @@
         yosAppVar.getoffsetTop = function(object){
             var element = angular.element(document.querySelector('#'+object));
             // console.log(element[0].offsetTop);
-            return element[0].offsetTop-($window.innerHeight-100);
+            return element[0].offsetTop-($window.innerHeight-300);
         }
 
         yosAppVar.changePage=(dir)=>{
@@ -150,7 +149,6 @@
        };
        
        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
-            yosAppVar.currenctPage="/home";
             $scope.yosAppVar.changePanel=false;
         });
 
@@ -163,16 +161,52 @@
         });
 	});
 
-    yosApp.controller('introController', function($scope, yosAppVar) {
+    yosApp.controller('introController', function($scope, yosAppVar,preloader ) {
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=false;
         $scope.yosAppVar.menuFooter=false;
         yosAppVar.animationState={};
 
-        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
-            yosAppVar.currenctPage="/intro";
-            $scope.yosAppVar.changePanel=false;
-        });
+        yosAppVar.changePanel=true;
+
+        $scope.isLoading = true;
+        $scope.isSuccessful = false;
+        $scope.percentLoaded = 0;
+
+        $scope.imageLocations = [
+            ("img/intro/img1.jpg"),
+            ("img/intro/img3.jpg"),
+            ("img/intro/img4.jpg"),
+            ("img/bg-image3.jpg"),
+            ("img/contact-bg.jpg"),
+            ("img/bg-image.jpg"),
+            ("img/bg-image2.jpg"),
+            ("img/portfolio-bg.jpg")
+        ];
+
+        preloader.preloadImages( $scope.imageLocations ).then(
+            function handleResolve( imageLocations ) {
+                $scope.isLoading = false;
+                $scope.isSuccessful = true;
+                $scope.yosAppVar.changePanel=false;
+                console.info( "Preload Successful" );
+            },
+            function handleReject( imageLocation ) {
+                $scope.isLoading = false;
+                $scope.isSuccessful = false;
+                console.error( "Image Failed", imageLocation );
+                console.info( "Preload Failure" );
+            },
+            function handleNotify( event ) {
+                $scope.percentLoaded = event.percent;
+                console.info( "Percent loaded:", event.percent );
+            }
+        );
+
+        // $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+        //     $scope.yosAppVar.changePanel=false;
+        // });
+
 	});
 
     yosApp.controller('blogController', function($scope, $http, $location , $window, yosAppVar) {
@@ -197,13 +231,11 @@
             for(var i=0;i<$scope.blog.length;i+=1){
                 $scope.blog[i].categoryNameArray=$scope.blog[i].categoryName.split(',');
             }
-            // console.log($scope.filteredItems);
-            // updateiframe();
         });
 
         $http.get("process/category_process.php?type=1")
         .then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             $scope.category = response.data;
         });
 
@@ -230,14 +262,6 @@
             localStorage.setItem("blog_id",this.$parent.x.blog_id);
             $scope.yosAppVar.changePage("blog_detail");
         }
-
-        // function updateiframe(){
-        //     for(var i=0;i<$scope.blog.length;i+=1){
-        //         $scope.blog[i].blog_index=i;
-        //         $scope.blog[i].blog_embed=$sce.trustAsHtml($scope.blog[i].blog_embed);
-        //         $scope.blog[i].blog_content=$scope.blog[i].blog_content;
-        //     }
-        // }
         
 	});
 
@@ -373,6 +397,119 @@
             $scope.yosAppVar.changePanel=false;
         });
 	});
+
+    yosApp.factory(
+            "preloader",
+            function( $q, $rootScope ) {
+                function Preloader( imageLocations ) {
+                    this.imageLocations = imageLocations;
+                    this.imageCount = this.imageLocations.length;
+                    this.loadCount = 0;
+                    this.errorCount = 0;
+
+                    this.states = {
+                        PENDING: 1,
+                        LOADING: 2,
+                        RESOLVED: 3,
+                        REJECTED: 4
+                    };
+
+                    this.state = this.states.PENDING;
+                    this.deferred = $q.defer();
+                    this.promise = this.deferred.promise;
+                }
+
+                Preloader.preloadImages = function( imageLocations ) {
+                    var preloader = new Preloader( imageLocations );
+                    return( preloader.load() );
+                };
+
+                Preloader.prototype = {
+                    constructor: Preloader,
+
+                    isInitiated: function isInitiated() {
+                        return( this.state !== this.states.PENDING );
+                    },
+                    isRejected: function isRejected() {
+                        return( this.state === this.states.REJECTED );
+                    },
+
+                    isResolved: function isResolved() {
+                        return( this.state === this.states.RESOLVED );
+                    },
+                    load: function load() {
+
+                        if ( this.isInitiated() ) {
+                            return( this.promise );
+                        }
+                        this.state = this.states.LOADING;
+                        for ( var i = 0 ; i < this.imageCount ; i++ ) {
+                            this.loadImageLocation( this.imageLocations[ i ] );
+                        }
+
+                        return( this.promise );
+                    },
+
+                    handleImageError: function handleImageError( imageLocation ) {
+                        this.errorCount++;
+
+                        if ( this.isRejected() ) {
+                            return;
+                        }
+                        this.state = this.states.REJECTED;
+                        this.deferred.reject( imageLocation );
+                    },
+
+                    handleImageLoad: function handleImageLoad( imageLocation ) {
+                        this.loadCount++;
+                        if ( this.isRejected() ) {
+                            return;
+                        }
+                        this.deferred.notify({
+                            percent: Math.ceil( this.loadCount / this.imageCount * 100 ),
+                            imageLocation: imageLocation
+                        });
+
+                        if ( this.loadCount === this.imageCount ) {
+                            this.state = this.states.RESOLVED;
+                            this.deferred.resolve( this.imageLocations );
+                        }
+                    },
+
+                    loadImageLocation: function loadImageLocation( imageLocation ) {
+                        var preloader = this;
+
+                        var image = $( new Image() )
+                            .load(
+                                function( event ) {
+
+                                    $rootScope.$apply(
+                                        function() {
+                                            preloader.handleImageLoad( event.target.src );
+
+                                            preloader = image = event = null;
+                                        }
+                                    );
+                                }
+                            )
+                            .error(
+                                function( event ) {
+
+                                    $rootScope.$apply(
+                                        function() {
+                                            preloader.handleImageError( event.target.src );
+                                            preloader = image = event = null;
+                                        }
+                                    );
+                                }
+                            )
+                            .prop( "src", imageLocation )
+                        ;
+                    }
+                };
+                return( Preloader );
+            }
+        );
 
 // END Angular Section
 
