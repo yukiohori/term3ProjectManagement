@@ -1,3 +1,10 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['userName'])){
+		echo '<script>window.location.replace("http://localhost:3000/term3ProjectManagement/dashboard.html")</script>';
+	}else{
+?>
+
 <div class='admin-style'>
 
 	<div class="box-top">
@@ -12,4 +19,7 @@
 		</div>
 	</div>
 	
-</div>	
+</div>
+<?php
+	}
+?>

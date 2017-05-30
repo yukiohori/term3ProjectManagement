@@ -15,6 +15,19 @@
         width: 100%;
         text-align: center;
     }
+    input[type=text]{
+        margin: 0 10px;
+        color: #242424;
+        padding: 8px 10px;
+        border: none;
+        background-color: transparent;
+        border-bottom: 2px solid #242424;
+        border-left: 2px solid #242424;
+        &:active{
+            background-color: transparent;
+        }
+    }
+    
 }
 
 .blog-content-admin{
@@ -55,6 +68,7 @@
 }
 
 .option-list-style{
+    z-index: 1;
     text-align: center;
     // background-color: white;
     position: absolute;
@@ -95,7 +109,8 @@
         background-color: #242424;
         color: white;
         padding: 5px 10px;
-        // margin: 10px 5px 0px 0px;
+        margin: 10px;
+        // margin-left: 10px;
         cursor: pointer;
     }
     textarea{
@@ -159,6 +174,7 @@
     input{
         width: auto !important;
     }
+
 }
 
 .category-row{

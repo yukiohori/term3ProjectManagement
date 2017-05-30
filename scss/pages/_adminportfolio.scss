@@ -2,19 +2,36 @@
 // Welcome Page
 // -----------------------------------------------------------------------------
 
-.admin-about-style{
+.admin-portfolio-style{
 
-    background-color:#242424;
-    h2 {
-        text-align: center;
-        margin: 0;
-        color: $white-color;
-    }
-
+    padding: 20px;
+    background-color: #242424;
     h1{
         color: white;
         width: 100%;
         text-align: center;
+    }
+    input[type=text]{
+        color: #242424;
+        padding: 8px 10px;
+        border: none;
+        background-color: transparent;
+        border-bottom: 2px solid #242424;
+        border-left: 2px solid #242424;
+        &:active{
+            background-color: transparent;
+        }
+    }
+    textarea{
+        color: #242424;
+        padding: 8px 10px;
+        border: none;
+        background-color: transparent;
+        border-bottom: 2px solid #242424;
+        border-left: 2px solid #242424;
+        &:active{
+            background-color: transparent;
+        }
     }
 }
 

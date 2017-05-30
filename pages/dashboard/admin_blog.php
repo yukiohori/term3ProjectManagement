@@ -1,3 +1,10 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['userName'])){
+		echo '<script>window.location.replace("http://localhost:3000/term3ProjectManagement/dashboard.html")</script>';
+	}else{
+?>
+
 <div class='admin-blog-style'>
 	<h1>ADMIN BLOG PAGE</h1>
 
@@ -34,7 +41,8 @@
 		<div class="modalbox-style">
 			<form class="about-form-style" ng-submit="submit()">
 				<div class="form-close-btn-blog">
-					<a class="remove-margin" ng-click="changeTabBlog(1)">Title</a><a ng-click="changeTabBlog(2)">Content</a>
+					<a class="remove-margin" ng-click="changeTabBlog(1)">Title</a>
+					<a class="remove-margin" ng-click="changeTabBlog(2)">Content</a>
 					<i ng-click="closeModalBoxForm()" class="fa fa-2x fa-times" aria-hidden="true"></i>
 				</div>
 				<div class="form-top-bar-about" ></div>
@@ -88,4 +96,7 @@
 		
 	</script>
 	
-</div>	
+</div>
+<?php
+	}
+?>

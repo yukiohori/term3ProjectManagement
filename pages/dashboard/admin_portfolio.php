@@ -1,4 +1,11 @@
-<div class='admin-about-style'>
+<?php
+	session_start();
+	if(!isset($_SESSION['userName'])){
+		echo '<script>window.location.replace("http://localhost:3000/term3ProjectManagement/dashboard.html")</script>';
+	}else{
+?>
+
+<div class='admin-portfolio-style'>
 	<h1>ADMIN PORTFOLIO PAGE</h1>
 	<div class="row admin-portfolio-list">
 		<div class="small-12 medium-6 large-4 column portfolio-list-style" ng-repeat="x in filtered = (portfolio)">
@@ -48,7 +55,7 @@
 					<div class="text-center"><h3>PREVIEW</h3></div>
 					<div class="image-container">
 						<div class="image-flex" ng-repeat="file in img">
-							<p ng-click="deleteImageUpdate($index)">X</p>
+							<div><i ng-click="deleteImageUpdate($index)" class="fa fa-times" aria-hidden="true"></i></div>
 							<img ng-src={{file}} />
 						</div>
 						<div class="image-flex" ng-repeat="file in yosAppVar.images">
@@ -61,4 +68,7 @@
 		</div>
 	</div>
 	
-</div>	
+</div>
+<?php
+	}
+?>

@@ -1,5 +1,5 @@
 <div class="intro-div">
-    <div class="intro">
+    <div ng-show="isSuccessful" class="intro">
         <div class="intro-image-left clearfix">
         </div>
         <div class="intro-image-right clearfix">
@@ -15,5 +15,12 @@
         <div class="next-style" ng-click="yosAppVar.changePage('home')">
             <i class="fa fa-2x fa-chevron-down" aria-hidden="true"></i>
         </div>
+    </div>
+    <div ng-show="isLoading" class="loading">
+       <!--<img src="img/loading5.gif" />-->
+        <div class="loading-pos">
+            <img src="img/loading3.gif" />
+        </div>
+       <a ng-click="changeLoading()">LOADING</a>
     </div>
 </div>

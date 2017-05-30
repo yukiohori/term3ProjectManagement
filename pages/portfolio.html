@@ -1,10 +1,3 @@
-
-<!--<div class="overlay-gradient">
-	
-</div>-->
-<!--<div class='portfolio-style'>
-	<h1>MY WORKS</h1>
-</div>-->
 <div class='portfolio-style'>
 	<div class="home-welcome">
 		
@@ -37,27 +30,37 @@
 
 <div id="modalBox" class="modalbox-bg" ng-class="{'modalbox-show':detailModalBox}">
 	<div class="modalbox-style-potfolio">
-		<div class="option-portfolio">
-			<a ng-click="changeShowMode(0)">IMAGE</a>
-			<a ng-show="embedCode!=''" ng-click="changeShowMode(1)">EMBED</a>
-			<i ng-click="changeShowMode(2)" class="fa fa-2x fa-times" aria-hidden="true"></i>
-		</div>
-		<div ng-show="showMode==0" class="image-portfolio-section">
-			<div class="small-12 medium-12 large-2 column small-img-portfolio">
-				<div ng-repeat="port in imageListPostfolio">
-					<img ng-click="selectedImagePort(port)" ng-src="{{port}}" alt="{{port}}">
+		<div class="small-12 medium-12 large-9 column">
+			<div class="option-portfolio">
+				<a ng-click="changeShowMode(0)"><i class="fa fa-clone" aria-hidden="true"></i>IMAGE</a>
+				<a ng-show="embedCode!=''" ng-click="changeShowMode(1)"><i class="fa fa-cube" aria-hidden="true"></i>EMBED</a>
+			</div>
+			<div ng-show="showMode==0" class="image-portfolio-section">
+				<div class="small-12 medium-12 large-2 column small-img-portfolio">
+					<div ng-repeat="port in imageListPostfolio">
+						<img ng-click="selectedImagePort(port)" ng-src="{{port}}" alt="{{port}}">
+					</div>
+				</div>
+				<div class="large-10 column show-for-large">
+					<img ng-src="{{imgSelected}}" alt="{{imgSelected}}">
 				</div>
 			</div>
-			<div class="large-10 column show-for-large">
-				<img ng-src="{{imgSelected}}" alt="{{imgSelected}}">
+			<div ng-show="showMode==1" class="embed-portfolio-section text-center">
+				<iframe class="embed-style" width="640px" height="360px" src="{{embedCode}}" 
+				frameborder="0" allowfullscreen mozallowfullscreen="true" 
+				webkitallowfullscreen="true" onmousewheel="" scrolling="no"> </iframe>
 			</div>
 		</div>
-		<div ng-show="showMode==1" class="embed-portfolio-section text-center">
-			<iframe class="embed-style" width="640px" height="360px" src="{{embedCode}}" 
-			frameborder="0" allowfullscreen mozallowfullscreen="true" 
-			webkitallowfullscreen="true" onmousewheel="" scrolling="no"> </iframe>
+		<div class="small-12 medium-12 large-3 column option-portfolio-content">
+			<h2 ng-bind="titlePort"></h2>
+			<p ng-bind="ContentPort"></p>
+			<div class="contact-info">
+				<h4>Share</h4>
+				<img src="img/social/google-plus.svg"  alt="Google + social icon" />
+                <img src="img/social/twitter.svg"  alt="Twitter social icon" />
+			</div>
+			<i ng-click="changeShowMode(2)" class="fa fa-2x fa-times" aria-hidden="true"></i>
+
 		</div>
 	</div>
 </div>
-
-<!--<ng-include src="'partials/footer.html'"></ng-include>-->

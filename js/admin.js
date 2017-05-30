@@ -2,7 +2,7 @@
 // Angular Section
 (function(){
     'use strict';
-    var yosApp = angular.module('yosapp', ['ngRoute','ngSanitize','ngAnimate']);
+    var yosApp = angular.module('yosapp', ['ngRoute','ngSanitize']);
 
     yosApp.factory('yosAppVar', function ($location, $window,$http) {
         var yosAppVar={};
@@ -51,12 +51,15 @@
 
         yosAppVar.goChangePassAdmin = function(){
             yosAppVar.menuActive=false;
-            $location.path("/change");
+            $location.path("/changepwd");
             $window.scrollTo(0, 0);
         };
 
         yosAppVar.logout = function(){
-            $location.path("/login");
+            $http.get("process/login.php?type=-1")
+            .then(function (response) {
+                $location.path("/login");
+            });
         };
 
         yosAppVar.updateAbout = function(){
@@ -151,22 +154,27 @@
             })
 
             .when('/admin', {
-                templateUrl : 'pages/dashboard/admin.html',
+                templateUrl : 'pages/dashboard/admin.php',
                 controller  : 'adminController'
             })
 
             .when('/blog', {
-                templateUrl : 'pages/dashboard/admin_blog.html',
+                templateUrl : 'pages/dashboard/admin_blog.php',
                 controller  : 'adminBlogController'
             })
 
+            .when('/changepwd', {
+                templateUrl : 'pages/dashboard/changepwd.php',
+                controller  : 'changepwdController'
+            })
+
             .when('/portfolio', {
-                templateUrl : 'pages/dashboard/admin_portfolio.html',
+                templateUrl : 'pages/dashboard/admin_portfolio.php',
                 controller  : 'adminPortfolioController'
             })
 
             .when('/about', {
-                templateUrl : 'pages/dashboard/admin_about.html',
+                templateUrl : 'pages/dashboard/admin_about.php',
                 controller  : 'adminAboutController'
             })
             .otherwise({redirectTo:'/'});
@@ -174,7 +182,6 @@
         $locationProvider.hashPrefix('');
     });
 
-   
     yosApp.controller('loginController', function($scope, $http,$location,yosAppVar) {
         $scope.yosAppVar = yosAppVar;
         $scope.yosAppVar.menuState=false;
@@ -183,14 +190,26 @@
         $scope.error="";
 
         $scope.login = function(){
-            var req = {
-                method: 'POST',
-                url: 'process/login.php',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                data: 'username='+$scope.userName+'&passwd='+$scope.userPwd
-            }
 
-            $http(req).then(function(response){
+            $http({
+                method  : 'POST',
+                url     : 'process/login.php',
+                processData: false,
+                transformRequest: function (data) {
+
+                    var formData = new FormData();
+                    formData.append("type", 1);
+                    formData.append("username", $scope.userName);
+                    formData.append("passwd", $scope.userPwd);
+                    return formData;
+
+                }, 
+                data : $scope.form,
+                headers: {
+                        'Content-Type': undefined
+                }
+            }).then(function(response){
+                console.log(response.data);
                 if(response.data=="1"){
                     $location.path("/admin");
                 }else{
@@ -213,7 +232,6 @@
         $scope.blogForm=1;
         $scope.newCagegoryForm=false;
         $scope.categories = [];
-        // localStorage.setItem("admin_blog",1);
 
         updateBlog();
         updateCategories();
@@ -247,7 +265,6 @@
 			         'Content-Type': undefined
 			  }
             }).then((responce) => {
-                console.log("FROM : "+responce.data);
                 updateBlog();
                 $scope.modalForm=false;
             });
@@ -317,7 +334,6 @@
         };
 
         $scope.changeContentBlog = function(){
-            console.log(this.x.blog_id);
             $scope.id=this.x.blog_id;
             $scope.type=1;
             $scope.title=this.x.blog_title;
@@ -356,7 +372,6 @@
                 for(var i=0;i<$scope.category.length;i+=1){
                     $scope.category[i].checkBox = false;
                 }
-                console.log($scope.category);
             });
         }
 
@@ -426,7 +441,6 @@
         };
 
         $scope.submitSkill = (number,id,index) => {
-            console.log(id);
             $scope.type = number;
             $scope.skillIconFlag=0;
             if($scope.skillIcon!=null){
@@ -507,15 +521,51 @@
 
 	});
 
-
     yosApp.controller('adminController', function($scope,yosAppVar,$timeout) {
         $scope.yosAppVar = yosAppVar;
         $scope.yosAppVar.menuState=true;
 		
-        $timeout(function () {
-             $scope.yosAppVar.menuActive=true;
-        }, 2000);
+        // $timeout(function () {
+        //      $scope.yosAppVar.menuActive=true;
+        // }, 2000);
 
+	});
+
+    yosApp.controller('changepwdController', function($scope,yosAppVar,$http) {
+        $scope.yosAppVar = yosAppVar;
+        $scope.yosAppVar.menuState=true;
+		
+        $scope.userPwd="";
+        $scope.userPwd2="";
+        $scope.error="";
+
+        $scope.changePwd = function(){
+
+            if($scope.userPwd!=$scope.userPwd2){
+                $scope.error="Passwords are not the same";
+            }else{
+                $http({
+                    method  : 'POST',
+                    url     : 'process/login.php',
+                    processData: false,
+                    transformRequest: function (data) {
+
+                        var formData = new FormData();
+                        formData.append("type", 2);
+                        formData.append("passwd", $scope.userPwd);
+                        return formData;
+
+                    }, 
+                    data : $scope.form,
+                    headers: {
+                            'Content-Type': undefined
+                    }
+                }).then(function(response){
+                    $scope.error=response.data;
+                    $scope.yosAppVar.logout();
+                });
+            }
+        };
 	});
 
     yosApp.controller('adminPortfolioController', function($scope,$http,yosAppVar) {
@@ -643,11 +693,7 @@
         function uploadPortfolio(){
             $http.get("process/portfolio.php")
             .then(function (response) {
-                // console.log(response.data);
                 $scope.portfolio = response.data;
-                // for(var i=0;i<$scope.portfolio.length;i+=1){
-                //     $scope.portfolio[i].portfolio_index=i;
-                // }
             });
         }
 	});

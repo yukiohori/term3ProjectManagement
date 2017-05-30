@@ -1,7 +1,7 @@
 
 // Angular Section
 
-    var yosApp = angular.module('yosapp', ['ngRoute','ngSanitize','ngAnimate']);
+    var yosApp = angular.module('yosapp', ['ngRoute','ngSanitize']);
 
     yosApp.filter('startFrom', function() {
         return function(input, start) {
@@ -126,7 +126,7 @@
         $locationProvider.hashPrefix('');
     });
 
-	yosApp.controller('mainController', function($scope, $http, $window, yosAppVar) {
+	yosApp.controller('mainController', function($scope, $http, $window, yosAppVar,preloader) {
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=true;
         $scope.yosAppVar.menuFooter=true;
@@ -134,6 +134,23 @@
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             $scope.yosAppVar.changePanel=false;
         });
+
+        $scope.imageLocations = [
+        ];
+
+        preloader.preloadImages( $scope.imageLocations ).then(
+                function handleResolve( imageLocations ) {
+                    $scope.isLoading = false;
+                    $scope.isSuccessful = true;
+                },
+                function handleReject( imageLocation ) {
+                    $scope.isLoading = false;
+                    $scope.isSuccessful = false;
+                },
+                function handleNotify( event ) {
+                    $scope.percentLoaded = event.percent;
+                }
+            );
        
 	});
 
@@ -165,9 +182,9 @@
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=false;
         $scope.yosAppVar.menuFooter=false;
-        yosAppVar.animationState={};
+        $scope.yosAppVar.animationState={};
 
-        yosAppVar.changePanel=true;
+        // $scope.yosAppVar.changePanel=true;
 
         $scope.isLoading = true;
         $scope.isSuccessful = false;
@@ -179,33 +196,34 @@
             ("img/intro/img4.jpg"),
             ("img/bg-image3.jpg"),
             ("img/contact-bg.jpg"),
+            ("img/about/about-bg.png"),
             ("img/bg-image.jpg"),
             ("img/bg-image2.jpg"),
             ("img/portfolio-bg.jpg")
         ];
 
+        $scope.changeLoading=()=>{
+            $scope.isSuccessful = !$scope.isSuccessful;
+        }
+
         preloader.preloadImages( $scope.imageLocations ).then(
             function handleResolve( imageLocations ) {
                 $scope.isLoading = false;
                 $scope.isSuccessful = true;
-                $scope.yosAppVar.changePanel=false;
-                console.info( "Preload Successful" );
             },
             function handleReject( imageLocation ) {
                 $scope.isLoading = false;
                 $scope.isSuccessful = false;
-                console.error( "Image Failed", imageLocation );
-                console.info( "Preload Failure" );
             },
             function handleNotify( event ) {
-                $scope.percentLoaded = event.percent;
-                console.info( "Percent loaded:", event.percent );
+                // $scope.percentLoaded = event.percent;
+                // console.info( "Percent loaded:", event.percent );
             }
         );
 
-        // $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
-        //     $scope.yosAppVar.changePanel=false;
-        // });
+        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+            $scope.yosAppVar.changePanel=false;
+        });
 
 	});
 
@@ -281,7 +299,6 @@
             $scope.blog = response.data[0];
         });
 	});
-
     
 	yosApp.controller('aboutController', function($scope, $http, yosAppVar) {
         $scope.yosAppVar=yosAppVar;
@@ -315,10 +332,12 @@
         $scope.yosAppVar.menuFooter=true;
         $scope.detailModalBox=false;
         $scope.yosAppVar.animationState={};
+
         $scope.imgSelected="";
         $scope.showMode=0;
-
         $scope.embedCode="";
+        $scope.titlePort="";
+        $scope.ContentPort="";
 
         uploadPortfolio();
         
@@ -332,6 +351,8 @@
             $scope.imageListPostfolio=[];
             $scope.imageListPostfolio.push(portObj.portfolio_image);
             $scope.imgSelected=portObj.portfolio_image;
+            $scope.titlePort=portObj.portfolio_title;
+            $scope.ContentPort=portObj.portfolio_content;
             $scope.embedCode="";
 
             if(portObj.portfolio_image_option!=""){

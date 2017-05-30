@@ -5,14 +5,30 @@
 .admin-about-style{
     padding: 20px;
     background-color: #242424;
+    h1{
+        color: white;
+        width: 100%;
+        text-align: center;
+    }
     .about-admin-content{
         position: relative;
         margin: 1% auto;
         background-color: white;
         padding: 40px;
-        h1,h2,h3,h4,h5,h6,p,div{
+        h2,h3,h4,h5,h6,p,div{
             text-align: left;
             color: #242424;;
+        }
+    }
+    input[type=text]{
+        color: #242424;
+        padding: 8px 10px;
+        border: none;
+        background-color: transparent;
+        border-bottom: 2px solid #242424;
+        border-left: 2px solid #242424;
+        &:active{
+            background-color: transparent;
         }
     }
     
@@ -76,6 +92,7 @@
 }
 
 .skill-box-admin{
+    position: relative;
     margin: 50px auto;
     background-color: white;
     padding-left: 20px;
@@ -87,6 +104,10 @@
     }
 }
 
+.skil-max-bar{
+    padding-right: 25px;
+}
+
 .skill-form-style{
     padding: 10px;
     a{
@@ -94,6 +115,7 @@
         color: white;
         padding: 5px 10px;
         cursor: pointer;
+        margin: 0 10px;
     }
     .skill-btn-submit{
         padding: 20px;

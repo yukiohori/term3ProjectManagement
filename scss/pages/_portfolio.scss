@@ -41,6 +41,7 @@
 
 .port-design{
     // position: relative;
+    cursor: pointer;
     @include respond-to(mobile) {
         height: 100vw;
     }
@@ -82,6 +83,7 @@
 .modalbox-style-potfolio{
     overflow: auto;
     i{
+        margin: 0 10px;
         color: white;
     }
 }
@@ -89,6 +91,9 @@
 .small-img-portfolio{
     display: flex;
     flex-direction: column;
+    img{
+        margin-bottom: 15px;
+    }
 }
 
 .embed-style{
@@ -124,6 +129,19 @@
         color: white;
         margin: 0 10px;
     }
+}
+
+.option-portfolio-content{
+    padding: 20px;
+    color: white;
+    @include respond-to(desktop) {
+        height: 100vh;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #006666;
 }
 
 // -----------------------------------------------------------------------------
