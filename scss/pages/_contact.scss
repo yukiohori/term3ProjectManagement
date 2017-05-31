@@ -16,6 +16,9 @@
         color: #242424;
         position: absolute;
     }
+    @include respond-to(mobile) {
+        background-position: -250px;
+    }
 }
 
 .contact-style-content{

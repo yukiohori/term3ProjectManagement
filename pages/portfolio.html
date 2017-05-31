@@ -16,7 +16,7 @@
 </div>
 <div class="portfolio-style-content">
 	<div class="row portfolio-flex">
-		<div class="small-12 medium-6 large-4 column port-design" ng-repeat="x in portfolio">
+		<div class="small-12 medium-6 large-4 column port-design" ng-repeat="x in yosAppVar.portfolio">
 			<div ng-click="openDetailPortfolio(x)" id='image{{$index}}' class="port-animate set-relative" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('image{{$index}}')}">
 				<img ng-src="{{x.portfolio_image}}" alt="" />
 				<div ng-show="x.moreOption" class="work-detail-desc">

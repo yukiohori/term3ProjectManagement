@@ -355,7 +355,12 @@
             $scope.indexBlog=0;
             $http.get("process/blog.php?type=1")
             .then(function (response) {
-                $scope.blog = response.data;
+                console.log(response.data);
+                if(response.data[0]!="1"){
+                    $scope.blog = response.data;
+                }
+
+                
             });
         }
 

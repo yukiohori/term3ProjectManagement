@@ -30,35 +30,93 @@
         };
     });
 
-    yosApp.factory('yosAppVar', function ($location,$timeout,$window) {
+    yosApp.factory('yosAppVar', function ($location,$timeout,$window,$http) {
         var yosAppVar={};
         yosAppVar.menuState=true;
         yosAppVar.menuFooter=true;
         yosAppVar.menuShow=false;
         yosAppVar.changePanel=false;
         yosAppVar.currenctPage=$location.url();
-        yosAppVar.blog;
         yosAppVar.scroll=0;
         yosAppVar.animationState={};
+
+        //about Section
+        yosAppVar.about="";
+        yosAppVar.skill=[];
+
+        //blog Section
+        yosAppVar.blog=[];
+        yosAppVar.filteredItems = 0;
+        yosAppVar.totalItems = 0;
+        yosAppVar.category=[];
+        
+        //Portfolio Section
+        yosAppVar.portfolio=[];
+        yosAppVar.portfolioImages=[];
 
         yosAppVar.showMenuBtn = () => {
             yosAppVar.menuShow=!yosAppVar.menuShow;
         }
 
-        yosAppVar.changePage=(dir) => {
-            if(yosAppVar.currenctPage!="/"+dir){
-                yosAppVar.changePanel=true;
-                $timeout(function () {
-                    yosAppVar.menuShow=false;
-                    $window.scrollTo(0, 0);
-                    $location.path("/"+dir);
-                }, 1000);
-            }
+        yosAppVar.updateAbout = () => {
+            $http.get("process/about_process.php?type=1")
+            .then(function (response) {
+                yosAppVar.about = response.data[0];
+            });
         }
+
+        yosAppVar.updateSkill = () =>{
+             $http.get("process/skill.php?type=1")
+            .then(function (response) {
+                yosAppVar.skill = response.data;
+            });
+        }
+
+        yosAppVar.updateBlog = () =>{
+            $http.get("process/blog.php?type=1")
+            .then(function (response) {
+                yosAppVar.blog = response.data;
+                yosAppVar.filteredItems = yosAppVar.blog.length;
+                yosAppVar.totalItems = yosAppVar.blog.length;
+                for(var i=0;i<yosAppVar.blog.length;i+=1){
+                    yosAppVar.blog[i].categoryNameArray=yosAppVar.blog[i].categoryName.split(',');
+                }
+            });
+        }
+
+        yosAppVar.updateCategory= () =>{
+            $http.get("process/category_process.php?type=1")
+            .then(function (response) {
+                yosAppVar.category = response.data;
+            });
+        }
+
+        yosAppVar.updatePortfolio = () =>{
+            $http.get("process/portfolio.php")
+            .then(function (response) {
+                yosAppVar.portfolio = response.data;
+                for(var i=0;i<yosAppVar.portfolio.length;i+=1){
+                    yosAppVar.portfolio[i].portfolio_index=i;
+                    yosAppVar.portfolio[i].moreOption=false;
+                    if(yosAppVar.portfolio[i].portfolio_embed!=""){
+                        yosAppVar.portfolio[i].moreOption=true;
+                        yosAppVar.portfolio[i].embedShow=true;
+                    }else{
+                        yosAppVar.portfolio[i].embedShow=false;
+                    }
+                    if(yosAppVar.portfolio[i].portfolio_image_option!=""){
+                        yosAppVar.portfolio[i].moreOption=true;
+                        yosAppVar.portfolio[i].multiShow=true;
+                    }else{
+                        yosAppVar.portfolio[i].multiShow=false;
+                    }
+                }
+            });
+        }
+
 
         yosAppVar.getoffsetTop = function(object){
             var element = angular.element(document.querySelector('#'+object));
-            // console.log(element[0].offsetTop);
             return element[0].offsetTop-($window.innerHeight-300);
         }
 
@@ -138,19 +196,25 @@
         $scope.imageLocations = [
         ];
 
+        yosAppVar.updateBlog();
+        yosAppVar.updateCategory();
+        yosAppVar.updateAbout();
+        yosAppVar.updateSkill();
+        yosAppVar.updatePortfolio();
+
         preloader.preloadImages( $scope.imageLocations ).then(
-                function handleResolve( imageLocations ) {
-                    $scope.isLoading = false;
-                    $scope.isSuccessful = true;
-                },
-                function handleReject( imageLocation ) {
-                    $scope.isLoading = false;
-                    $scope.isSuccessful = false;
-                },
-                function handleNotify( event ) {
-                    $scope.percentLoaded = event.percent;
-                }
-            );
+            function handleResolve( imageLocations ) {
+                $scope.isLoading = false;
+                $scope.isSuccessful = true;
+            },
+            function handleReject( imageLocation ) {
+                $scope.isLoading = false;
+                $scope.isSuccessful = false;
+            },
+            function handleNotify( event ) {
+                $scope.percentLoaded = event.percent;
+            }
+        );
        
 	});
 
@@ -191,15 +255,15 @@
         $scope.percentLoaded = 0;
 
         $scope.imageLocations = [
-            ("img/intro/img1.jpg"),
-            ("img/intro/img3.jpg"),
-            ("img/intro/img4.jpg"),
-            ("img/bg-image3.jpg"),
-            ("img/contact-bg.jpg"),
-            ("img/about/about-bg.png"),
-            ("img/bg-image.jpg"),
-            ("img/bg-image2.jpg"),
-            ("img/portfolio-bg.jpg")
+            "img/intro/img1.jpg",
+            "img/intro/img3.jpg",
+            "img/intro/img4.jpg",
+            "img/bg-image3.jpg",
+            "img/contact-bg.jpg",
+            "img/about/about-bg.png",
+            "img/bg-image.jpg",
+            "img/bg-image2.jpg",
+            "img/portfolio-bg.jpg"
         ];
 
         $scope.changeLoading=()=>{
@@ -210,6 +274,7 @@
             function handleResolve( imageLocations ) {
                 $scope.isLoading = false;
                 $scope.isSuccessful = true;
+                console.log('loaded!');
             },
             function handleReject( imageLocation ) {
                 $scope.isLoading = false;
@@ -232,29 +297,13 @@
         $scope.yosAppVar.menuState=true;
         $scope.yosAppVar.menuFooter=true;
         $scope.blogIndex=0;
-        yosAppVar.animationState={};
-
+        $scope.yosAppVar.animationState={};
+        $scope.currentPage = 1;
+        $scope.entryLimit = 5;
+        
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             yosAppVar.currenctPage="/blog";
             $scope.yosAppVar.changePanel=false;
-        });
-
-        $http.get("process/blog.php?type=1")
-        .then(function (response) {
-            $scope.blog = response.data;
-            $scope.currentPage = 1;
-            $scope.entryLimit = 5;
-            $scope.filteredItems = $scope.blog.length;
-            $scope.totalItems = $scope.blog.length;
-            for(var i=0;i<$scope.blog.length;i+=1){
-                $scope.blog[i].categoryNameArray=$scope.blog[i].categoryName.split(',');
-            }
-        });
-
-        $http.get("process/category_process.php?type=1")
-        .then(function (response) {
-            // console.log(response.data);
-            $scope.category = response.data;
         });
 
         $scope.setPage = function(pageNo) {
@@ -264,12 +313,11 @@
 
         $scope.updatePagination = function() {
             let indexFor=[];
-            for(var i=0;i<(Math.ceil($scope.filteredItems / $scope.entryLimit));i+=1){
+            for(var i=0;i<(Math.ceil($scope.yosAppVar.filteredItems / $scope.entryLimit));i+=1){
                 indexFor.push(i+1);
             }
             return indexFor;
         };
-
         
         $scope.sort_by = function(predicate) {
             $scope.predicate = predicate;
@@ -277,7 +325,8 @@
         };
 
         $scope.selectBlog=function(){
-            localStorage.setItem("blog_id",this.$parent.x.blog_id);
+            // console.log(this.$parent);
+            localStorage.setItem("blog_id",this.$parent.$index);
             $scope.yosAppVar.changePage("blog_detail");
         }
         
@@ -288,16 +337,18 @@
         $scope.yosAppVar.menuState=true;
         $scope.yosAppVar.menuFooter=true;
         yosAppVar.animationState={};
+        $scope.blogDetail=$scope.yosAppVar.blog[localStorage.getItem("blog_id")];
 
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+            
             yosAppVar.currenctPage="/blog_detail";
             $scope.yosAppVar.changePanel=false;
         });
 
-        $http.get("process/blog.php?id="+localStorage.getItem("blog_id")+"&page=2")
-        .then(function (response) {
-            $scope.blog = response.data[0];
-        });
+        // $http.get("process/blog.php?id="+localStorage.getItem("blog_id")+"&page=2")
+        // .then(function (response) {
+        //     $scope.blog = response.data[0];
+        // });
 	});
     
 	yosApp.controller('aboutController', function($scope, $http, yosAppVar) {
@@ -308,22 +359,11 @@
             section1:false
         };
 
-        $http.get("process/about_process.php?type=1")
-        .then(function (response) {
-            // console.log(response.data[0]);
-            $scope.about = response.data[0];
-        });
-
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             yosAppVar.currenctPage="/about";
             $scope.yosAppVar.changePanel=false;
         });
 
-        $http.get("process/skill.php?type=1")
-        .then(function (response) {
-            // console.log(response.data);
-            $scope.skill = response.data;
-        });
 	});
 
     yosApp.controller('portfolioController', function($scope,$http,$window,yosAppVar,$sce) {
@@ -338,8 +378,6 @@
         $scope.embedCode="";
         $scope.titlePort="";
         $scope.ContentPort="";
-
-        uploadPortfolio();
         
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             yosAppVar.currenctPage="/portfolio";
@@ -382,29 +420,6 @@
             $scope.imgSelected=src;
         }
 
-        function uploadPortfolio(){
-            $http.get("process/portfolio.php")
-            .then(function (response) {
-                console.log(response.data);
-                $scope.portfolio = response.data;
-                for(var i=0;i<$scope.portfolio.length;i+=1){
-                    $scope.portfolio[i].portfolio_index=i;
-                    $scope.portfolio[i].moreOption=false;
-                    if($scope.portfolio[i].portfolio_embed!=""){
-                        $scope.portfolio[i].moreOption=true;
-                        $scope.portfolio[i].embedShow=true;
-                    }else{
-                        $scope.portfolio[i].embedShow=false;
-                    }
-                    if($scope.portfolio[i].portfolio_image_option!=""){
-                        $scope.portfolio[i].moreOption=true;
-                        $scope.portfolio[i].multiShow=true;
-                    }else{
-                        $scope.portfolio[i].multiShow=false;
-                    }
-                }
-            });
-        }
 	});
 
 	yosApp.controller('contactController', function($scope, yosAppVar) {

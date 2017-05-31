@@ -22,10 +22,11 @@
         while($r = mysqli_fetch_assoc($result)) {
             $rows[] = $r;
         }
-        
-        header('Content-type: application/json');
-        echo json_encode($rows);
+        if(isset($rows)){
+            header('Content-type: application/json');
+            echo json_encode($rows);
+        }else{
+            echo "1";
+        }
     }
-
-
 ?>

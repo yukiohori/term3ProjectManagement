@@ -60,7 +60,7 @@
 </div>
 <div class="about-home-bgcontent">
 	<div class="row text-center">
-		<h2>MY WORKS</h2>
+		<h2>PORTFOLIO</h2>
 	</div>
 	<div class="work-first-bg clearfix">
 		<div class="small-12 medium-12 large-12 column work-home-style">
@@ -69,7 +69,7 @@
 			</div>
 			<div class="small-12 medium-12 large-12 column remove-padding">
 				<div class="work-home-style-content">
-					<h2 class="text-center">My work 1</h2>
+					<h2 class="text-center">Portfolio 1</h2>
 					<p>Description</p>
 				</div>
 			</div>
@@ -120,7 +120,7 @@
 			</div>
 			<div class="small-12 medium-12 large-12 column">
 				<div class="work-home-style-leftcontent remove-padding">
-					<h2 class="text-center">My work 2</h2>
+					<h2 class="text-center">Portfolio 2</h2>
 					<p>Description</p>
 				</div>
 			</div>
@@ -128,31 +128,29 @@
 	</div>
 </div>
 <div class="about-home-content">
-	<div class="row skill-home-row">
-		<div class="small-12 medium-12 large-12 column text-center">
-			<h2>MY BLOG</h2>
-		</div>
-		<div class="small-12 medium-12 large-12 column text-center remove-padding">
-			<div class="row blog-style-each" ng-repeat="x in blog" ng-show="$first">
-				<div class="blog-short-image remove-padding small-12 medium-6 large-6 column text-center">
-					<img ng-src="{{x.blog_img}}" />
+	<div class="small-12 medium-12 large-12 column text-center">
+		<h2>MY BLOG</h2>
+	</div>
+	<div class="small-12 medium-12 large-12 column text-center remove-padding">
+		<div class="row blog-style-each" ng-repeat="x in blog" ng-show="$first">
+			<div class="blog-short-image remove-padding small-12 medium-6 large-6 column text-center">
+				<img ng-src="{{x.blog_img}}" />
+			</div>
+			<div class="remove-margin small-12 medium-6 large-6 column blog-short-content">
+				<div class="category-style" >
+					<div class="each-category" ng-repeat="ca in x.categoryNameArray">
+						<a ng-bind="ca"></a>
+					</div>
 				</div>
-				<div class="remove-margin small-12 medium-6 large-6 column blog-short-content">
-					<div class="category-style" >
-						<div class="each-category" ng-repeat="ca in x.categoryNameArray">
-							<a ng-bind="ca"></a>
-						</div>
-					</div>
-					<h1 class="text-center" ng-bind="x.blog_title"></h1>
-					<!--<div class="block-with-text" ng-bind-html="x.blog_content"></div>-->
-					<div class="text-center">
-						<a ng-click="selectBlog(x.blog_index)" class="read-more-btn">READ MORE</a>
-					</div>
+				<h1 class="text-center" ng-bind="x.blog_title"></h1>
+				<!--<div class="block-with-text" ng-bind-html="x.blog_content"></div>-->
+				<div class="text-center">
+					<a ng-click="selectBlog(x.blog_index)" class="read-more-btn">READ MORE</a>
 				</div>
 			</div>
 		</div>
-		<div class="text-center">
-			<a ng-click="yosAppVar.changePage('blog')" class="home-blog-btn">READ MORE MY BLOGS</a>
-		</div>
+	</div>
+	<div class="text-center">
+		<a ng-click="yosAppVar.changePage('blog')" class="home-blog-btn">READ MORE MY BLOGS</a>
 	</div>
 </div>

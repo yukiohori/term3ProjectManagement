@@ -21,7 +21,7 @@
 			
 		</div>
 		<div class="small-12 medium-12 large-8 column">
-			<div class="home-about-style" ng-bind-html="about.content">
+			<div class="home-about-style" ng-bind-html="yosAppVar.about.content">
 			</div>
 		</div>
 	</div>
@@ -95,7 +95,7 @@
 		<div class="small-12 medium-12 large-12 column">
 			<div class="home-about-style" id="section1">
 				<h1 class="text-center">MY SKILLS</h1>
-				<div class="row about-skill-info" ng-repeat="x in skill">
+				<div class="row about-skill-info" ng-repeat="x in yosAppVar.skill">
 					<div class="small-1 medium-1 large-1 icon-skill-about column">
 						<img ng-src="{{x.skill_icon}}" />
 					</div>
