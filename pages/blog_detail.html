@@ -11,13 +11,33 @@
 		</div>
 	</div>
 </div>
+
 <div class="blog-list-detail">
+	<div class="row">
+		<div class="back-blog-page" ng-click="yosAppVar.changePage('blog')">
+			<i class="fa fa-2x fa-th" aria-hidden="true"></i><span>Back to Blog page</span>
+		</div>
+	</div>
 	<div class="row blog-detail-content">
 		<div class="small-12 medium-12 large-12 column text-center">
+			<p ng-bind="blogDetail.blog_date"></p>
 			<h1 ng-bind="blogDetail.blog_title"></h1>
+			<div class="category-style" >
+				<div class="each-category" ng-repeat="ca in blogDetail.categoryNameArray">
+					<a ng-bind="ca"></a>
+				</div>
+			</div>
 		</div>
 		<div ng-bind-html="blogDetail.blog_content" class="remove-margin small-12 medium-12 large-12 column">
 			
+		</div>
+	</div>
+	<div class="row option-blog-detail">
+		<div class="previous-blog" ng-click="previousPage()" ng-show="PreviousBlog">
+			<i class="fa fa-2x fa-arrow-left" aria-hidden="true"></i><span>Previous Blog</span>
+		</div>
+		<div class="next-blog" ng-click="nextPage()" ng-show="nextBlog">
+			<span>Next Blog</span><i class="fa fa-2x fa-arrow-right" aria-hidden="true"></i>
 		</div>
 	</div>
 </div>

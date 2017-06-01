@@ -332,23 +332,61 @@
         
 	});
 
-    yosApp.controller('blogDetailController', function($scope,$http,yosAppVar) {
+    yosApp.controller('blogDetailController', function($scope,$http,$window,$timeout,yosAppVar) {
         $scope.yosAppVar=yosAppVar;
         $scope.yosAppVar.menuState=true;
         $scope.yosAppVar.menuFooter=true;
         yosAppVar.animationState={};
-        $scope.blogDetail=$scope.yosAppVar.blog[localStorage.getItem("blog_id")];
+
+        $scope.currentIndex = parseInt(localStorage.getItem("blog_id"));
+
+        $scope.blogDetail=$scope.yosAppVar.blog[$scope.currentIndex];
+
+        updatePreviousNext();
 
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
-            
             yosAppVar.currenctPage="/blog_detail";
             $scope.yosAppVar.changePanel=false;
         });
 
-        // $http.get("process/blog.php?id="+localStorage.getItem("blog_id")+"&page=2")
-        // .then(function (response) {
-        //     $scope.blog = response.data[0];
-        // });
+        $scope.nextPage = () => {
+            $scope.currentIndex=$scope.currentIndex-1;
+            localStorage.setItem("blog_id",$scope.currentIndex);
+            yosAppVar.changePanel=true;
+            $timeout(function () {
+                yosAppVar.changePanel=false;
+                $window.scrollTo(0, 0);
+                $scope.blogDetail=$scope.yosAppVar.blog[$scope.currentIndex];
+                updatePreviousNext();
+            }, 1000);
+        }
+
+        $scope.previousPage = () => {
+            $scope.currentIndex=$scope.currentIndex+1;
+            localStorage.setItem("blog_id",$scope.currentIndex);
+            yosAppVar.changePanel=true;
+            $timeout(function () {
+                yosAppVar.changePanel=false;
+                $window.scrollTo(0, 0);
+                $scope.blogDetail=$scope.yosAppVar.blog[$scope.currentIndex];
+                updatePreviousNext();
+            }, 1000);
+        }
+
+
+        function updatePreviousNext(){
+            if($scope.currentIndex==0){
+                $scope.nextBlog=false;
+                $scope.PreviousBlog=true;
+            }else if($scope.currentIndex==($scope.yosAppVar.blog.length-1)){
+                $scope.nextBlog=true;
+                $scope.PreviousBlog=false;
+            }else{
+                $scope.nextBlog=true;
+                $scope.PreviousBlog=true;
+            }
+        }
+
 	});
     
 	yosApp.controller('aboutController', function($scope, $http, yosAppVar) {
