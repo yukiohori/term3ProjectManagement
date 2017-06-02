@@ -1,3 +1,6 @@
+// window.onbeforeunload = function(){
+//   return 'Are you sure you want to leave?';
+// };
 
 // Angular Section
 
@@ -30,7 +33,7 @@
         };
     });
 
-    yosApp.factory('yosAppVar', function ($location,$timeout,$window,$http) {
+    yosApp.factory('yosAppVar', function ($location,$timeout,$window,$http,$interval) {
         var yosAppVar={};
         yosAppVar.menuState=true;
         yosAppVar.menuFooter=true;
@@ -39,6 +42,7 @@
         yosAppVar.currenctPage=$location.url();
         yosAppVar.scroll=0;
         yosAppVar.animationState={};
+        yosAppVar.interval;
 
         //about Section
         yosAppVar.about="";
@@ -117,10 +121,15 @@
 
         yosAppVar.getoffsetTop = function(object){
             var element = angular.element(document.querySelector('#'+object));
-            return element[0].offsetTop-($window.innerHeight-300);
+            if(element[0]!=undefined){
+                return element[0].offsetTop-($window.innerHeight-300);
+            }else{
+                return 0;
+            }
         }
 
         yosAppVar.changePage=(dir)=>{
+            $interval.cancel(yosAppVar.interval);
             if(yosAppVar.currenctPage!="/"+dir){
                 yosAppVar.currenctPage="/"+dir;
                 yosAppVar.changePanel=true;
@@ -218,28 +227,38 @@
        
 	});
 
-    yosApp.controller('homeController', function($scope, $http, $window, yosAppVar) {
-       $scope.yosAppVar=yosAppVar;
-       $scope.yosAppVar.menuState=true;
-       $scope.yosAppVar.menuFooter=true;
-       $scope.animateSection1=false;
-       $scope.yosAppVar.animationState={
-           section1:false,
-           section2:false,
-           section3:false
-       };
+    yosApp.controller('homeController', function($scope, $http,$interval, yosAppVar) {
+        $scope.yosAppVar=yosAppVar;
+        $scope.yosAppVar.menuState=true;
+        $scope.yosAppVar.menuFooter=true;
+        $scope.animateSection1=false;
+        $scope.yosAppVar.animationState={
+            section1:false,
+            section2:false,
+            section3:false
+        };
+
+        $scope.blogIndex=0;
+        $scope.blogChange=yosAppVar.blog[$scope.blogIndex];
+
        
-       $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
+        $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             $scope.yosAppVar.changePanel=false;
         });
 
-        $http.get("process/blog.php?type=2")
-        .then(function (response) {
-            $scope.blog = response.data;
-            for(var i=0;i<$scope.blog.length;i+=1){
-                $scope.blog[i].categoryNameArray=$scope.blog[i].categoryName.split(',');
+        $scope.selectBlog=function(){
+            localStorage.setItem("blog_id",$scope.blogIndex);
+            $scope.yosAppVar.changePage("blog_detail");
+        }
+
+        yosAppVar.interval = $interval(function () {
+            console.log($scope.blogIndex);
+            $scope.blogChange=yosAppVar.blog[$scope.blogIndex];
+            $scope.blogIndex+=1;
+            if($scope.blogIndex>yosAppVar.blog.length-1){
+                $scope.blogIndex=0;
             }
-        });
+        }, 5000);
 	});
 
     yosApp.controller('introController', function($scope, yosAppVar,preloader ) {
@@ -263,7 +282,8 @@
             "img/about/about-bg.png",
             "img/bg-image.jpg",
             "img/bg-image2.jpg",
-            "img/portfolio-bg.jpg"
+            "img/portfolio-bg.jpg",
+            "img/home/warriorflip.png"
         ];
 
         $scope.changeLoading=()=>{
@@ -300,6 +320,11 @@
         $scope.yosAppVar.animationState={};
         $scope.currentPage = 1;
         $scope.entryLimit = 5;
+        $scope.filterBlog='';
+
+        $scope.filterSelected = (fil) => {
+            $scope.filterBlog=fil;
+        }
         
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {
             yosAppVar.currenctPage="/blog";
@@ -394,7 +419,8 @@
         $scope.yosAppVar.menuState=true;
         $scope.yosAppVar.menuFooter=true;
         yosAppVar.animationState={
-            section1:false
+            section1:false,
+            section2:false
         };
 
         $scope.$on("$routeChangeSuccess", function (event, current, previous, rejection) {

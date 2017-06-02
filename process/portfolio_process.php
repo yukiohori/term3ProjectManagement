@@ -10,6 +10,7 @@ if(!$conn){
     $id = mysqli_real_escape_string($conn, $_POST['id']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
     $embed = mysqli_real_escape_string($conn, $_POST['embed']);
+    $alt = mysqli_real_escape_string($conn, $_POST['description']);
     
     if($type==-1){
         // echo $content;
@@ -48,7 +49,7 @@ if(!$conn){
         if($passed){
             $otherImage=rtrim($otherImage,'@');
             $title = mysqli_real_escape_string($conn, $_POST['title']);
-            $query = "INSERT INTO portfolio_tb (portfolio_title,portfolio_image,portfolio_content, portfolio_image_option, portfolio_embed) VALUES ('".$title."','".$firstImage."','".$description."','".$otherImage."','".$embed."')";
+            $query = "INSERT INTO portfolio_tb (portfolio_title,portfolio_image,portfolio_content, portfolio_image_option, portfolio_embed,portfolio_alt) VALUES ('".$title."','".$firstImage."','".$description."','".$otherImage."','".$embed."','".$alt."')";
         }
         
     }else{
@@ -95,11 +96,11 @@ if(!$conn){
             }
             if($passed){
                 $otherImage=rtrim($otherImage,'@');
-                $query = "UPDATE portfolio_tb SET portfolio_title='".$title."',portfolio_image='".$firstImage."', portfolio_image_option='".$otherImage."',portfolio_content='".$description."', portfolio_embed='".$embed."' WHERE id=".$id;
+                $query = "UPDATE portfolio_tb SET portfolio_title='".$title."',portfolio_image='".$firstImage."', portfolio_image_option='".$otherImage."',portfolio_content='".$description."', portfolio_embed='".$embed."', portfolio_alt='".$alt."' WHERE id=".$id;
             }
         }else{
             $otherImage=rtrim($otherImage,'@');
-            $query = "UPDATE portfolio_tb SET portfolio_title='".$title."',portfolio_image='".$firstImage."', portfolio_image_option='".$otherImage."',portfolio_content='".$description."', portfolio_embed='".$embed."' WHERE id=".$id;
+            $query = "UPDATE portfolio_tb SET portfolio_title='".$title."',portfolio_image='".$firstImage."', portfolio_image_option='".$otherImage."',portfolio_content='".$description."', portfolio_embed='".$embed."', portfolio_alt='".$alt."' WHERE id=".$id;
         }
     }
 

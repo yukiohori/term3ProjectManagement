@@ -2,7 +2,11 @@
 
 <div class='about-style'>
 	<div class="home-welcome">
-		
+		<div class="video-background">
+			<div class="video-foreground">
+				<iframe src="https://www.youtube.com/embed/QqbTIIPZbz8?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=QqbTIIPZbz8" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
 	</div>
 	<div class="overlay-homedetail">
 		<div class="row set-relative">
@@ -12,15 +16,15 @@
 		</div>
 	</div>
 </div>
-<div class="about-home-content">
-	<div class="row set-relative">
+<div class="about-home-content about-content-bg" id="section1">
+	<div class="row set-relative" >
 		<div class="home-box-position">
 			<div class="home-box-design"></div>
 		</div>
 		<div class="small-12 medium-12 large-4 column">
 			
 		</div>
-		<div class="small-12 medium-12 large-8 column">
+		<div class="small-12 medium-12 large-8 column animate-fadeleft" ng-class="{'active-show':yosAppVar.animationState['section1']}">
 			<div class="home-about-style" ng-bind-html="yosAppVar.about.content">
 			</div>
 		</div>
@@ -28,7 +32,7 @@
 </div>
 <div class="about-bgcontent">
 	<div class="row text-center">
-		<h1 class="about-title-content">WHAT I DO?</h1>
+		<h1 class="about-title-content">WHAT I DO</h1>
 	</div>
 	<div class="row about-work-content-style">
 		<div class="small-12 medium-12 large-12 column content-whatido-style">
@@ -38,62 +42,113 @@
 			</div>
 			<div class="small-12 medium-9 large-9 column">
 				<p>
-					Creating the art assets for a game is surely one of the most important 
-					and time-consuming stages of the game production process. Blending industry
-					 competency and artistic excellence, I deliver game art to our clients 
-					 as a part of full-cycle development or as separately to the project 
-					 in progress.
+					Creating the art assets for a game is surely one of the most
+					important and time-consuming stages of the game production
+					process. I want to make games with high-quality graphics and
+					well-modeled 3D elements to attract and keep the audience in the
+					gaming world.
 				</p>
+				<p>
+					My works will help you:
+				</p>
+				<div>
+					<ul>
+						<li>To attract player’s attention before they experience the gameplay with characters and illustrations</li>
+						<li>To define the game atmosphere and make it interesting</li>
+						<li>To help players interact with game elements</li>
+						<li>To make the game visually-appealing to players</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="content-whatcenter-style clearfix">
-		<video class="video-background show-for-large" autoplay loop muted>
-			<source src = "video/about-video.mp4" type = "video/mp4">
-			Your browser does not support the video tag.
-		</video>
-		<div class="video-background-overlay">
-			
+</div>
+<div class="content-whatcenter-style clearfix">
+	<div class="row content-whatido-style">
+		<h2 class="text-center">3D MODELING</h2>
+		<div class="video-image-about">
+			<img src="img/home/body.png" alt="" />
 		</div>
+		<div class="small-12 medium-12 large-12 column">
+			<p>
+				I’m making 3D models using software such as Autodesk Maya,
+				ZBrush, photoshop and illustrator. All 3D models have animations
+				depends on scene and action.
+			</p>
+		</div>
+	</div>
+</div>
+<div class="about-bgcontent">
+	<div class="row about-work-content-style">
 		<div class="small-12 medium-12 large-12 column content-whatido-style">
-			<h2 class="text-center">3D MODELING</h2>
-			<div class="video-image-about">
-				<img src="img/about/art.png" alt="" />
-			</div>
+			<h2 class="text-center">Game Development</h2>
 			<div class="small-12 medium-12 large-12 column">
+				<h3>Unreal Engine</h3>
+				<div class="text-center">
+					<img src="img/about/Logo.png" alt="" />
+				</div>
+				<h4>What is it?</h4>
 				<p>
-					Creating the art assets for a game is surely one of the most important 
-					and time-consuming stages of the game production process. Blending industry
-					 competency and artistic excellence, we deliver game art to our clients 
-					 as a part of full-cycle development or as separately to the project 
-					 in progress. Our team embellishes your game with high-quality graphics 
-					 and well-modeled 3D elements to attract and keep the audience in the gaming world.
+					Unreal Engine 4 is the industry leader for high-end gaming
+					solutions. Whereas Unity is the ideal method for flexible and
+					cost-effective solutions, Unreal is perfect for developing an AAA title
+					highly-promoted games with high-production costs that boast truly
+					elite graphics and gameplay.
 				</p>
+				<h4>Why choose UE4?</h4>
+				<div>
+					<ul>
+						<li>When in the hands of expert developers such as ours, Unreal results in games of the highest graphic quality.</li>
+						<li>The undisputed king for first-person shooter development.</li>
+						<li>Compatibility with all the major gaming platforms allows for timely,
+						affordable cross-platform deployment.</li>
+						<li>Ideal for maximizing the immersion-factor of virtual reality due to the
+						high-functioning physics engines and real-to-life graphics.</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row about-work-content-style">
 		<div class="small-12 medium-12 large-12 column content-whatido-style">
-			<h2 class="text-center">UNREAL ENGINE</h2>
-			<div class="small-12 medium-9 large-9 column">
+			<div class="small-12 medium-12large-12 column">
+				<h3>Unity 3D</h3>
+				<div class="text-center">
+					<img src="img/about/unity.png" alt="" />
+				</div>
+				<h4>What is it?</h4>
 				<p>
-					Unreal Engine 4 is the industry leader for high-end gaming solutions. Whereas Unity 
-					is the ideal method for flexible and cost-effective solutions, Unreal is perfect 
-					for developing an AAA title — highly-promoted games with high-production costs that boast
-					 truly elite graphics and gameplay. Unreal supports a wide variety of platforms, 
-					 including Windows, OS X, iOS, Android, Xbox One, Playstation 4, and HTML5.
+					Unity is a game engine that allows developers to create
+					cross-platform solutions for PCs, mobile devices, consoles,
+					websites, and virtual reality. Software development companies
+					chose to utilize this industry-leading technology due to its ability to
+					deliver technically sharp solutions at a cost-effective price.
+					Game-Ace proudly boasts one of Europe’s largest cross-platform
+					departments that specializes in Unity. As a result, we can offer
+					affordable, custom-tailored solutions that fit within the client’s
+					timetables.
 				</p>
-			</div>
-			<div class="small-12 medium-3 large-3 column">
-				<img src="img/about/warrior.png" alt="" />
+				<h4>Why Choose Unity?</h4>
+				<div>
+					<ul>
+						<li>Visually enthralling games that support models from leading
+						graphics software, including 3ds Max, Blender, and Adobe
+						Photoshop.</li>
+						<li>Immediate deployability across the majority of platforms.</li>
+						<li>An elite game engine featuring a cutting-edge physics engine, asset
+						tracking, and scripting.</li>
+						<li>Opportunity to get involved in the dominant, emerging gaming
+						platforms, such as virtual and augmented reality.</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="about-home-content">
+<div class="about-home-content about-content-bg-skill">
 	<div class="row skill-box">
 		<div class="small-12 medium-12 large-12 column">
-			<div class="home-about-style" id="section1">
+			<div class="home-about-style" id="section2">
 				<h1 class="text-center">MY SKILLS</h1>
 				<div class="row about-skill-info" ng-repeat="x in yosAppVar.skill">
 					<div class="small-1 medium-1 large-1 icon-skill-about column">
@@ -101,7 +156,7 @@
 					</div>
 					<div class="small-11 medium-11 large-11 column">
 						<div class="remove-padding"  ng-style="{'width':(x.skill_level+'%')}">
-							<div class="about-skill-bar" ng-class="{'animate-bar-skill':yosAppVar.animationState['section1']}">
+							<div class="about-skill-bar" ng-class="{'animate-bar-skill':yosAppVar.animationState['section2']}">
 							</div>
 						</div>
 					</div>

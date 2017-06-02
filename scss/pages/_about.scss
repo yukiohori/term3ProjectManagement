@@ -4,14 +4,41 @@
 
 .about-style{
     height:100vh;
-    background-image: url("../img/about/about-bg.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    @include respond-to(tabmob) {
+        background-image: url("../img/about/about-bg.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    
     display: flex;
     align-items: center;
     justify-content: center;
-    background-attachment: fixed;
+}
+
+.video-background {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -99;
+}
+.video-foreground,
+.video-background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.about-content-bg{
+    background-color: #242424;
+}
+
+.about-content-bg-skill{
+    padding: 250px 0 !important;
+    background: linear-gradient(#242424,rgba(0, 0, 0, 0.8), #242424);
 }
 
 .about-skill-bar{
@@ -51,8 +78,14 @@
 }
 
 .about-bgcontent{
+    padding: 60px 0;
+    // background-color: rgba(0,0,0,0.7);
+    background-color: #242424;
     color: white;
-    margin: 50px 0.9375rem;
+    // margin: 50px 0;
+    h1{
+        color: #242424;
+    }
 }
 
 .content-whatido-style{
@@ -62,45 +95,25 @@
 }
 
 .content-whatcenter-style{
+    padding: 100px 0;
     position: relative;
     width: 100%;
     color: white;
+    background: linear-gradient(#242424,rgba(0, 0, 0, 0.8), #242424);
     @include respond-to(tabmob) {
         background-color: #dddddd;
-        color: #242424;
+        color: white;
         height: auto;
     }
-    
-    @include respond-to(desktop) {
-        width: 72rem;
-    }
-    
     margin: auto;
 }
 
 .video-image-about{
     text-align: center;
-    width: 50%;
-    height: 300px;
-    max-height: 300px;
+    width: 70%;
     margin: auto;
-    img{
-        height: 100%;
-    }
 }
 
-.video-background{
-    border:5px solid #006666;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
-    transform: translateX(-50%) translateY(-50%);
-}
 
 .video-background-overlay{
     border:10px solid #006666;
@@ -113,6 +126,7 @@
     z-index: -99;
 }
 .about-title-content{
+    color: white !important;
     margin-bottom: 40px;
 }
 

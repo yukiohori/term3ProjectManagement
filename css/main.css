@@ -3725,7 +3725,7 @@ p, div, input, li, span, textarea {
   font-family: 'Pavanam',arial, sans-serif; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Voces',arial, cursive; }
+  font-family: 'Cinzel', serif; }
 
 /**
  * Basic typography style for copy text
@@ -4636,10 +4636,6 @@ body, html {
 
 .about-style {
   height: 100vh;
-  background-image: url("../img/about/about-bg.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4648,8 +4644,38 @@ body, html {
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center;
-  background-attachment: fixed; }
+          justify-content: center; }
+  @media (max-width: 63.9em) {
+    .about-style {
+      background-image: url("../img/about/about-bg.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed; } }
+
+.video-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -99; }
+
+.video-foreground,
+.video-background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; }
+
+.about-content-bg {
+  background-color: #242424; }
+
+.about-content-bg-skill {
+  padding: 250px 0 !important;
+  background: linear-gradient(#242424, rgba(0, 0, 0, 0.8), #242424); }
 
 .about-skill-bar {
   transition: all 1.3s linear;
@@ -4683,48 +4709,33 @@ body, html {
   color: white; }
 
 .about-bgcontent {
-  color: white;
-  margin: 50px 0.9375rem; }
+  padding: 60px 0;
+  background-color: #242424;
+  color: white; }
+  .about-bgcontent h1 {
+    color: #242424; }
 
 @media (min-width: 64em) {
   .content-whatido-style {
     padding: 50px; } }
 
 .content-whatcenter-style {
+  padding: 100px 0;
   position: relative;
   width: 100%;
   color: white;
+  background: linear-gradient(#242424, rgba(0, 0, 0, 0.8), #242424);
   margin: auto; }
   @media (max-width: 63.9em) {
     .content-whatcenter-style {
       background-color: #dddddd;
-      color: #242424;
+      color: white;
       height: auto; } }
-  @media (min-width: 64em) {
-    .content-whatcenter-style {
-      width: 72rem; } }
 
 .video-image-about {
   text-align: center;
-  width: 50%;
-  height: 300px;
-  max-height: 300px;
+  width: 70%;
   margin: auto; }
-  .video-image-about img {
-    height: 100%; }
-
-.video-background {
-  border: 5px solid #006666;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -100;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%); }
 
 .video-background-overlay {
   border: 10px solid #006666;
@@ -4737,6 +4748,7 @@ body, html {
   z-index: -99; }
 
 .about-title-content {
+  color: white !important;
   margin-bottom: 40px; }
 
 .skill-box {
@@ -4762,7 +4774,7 @@ body, html {
     position: absolute; }
   .portfolio-style .detail-portfolio {
     position: absolute;
-    left: 0;
+    left: 10px;
     bottom: 50px; }
     .portfolio-style .detail-portfolio p {
       color: white; }
@@ -4872,7 +4884,7 @@ body, html {
     padding: 10px 15px;
     border: 3px solid white;
     color: white;
-    margin: 0 10px; }
+    margin: 10px; }
 
 .option-portfolio-content {
   padding: 20px;
@@ -5065,6 +5077,9 @@ body, html {
     @media (min-width: 40em) {
       .blog-short-image img {
         height: 100%; } }
+    @media (max-width: 39.9em) {
+      .blog-short-image img {
+        height: 50vh; } }
 
 .blog-short-content {
   padding: 50px;
@@ -5106,12 +5121,24 @@ body, html {
     border: 2px solid #242424 !important; }
     .blog-short-content .each-category a {
       color: #242424 !important; }
+  @media (max-width: 39.9em) {
+    .blog-short-content {
+      height: 50vh; }
+      .blog-short-content h1 {
+        font-size: 6vw; } }
 
 .read-more-btn {
+  padding: 6px 20px;
   background-color: #242424;
+  border: 2px solid #242424 !important;
   color: white;
-  padding: 5px;
-  cursor: pointer; }
+  cursor: pointer;
+  transition: all 0.6s ease; }
+  .read-more-btn:hover {
+    border: 5px solid white;
+    box-shadow: inset 0 0 0 30px white;
+    border: 2px solid #242424 !important;
+    color: #242424; }
 
 .filter-blog {
   margin-bottom: 10px; }
@@ -5480,6 +5507,8 @@ body, html {
     color: white;
     width: 100%;
     text-align: center; }
+  .admin-blog-style p, .admin-blog-style li {
+    color: white; }
   .admin-blog-style input[type=text] {
     margin: 0 10px;
     color: #242424;
@@ -5939,8 +5968,7 @@ body, html {
   z-index: -1; }
 
 .about-home-content {
-  overflow: hidden;
-  background-color: #dddddd; }
+  overflow: hidden; }
   @media (min-width: 64em) {
     .about-home-content {
       padding: 80px 0; } }
@@ -5955,6 +5983,9 @@ body, html {
       .about-home-content .home-about-style {
         padding: 40px; } }
 
+.set-color-blog-color {
+  color: white; }
+
 .work-small-box {
   position: relative;
   overflow: hidden; }
@@ -5963,9 +5994,11 @@ body, html {
   padding: 50px 0;
   background-color: #242424;
   color: white; }
+  .about-home-bgcontent h2 {
+    color: #242424; }
 
 .home-box-position {
-  padding: 50px;
+  padding: 150px;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -5989,6 +6022,8 @@ body, html {
 .skill-home-row {
   overflow: hidden;
   padding: 150px 0; }
+  .skill-home-row h2 {
+    color: white; }
 
 .work-first-bg {
   margin-top: 50px;
@@ -6026,7 +6061,7 @@ body, html {
 
 .list-home-works {
   position: relative;
-  background-color: #dddddd; }
+  background-color: #242424; }
   .list-home-works img {
     -o-object-fit: cover;
        object-fit: cover;
@@ -6095,6 +6130,9 @@ body, html {
     border: 5px solid #006666;
     box-shadow: inset 0 0 0 90px white;
     color: #242424; }
+
+.home-portfolio-button {
+  margin: 100px 0 70px 0; }
 
 .home-blog-btn {
   padding: 10px 20px;

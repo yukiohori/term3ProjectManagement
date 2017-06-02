@@ -27,7 +27,18 @@
 
                     $hashed_pwd=$row['user_pwd'];
 
-                    $match = password_verify($userpw,$hashed_pwd);
+                    function verify_password_hash($strPassword, $strHash){
+                        if (function_exists('password_verify')) {
+                            // php >= 5.5
+                            $boolReturn = password_verify($strPassword, $strHash);
+                        } else {
+                            $strHash2 = crypt($strPassword, $strHash);
+                            $boolReturn = $strHash == $strHash2;
+                        }
+                        return $boolReturn;
+                    }
+
+                    $match = verify_password_hash($userpw,$hashed_pwd);
                     
                     if($match==0){
                         echo "1Invalid Username and/or Password, Please try again";

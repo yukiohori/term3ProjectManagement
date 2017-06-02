@@ -14,12 +14,11 @@
 <div class="blog-list-short">
 	
 	<div class="row category-style">
-		<!--<input type="text" ng-model="FilterBlog.categoryName">-->
 		<div class="each-category">
-			<a ng-click="FilterBlog.categoryName=''">ALL</a>
+			<a ng-click="filterSelected('')">ALL</a>
 		</div>
 		<div class="each-category" ng-repeat="x in yosAppVar.category">
-			<a ng-click="FilterBlog.categoryName ='3D'" ng-bind="x.category_name"></a>
+			<a ng-click="filterSelected(x.category_name)" ng-bind="x.category_name"></a>
 		</div>
 	</div>
 	
@@ -38,7 +37,7 @@
             </select>
         </div>-->
 	</div>
-	<div  class="row" ng-repeat="x in yosAppVar.blog | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit | filter:FilterBlog">
+	<div  class="row" ng-repeat="x in yosAppVar.blog | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit | filter:filterBlog">
 		<div ng-if="$even" id='blog{{$index}}' class="blog-style-each blog-animate-left" ng-class="{'active-show':yosAppVar.scroll>yosAppVar.getoffsetTop('blog{{$index}}')}">
 			<div class="remove-margin small-12 medium-6 large-6 column blog-short-content">
 				<div class="category-style" >

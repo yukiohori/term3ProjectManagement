@@ -296,6 +296,9 @@
                 resetCategories();
                 $scope.type=0;
                 $scope.title="";
+                bloged.setData("");
+                resetCategories();
+                $scope.blogForm=1;
             }
             $scope.modalForm=true;
         };

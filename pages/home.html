@@ -60,7 +60,7 @@
 </div>
 <div class="about-home-bgcontent">
 	<div class="row text-center">
-		<h2>PORTFOLIO</h2>
+		<h1>PORTFOLIO</h1>
 	</div>
 	<div class="work-first-bg clearfix">
 		<div class="small-12 medium-12 large-12 column work-home-style">
@@ -126,31 +126,34 @@
 			</div>
 		</div>
 	</div>
+	<div class="text-center home-portfolio-button show-for-large">
+		<a ng-click="yosAppVar.changePage('portfolio')" class="home-blog-btn">READ MORE PORTFOLIO</a>
+	</div>
 </div>
 <div class="about-home-content">
 	<div class="small-12 medium-12 large-12 column text-center">
-		<h2>MY BLOG</h2>
+		<h2 class="set-color-blog-color">MY BLOG</h2>
 	</div>
 	<div class="small-12 medium-12 large-12 column text-center remove-padding">
-		<div class="row blog-style-each" ng-repeat="x in blog" ng-show="$first">
+		<div class="row blog-style-each">
 			<div class="blog-short-image remove-padding small-12 medium-6 large-6 column text-center">
-				<img ng-src="{{x.blog_img}}" />
+				<img ng-src="{{blogChange.blog_img}}" />
 			</div>
 			<div class="remove-margin small-12 medium-6 large-6 column blog-short-content">
 				<div class="category-style" >
-					<div class="each-category" ng-repeat="ca in x.categoryNameArray">
+					<div class="each-category" ng-repeat="ca in blogChange.categoryNameArray">
 						<a ng-bind="ca"></a>
 					</div>
 				</div>
-				<h1 class="text-center" ng-bind="x.blog_title"></h1>
-				<!--<div class="block-with-text" ng-bind-html="x.blog_content"></div>-->
+				<h1 class="text-center" ng-bind="blogChange.blog_title"></h1>
+				<div class="block-with-text" ng-bind-html="blogChange.blog_date"></div>
 				<div class="text-center">
-					<a ng-click="selectBlog(x.blog_index)" class="read-more-btn">READ MORE</a>
+					<a ng-click="selectBlog()" class="read-more-btn">READ</a>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="text-center">
-		<a ng-click="yosAppVar.changePage('blog')" class="home-blog-btn">READ MORE MY BLOGS</a>
+		<a ng-click="yosAppVar.changePage('blog')" class="home-blog-btn">READ MORE MY BLOG</a>
 	</div>
 </div>
