@@ -35,8 +35,8 @@
 
     yosApp.factory('yosAppVar', function ($location,$timeout,$window,$http,$interval) {
         var yosAppVar={};
-        yosAppVar.menuState=true;
-        yosAppVar.menuFooter=true;
+        yosAppVar.menuState=false;
+        yosAppVar.menuFooter=false;
         yosAppVar.menuShow=false;
         yosAppVar.changePanel=false;
         yosAppVar.currenctPage=$location.url();
